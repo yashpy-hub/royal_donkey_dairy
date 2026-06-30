@@ -144,42 +144,70 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Product Showcase */}
+      {/* Product Showcase with Images */}
       <section className="bg-gray-50 dark:bg-gray-800 py-20 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">
-            Our Core Products
+            Our Premium Products
           </h2>
           <p className="text-center text-gray-600 dark:text-gray-300 text-lg mb-16 max-w-2xl mx-auto">
-            Premium donkey milk and powder available for commercial and industrial applications
+            100% Pure, Natural, and Certified - Trusted by Commercial & Industrial Partners
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Product 1 */}
-            <div className="p-8 bg-white dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-shadow">
-              <Droplet className="w-10 h-10 text-orange-600 mb-4" />
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                Fresh Donkey Milk
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                Pure, fresh milk collected daily. Available in 500ml to bulk tanker quantities.
-              </p>
-              <div className="inline-block px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded text-sm font-semibold">
-                100+ Liters in 5 Days
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            {/* Product 1 - Fresh Milk */}
+            <div className="flex flex-col items-center">
+              <div className="mb-6 w-full flex justify-center">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663058292192/3D4mTBAV8JSrjdMbxwumwS/donkey-milk-bottle-VFN8YocpmkyiCGf879qUCw.webp"
+                  alt="Rudra Dairy Fresh Donkey Milk"
+                  className="w-64 h-64 object-contain drop-shadow-lg"
+                />
+              </div>
+              <div className="p-8 bg-white dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-shadow w-full">
+                <Droplet className="w-10 h-10 text-orange-600 mb-4" />
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                  Fresh Donkey Milk
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  Pure, fresh milk collected daily from our healthy donkey herd. Available in 500ml bottles to bulk tanker quantities for commercial and industrial use.
+                </p>
+                <div className="space-y-2 mb-4">
+                  <div className="text-sm text-gray-700 dark:text-gray-300">✓ 100% Pure & Natural</div>
+                  <div className="text-sm text-gray-700 dark:text-gray-300">✓ FSSAI & ISO Certified</div>
+                  <div className="text-sm text-gray-700 dark:text-gray-300">✓ Rich in Nutrients</div>
+                </div>
+                <div className="inline-block px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded text-sm font-semibold">
+                  100+ Liters in 5 Days
+                </div>
               </div>
             </div>
 
-            {/* Product 2 */}
-            <div className="p-8 bg-white dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-shadow">
-              <Package className="w-10 h-10 text-green-600 mb-4" />
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                Donkey Milk Powder
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                Long shelf life powder for industrial and commercial use.
-              </p>
-              <div className="inline-block px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded text-sm font-semibold">
-                1000+ KG in 15 Days
+            {/* Product 2 - Powder */}
+            <div className="flex flex-col items-center">
+              <div className="mb-6 w-full flex justify-center">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663058292192/3D4mTBAV8JSrjdMbxwumwS/donkey-milk-powder-package-mHGTc7hCBZiHdFCgWnDp8q.webp"
+                  alt="Rudra Dairy Donkey Milk Powder"
+                  className="w-64 h-64 object-contain drop-shadow-lg"
+                />
+              </div>
+              <div className="p-8 bg-white dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-shadow w-full">
+                <Package className="w-10 h-10 text-green-600 mb-4" />
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                  Donkey Milk Powder
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  Premium quality powder with extended shelf life. Perfect for industrial, pharmaceutical, and cosmetic applications. Available in bulk quantities.
+                </p>
+                <div className="space-y-2 mb-4">
+                  <div className="text-sm text-gray-700 dark:text-gray-300">✓ Long Shelf Life</div>
+                  <div className="text-sm text-gray-700 dark:text-gray-300">✓ HACCP Certified</div>
+                  <div className="text-sm text-gray-700 dark:text-gray-300">✓ No Preservatives</div>
+                </div>
+                <div className="inline-block px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded text-sm font-semibold">
+                  1000+ KG in 15 Days
+                </div>
               </div>
             </div>
           </div>
