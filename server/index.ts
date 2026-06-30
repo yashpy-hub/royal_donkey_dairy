@@ -22,15 +22,15 @@ async function startServer() {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
   });
 
-  // Serve static files from dist/public in production
+  // Serve static files from dist/public
   let staticPath: string;
 
   if (isVercel) {
-    // Vercel deployment
-    staticPath = path.resolve(__dirname, "..", "public");
+    // Vercel deployment - static files are in dist/public
+    staticPath = path.resolve(__dirname, "..", "dist", "public");
   } else if (process.env.NODE_ENV === "production") {
     // Local production
-    staticPath = path.resolve(__dirname, "public");
+    staticPath = path.resolve(__dirname, "..", "dist", "public");
   } else {
     // Development
     staticPath = path.resolve(__dirname, "..", "client", "dist");

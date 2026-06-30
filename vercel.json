@@ -3,7 +3,7 @@
   "devCommand": "pnpm dev",
   "installCommand": "pnpm install",
   "framework": "vite",
-  "outputDirectory": "dist",
+  "outputDirectory": "dist/public",
   "env": {
     "VITE_APP_TITLE": "Rudra Dairy & Farm",
     "VITE_APP_LOGO": "🐴"
