@@ -1,14 +1,15 @@
 import emailjs from "@emailjs/browser";
 
-// EmailJS Configuration
+// EmailJS Configuration - Client Side Only
 const SERVICE_ID = "service_janddhl";
 const TEMPLATE_ID = "template_xi3zd4c";
 const PUBLIC_KEY = "Ghzb7FbKl2QdBXLi8";
-const PRIVATE_KEY = "SFbT_e9ztLEoDwaqLx1YI";
 const PRIMARY_EMAIL = "info@rudradairyandfarm.shop";
 
-// Initialize EmailJS
-emailjs.init(PUBLIC_KEY);
+// Initialize EmailJS with public key only
+emailjs.init({
+  publicKey: PUBLIC_KEY,
+});
 
 export interface ContactFormData {
   name: string;
@@ -42,8 +43,7 @@ export const sendContactEmail = async (data: ContactFormData): Promise<boolean> 
     const response = await emailjs.send(
       SERVICE_ID,
       TEMPLATE_ID,
-      templateParams,
-      PRIVATE_KEY
+      templateParams
     );
 
     console.log("Email sent successfully:", response);
@@ -83,8 +83,7 @@ export const sendSampleRequestEmail = async (data: {
     const response = await emailjs.send(
       SERVICE_ID,
       TEMPLATE_ID,
-      templateParams,
-      PRIVATE_KEY
+      templateParams
     );
 
     console.log("Sample request email sent successfully:", response);
@@ -125,8 +124,7 @@ export const sendBulkOrderEmail = async (data: {
     const response = await emailjs.send(
       SERVICE_ID,
       TEMPLATE_ID,
-      templateParams,
-      PRIVATE_KEY
+      templateParams
     );
 
     console.log("Bulk order email sent successfully:", response);
