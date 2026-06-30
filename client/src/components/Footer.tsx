@@ -95,15 +95,12 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
                 <Mail className="w-4 h-4" />
-                <a href="mailto:donkeyfarm79@gmail.com" className="text-sm break-all">
-                  donkeyfarm79@gmail.com
+                <a href="mailto:info@rudradairyandfarm.shop" className="text-sm break-all font-semibold">
+                  info@rudradairyandfarm.shop
                 </a>
               </div>
-              <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
-                <Mail className="w-4 h-4" />
-                <a href="mailto:donkeyfarm79@outlook.com" className="text-sm break-all">
-                  donkeyfarm79@outlook.com
-                </a>
+              <div className="text-sm text-amber-200 mt-2">
+                <strong>Website:</strong> rudradairyandfarm.shop
               </div>
               <div className="flex gap-4 mt-4">
                 <a

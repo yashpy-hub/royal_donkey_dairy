@@ -1,32 +1,66 @@
-import { Button } from "@/components/ui/button";
-import { Mail, Phone, MessageCircle, Instagram, Facebook } from "lucide-react";
+import { Mail, Phone, MessageCircle, Instagram, Facebook, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { sendContactEmail } from "@/lib/emailService";
+import { Button } from "@/components/ui/button";
 
 /**
  * Contact Page - Rudra Dairy & Farm
- * Contact information and inquiry form
- * Advanced animations and dark mode support
+ * Contact information and inquiry form with EmailJS integration
+ * All emails sent to: info@rudradairyandfarm.shop
  */
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
+    subject: "",
     businessType: "b2b",
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Thank you for your inquiry! We'll get back to you soon.");
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      businessType: "b2b",
-      message: "",
-    });
+
+    // Validate form
+    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const success = await sendContactEmail({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject || `Inquiry - ${formData.businessType.toUpperCase()}`,
+        message: formData.message,
+        businessType: formData.businessType,
+      });
+
+      if (success) {
+        toast.success("Thank you! Your inquiry has been sent to info@rudradairyandfarm.shop");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          businessType: "b2b",
+          message: "",
+        });
+      } else {
+        toast.error("Failed to send email. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      toast.error("An error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (
@@ -47,10 +81,10 @@ export default function Contact() {
       <section className="bg-gradient-to-br from-amber-50 dark:from-gray-900 to-green-50 dark:to-gray-900 py-16 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto animate-slide-in-up">
-            <h1 className="text-5xl md:text-6xl font-display font-bold text-gray-900 dark:text-amber-50 mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               Get in Touch
             </h1>
-            <p className="text-xl text-gray-700 dark:text-amber-100 font-serif">
+            <p className="text-xl text-gray-700 dark:text-gray-300">
               Contact Rudra Dairy & Farm for donkey milk and powder inquiries, partnerships, and business opportunities.
             </p>
           </div>
@@ -60,7 +94,7 @@ export default function Contact() {
       {/* Contact Information */}
       <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-display font-bold text-center text-gray-900 dark:text-amber-50 mb-12 animate-slide-in-up">
+          <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12 animate-slide-in-up">
             Contact Information
           </h2>
 
@@ -68,205 +102,244 @@ export default function Contact() {
             {/* WhatsApp */}
             <div className="p-8 bg-gradient-to-br from-green-50 dark:from-green-900/20 to-white dark:to-gray-800 border border-green-200 dark:border-green-900/30 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 animate-slide-in-up" style={{animationDelay: '0.1s'}}>
               <MessageCircle className="w-12 h-12 text-green-700 dark:text-green-400 mx-auto mb-4" />
-              <h3 className="text-xl font-display font-bold text-gray-900 dark:text-amber-50 mb-2">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 text-center">
                 WhatsApp
               </h3>
               <a
                 href="https://wa.me/919112327322"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-sans font-medium"
+                className="text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium text-center block"
               >
                 +91 9112327322
               </a>
-              <p className="text-sm text-gray-600 dark:text-amber-200 font-serif mt-2">
-                Business WhatsApp - Quick Response
+              <p className="text-sm text-gray-600 dark:text-gray-400 text-center mt-2">
+                Business WhatsApp
               </p>
             </div>
 
-            {/* Email 1 */}
-            <div className="p-8 bg-gradient-to-br from-amber-50 dark:from-amber-900/20 to-white dark:to-gray-800 border border-amber-200 dark:border-amber-900/30 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 animate-slide-in-up" style={{animationDelay: '0.2s'}}>
-              <Mail className="w-12 h-12 text-amber-700 dark:text-amber-400 mx-auto mb-4" />
-              <h3 className="text-xl font-display font-bold text-gray-900 dark:text-amber-50 mb-2">
+            {/* Email */}
+            <div className="p-8 bg-gradient-to-br from-orange-50 dark:from-orange-900/20 to-white dark:to-gray-800 border border-orange-200 dark:border-orange-900/30 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 animate-slide-in-up" style={{animationDelay: '0.2s'}}>
+              <Mail className="w-12 h-12 text-orange-700 dark:text-orange-400 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 text-center">
                 Email
               </h3>
               <a
-                href="mailto:donkeyfarm79@gmail.com"
-                className="text-amber-700 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 font-sans font-medium break-all text-sm"
+                href="mailto:info@rudradairyandfarm.shop"
+                className="text-orange-700 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 font-medium text-center block break-all"
               >
-                donkeyfarm79@gmail.com
+                info@rudradairyandfarm.shop
               </a>
+              <p className="text-sm text-gray-600 dark:text-gray-400 text-center mt-2">
+                Primary Email
+              </p>
             </div>
 
-            {/* Email 2 */}
+            {/* Phone */}
             <div className="p-8 bg-gradient-to-br from-blue-50 dark:from-blue-900/20 to-white dark:to-gray-800 border border-blue-200 dark:border-blue-900/30 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 animate-slide-in-up" style={{animationDelay: '0.3s'}}>
-              <Mail className="w-12 h-12 text-blue-700 dark:text-blue-400 mx-auto mb-4" />
-              <h3 className="text-xl font-display font-bold text-gray-900 dark:text-amber-50 mb-2">
-                Email
+              <Phone className="w-12 h-12 text-blue-700 dark:text-blue-400 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 text-center">
+                Phone
               </h3>
               <a
-                href="mailto:donkeyfarm79@outlook.com"
-                className="text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-sans font-medium break-all text-sm"
+                href="tel:+919112327322"
+                className="text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-center block"
               >
-                donkeyfarm79@outlook.com
+                +91 9112327322
               </a>
+              <p className="text-sm text-gray-600 dark:text-gray-400 text-center mt-2">
+                Business Hours
+              </p>
             </div>
           </div>
 
-          {/* Social Media */}
-          <div className="text-center">
-            <h3 className="text-2xl font-display font-bold text-gray-900 dark:text-amber-50 mb-6 animate-slide-in-up">
-              Follow Us on Social Media
-            </h3>
-            <div className="flex justify-center gap-6 animate-slide-in-up" style={{animationDelay: '0.2s'}}>
-              <a
-                href="https://instagram.com/rudradairyandform"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-pink-50 dark:from-pink-900/20 to-orange-50 dark:to-orange-900/20 border border-orange-200 dark:border-orange-900/30 rounded-lg hover:shadow-lg hover:scale-110 transition-all duration-300"
-              >
-                <Instagram className="w-6 h-6 text-orange-600 dark:text-orange-400" />
-                <span className="font-sans font-medium text-gray-900 dark:text-amber-50">
-                  Instagram
-                </span>
-              </a>
-              <a
-                href="https://facebook.com/rudradairyandform"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-blue-50 dark:from-blue-900/20 to-blue-100 dark:to-blue-900/20 border border-blue-200 dark:border-blue-900/30 rounded-lg hover:shadow-lg hover:scale-110 transition-all duration-300"
-              >
-                <Facebook className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                <span className="font-sans font-medium text-gray-900 dark:text-amber-50">
-                  Facebook
-                </span>
-              </a>
-            </div>
+          {/* Social Links */}
+          <div className="flex justify-center gap-6 mb-12">
+            <a
+              href="https://instagram.com/rudradairyandfarm"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-gradient-to-br from-pink-500 to-orange-500 text-white rounded-full hover:scale-110 transition-transform"
+            >
+              <Instagram className="w-6 h-6" />
+            </a>
+            <a
+              href="https://facebook.com/rudradairyandfarm"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-blue-600 text-white rounded-full hover:scale-110 transition-transform"
+            >
+              <Facebook className="w-6 h-6" />
+            </a>
           </div>
         </div>
       </section>
 
       {/* Contact Form */}
-      <section className="py-20 bg-gradient-to-br from-green-50 dark:from-green-950 to-amber-50 dark:to-gray-900 transition-colors duration-300">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-display font-bold text-center text-gray-900 dark:text-amber-50 mb-12 animate-slide-in-up">
-            Send Us a Message
-          </h2>
+          <div className="max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">
+              Send us a Message
+            </h2>
+            <p className="text-center text-gray-600 dark:text-gray-300 mb-12">
+              Fill out the form below and we'll get back to you within 24 hours at info@rudradairyandfarm.shop
+            </p>
 
-          <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-xl border border-amber-200 dark:border-amber-900/30 shadow-sm animate-fade-scale">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
               {/* Name */}
-              <div>
-                <label className="block text-sm font-sans font-medium text-gray-700 dark:text-amber-100 mb-2">
-                  Full Name
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                  Full Name *
                 </label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
+                  placeholder="Your full name"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-600 transition-all"
                   required
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-amber-700 dark:focus:ring-amber-600 focus:border-transparent font-sans transition-all duration-200"
-                  placeholder="Your name"
                 />
               </div>
 
               {/* Email */}
-              <div>
-                <label className="block text-sm font-sans font-medium text-gray-700 dark:text-amber-100 mb-2">
-                  Email Address
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                  Email Address *
                 </label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-amber-700 dark:focus:ring-amber-600 focus:border-transparent font-sans transition-all duration-200"
                   placeholder="your@email.com"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-600 transition-all"
+                  required
                 />
               </div>
 
               {/* Phone */}
-              <div>
-                <label className="block text-sm font-sans font-medium text-gray-700 dark:text-amber-100 mb-2">
-                  Phone Number
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                  Phone Number *
                 </label>
                 <input
                   type="tel"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-amber-700 dark:focus:ring-amber-600 focus:border-transparent font-sans transition-all duration-200"
-                  placeholder="+91 XXXXX XXXXX"
+                  placeholder="+91 XXXXXXXXXX"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-600 transition-all"
+                  required
+                />
+              </div>
+
+              {/* Subject */}
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="Inquiry subject"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-600 transition-all"
                 />
               </div>
 
               {/* Business Type */}
-              <div>
-                <label className="block text-sm font-sans font-medium text-gray-700 dark:text-amber-100 mb-2">
-                  I'm interested in
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                  Business Type
                 </label>
                 <select
                   name="businessType"
                   value={formData.businessType}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-amber-700 dark:focus:ring-amber-600 focus:border-transparent font-sans transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-600 transition-all"
                 >
                   <option value="b2b">B2B Partnership</option>
-                  <option value="b2c">B2C / Retail</option>
-                  <option value="wholesale">Wholesale Distribution</option>
-                  <option value="cosmetics">Cosmetics Industry</option>
+                  <option value="b2c">B2C Retail</option>
+                  <option value="wholesale">Wholesale</option>
+                  <option value="industrial">Industrial</option>
                   <option value="pharmaceutical">Pharmaceutical</option>
+                  <option value="cosmetic">Cosmetic</option>
                   <option value="other">Other</option>
                 </select>
               </div>
 
               {/* Message */}
-              <div>
-                <label className="block text-sm font-sans font-medium text-gray-700 dark:text-amber-100 mb-2">
-                  Message
+              <div className="mb-8">
+                <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                  Message *
                 </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-amber-700 dark:focus:ring-amber-600 focus:border-transparent font-sans transition-all duration-200"
                   placeholder="Tell us about your inquiry..."
+                  rows={6}
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-600 transition-all resize-none"
+                  required
                 />
               </div>
 
               {/* Submit Button */}
               <Button
                 type="submit"
-                className="w-full bg-amber-700 hover:bg-amber-800 dark:bg-amber-600 dark:hover:bg-amber-700 text-white font-sans font-medium h-12 transition-all duration-300 hover:shadow-lg hover:scale-105"
+                disabled={isLoading}
+                className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
               >
-                Send Message
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  "Send Message"
+                )}
               </Button>
+
+              <p className="text-xs text-gray-600 dark:text-gray-400 text-center mt-4">
+                All emails will be sent to: <strong>info@rudradairyandfarm.shop</strong>
+              </p>
             </form>
           </div>
         </div>
       </section>
 
-      {/* Response Time */}
-      <section className="py-20 bg-gradient-to-br from-amber-700 dark:from-amber-900 to-green-800 dark:to-green-900 text-white transition-colors duration-300">
-        <div className="container mx-auto px-4 text-center animate-slide-in-up">
-          <h2 className="text-3xl font-display font-bold mb-4">
-            We're Here to Help
-          </h2>
-          <p className="text-lg font-serif mb-6 max-w-2xl mx-auto">
-            Rudra Dairy & Farm is committed to providing quick and professional support for all your donkey milk and powder requirements.
-          </p>
-          <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-amber-200/30 max-w-2xl mx-auto">
-            <p className="font-sans font-medium">
-              WhatsApp Response: Immediate
-              <br />
-              Email Response: Within 24 hours
-              <br />
-              Business Hours: 9 AM - 6 PM IST (Monday - Saturday)
-            </p>
+      {/* Additional Info */}
+      <section className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              Why Contact Us?
+            </h3>
+            <ul className="space-y-4 text-gray-700 dark:text-gray-300">
+              <li className="flex gap-3">
+                <span className="text-orange-600 font-bold">✓</span>
+                <span><strong>Bulk Orders:</strong> We handle large-scale commercial and industrial orders with custom production schedules.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-orange-600 font-bold">✓</span>
+                <span><strong>Product Samples:</strong> Request samples of our Fresh Donkey Milk or Powder to test quality.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-orange-600 font-bold">✓</span>
+                <span><strong>Partnerships:</strong> Explore B2B, wholesale, and distribution opportunities.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-orange-600 font-bold">✓</span>
+                <span><strong>Certifications:</strong> Learn more about our FSSAI, ISO, IEC, and HACCP certifications.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-orange-600 font-bold">✓</span>
+                <span><strong>Custom Requirements:</strong> Discuss custom packaging, delivery, and product specifications.</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
