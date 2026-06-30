@@ -14,6 +14,7 @@ import WhoWeAre from "./pages/WhoWeAre";
 import Applications from "./pages/Applications";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
 function Router() {
   return (
@@ -45,6 +46,7 @@ function App() {
               <Router />
             </main>
             <Footer />
+            <FloatingWhatsApp />
           </div>
         </TooltipProvider>
       </ThemeProvider>
