@@ -7,14 +7,15 @@ import {
   Zap,
   Shield,
   Award,
-  TrendingUp,
+  Zap as Lightning,
   CheckCircle,
+  Flame,
 } from "lucide-react";
 
 /**
  * Products Page - Rudra Dairy & Farm
  * Premium Donkey Milk & Powder for Commercial & Industrial Use
- * Bulk sales, wholesale, B2B partnerships
+ * Massive Production Capacity: 1000+ kg powder in 15 days, 100+ liters milk in 5 days
  */
 export default function Products() {
   const mainProducts = [
@@ -45,6 +46,7 @@ export default function Products() {
         "Health & Wellness",
       ],
       certification: "FSSAI, ISO, IEC, HACCP Certified",
+      production: "100+ Liters in 5 Days",
     },
     {
       id: 2,
@@ -73,45 +75,28 @@ export default function Products() {
         "Export Markets",
       ],
       certification: "FSSAI, ISO, IEC, HACCP Certified",
+      production: "1000+ KG in 15 Days",
     },
   ];
 
-  const bulkPricingTiers = [
+  const productionCapacity = [
     {
-      tier: "Retail",
-      volume: "Up to 5L / 1kg",
-      discount: "Standard Pricing",
-      delivery: "3-5 Days",
-      moq: "No Minimum",
-      color: "from-green-50 dark:from-green-900/20",
-      borderColor: "border-green-200 dark:border-green-900/30",
-    },
-    {
-      tier: "Wholesale",
-      volume: "5L - 50L / 1kg - 25kg",
-      discount: "10-15% Discount",
-      delivery: "2-3 Days",
-      moq: "Minimum Order Required",
+      product: "Fresh Donkey Milk",
+      capacity: "100+ Liters",
+      timeframe: "5 Days",
+      icon: <Droplet className="w-8 h-8" />,
       color: "from-blue-50 dark:from-blue-900/20",
       borderColor: "border-blue-200 dark:border-blue-900/30",
+      iconColor: "text-blue-700 dark:text-blue-400",
     },
     {
-      tier: "Commercial",
-      volume: "50L - 500L / 25kg - 250kg",
-      discount: "20-30% Discount",
-      delivery: "1-2 Days",
-      moq: "Bulk Order Discount",
-      color: "from-purple-50 dark:from-purple-900/20",
-      borderColor: "border-purple-200 dark:border-purple-900/30",
-    },
-    {
-      tier: "Industrial",
-      volume: "500L+ / 250kg+",
-      discount: "Custom Pricing",
-      delivery: "Customized",
-      moq: "Dedicated Supply",
-      color: "from-orange-50 dark:from-orange-900/20",
-      borderColor: "border-orange-200 dark:border-orange-900/30",
+      product: "Donkey Milk Powder",
+      capacity: "1000+ KG",
+      timeframe: "15 Days",
+      icon: <Package className="w-8 h-8" />,
+      color: "from-amber-50 dark:from-amber-900/20",
+      borderColor: "border-amber-200 dark:border-amber-900/30",
+      iconColor: "text-amber-700 dark:text-amber-400",
     },
   ];
 
@@ -119,25 +104,25 @@ export default function Products() {
     {
       title: "B2B Partnerships",
       description:
-        "Direct supply to businesses, manufacturers, and retailers with dedicated account management.",
-      icon: <TrendingUp className="w-8 h-8" />,
+        "Direct supply to businesses, manufacturers, and retailers with dedicated account management and flexible terms.",
+      icon: <Lightning className="w-8 h-8" />,
     },
     {
       title: "B2C Retail",
       description:
-        "Premium products available for direct consumer purchase with quality assurance.",
+        "Premium products available for direct consumer purchase with quality assurance and fast delivery.",
       icon: <Award className="w-8 h-8" />,
     },
     {
       title: "Wholesale Distribution",
       description:
-        "Bulk quantities for distributors and resellers with competitive wholesale pricing.",
+        "Bulk quantities for distributors and resellers with consistent supply and reliable logistics.",
       icon: <Truck className="w-8 h-8" />,
     },
     {
       title: "Industrial Supply",
       description:
-        "Large-scale supply for manufacturing, cosmetics, pharmaceutical, and food industries.",
+        "Large-scale supply for manufacturing, cosmetics, pharmaceutical, and food industries with custom solutions.",
       icon: <Zap className="w-8 h-8" />,
     },
   ];
@@ -151,8 +136,62 @@ export default function Products() {
             <h1 className="text-5xl md:text-6xl font-display font-bold text-gray-900 dark:text-amber-50 mb-6">
               Our Premium Products
             </h1>
-            <p className="text-xl text-gray-700 dark:text-amber-100 font-serif">
+            <p className="text-xl text-gray-700 dark:text-amber-100 font-serif mb-4">
               Donkey Milk & Powder - Available for Commercial, Industrial & Bulk Requirements
+            </p>
+            <div className="inline-block px-6 py-3 bg-orange-100 dark:bg-orange-900/30 border border-orange-300 dark:border-orange-900/50 rounded-lg">
+              <p className="text-orange-800 dark:text-orange-300 font-sans font-bold text-lg">
+                🚀 Massive Production Capacity: 100+ L Milk in 5 Days | 1000+ KG Powder in 15 Days
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Production Capacity Highlight */}
+      <section className="py-20 bg-gradient-to-br from-orange-50 dark:from-orange-950 to-red-50 dark:to-gray-900 transition-colors duration-300">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-display font-bold text-center text-gray-900 dark:text-amber-50 mb-16 animate-slide-in-up">
+            Our Production Capacity
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {productionCapacity.map((item, idx) => (
+              <div
+                key={idx}
+                className={`p-8 bg-gradient-to-br ${item.color} border ${item.borderColor} rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-fade-scale`}
+                style={{ animationDelay: `${idx * 0.2}s` }}
+              >
+                <div className={`${item.iconColor} mb-4`}>{item.icon}</div>
+                <h3 className="text-2xl font-display font-bold text-gray-900 dark:text-amber-50 mb-2">
+                  {item.product}
+                </h3>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-sm font-sans text-gray-700 dark:text-amber-100">
+                      Production Capacity
+                    </p>
+                    <p className="text-3xl font-display font-bold text-orange-700 dark:text-orange-400">
+                      {item.capacity}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-sans text-gray-700 dark:text-amber-100">
+                      Timeframe
+                    </p>
+                    <p className="text-xl font-display font-bold text-green-700 dark:text-green-400">
+                      {item.timeframe}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 p-8 bg-white dark:bg-gray-800 border-2 border-orange-400 dark:border-orange-600 rounded-xl text-center max-w-3xl mx-auto animate-slide-in-up" style={{animationDelay: '0.4s'}}>
+            <Flame className="w-8 h-8 text-orange-600 dark:text-orange-400 mx-auto mb-4" />
+            <p className="text-lg font-serif text-gray-700 dark:text-amber-100">
+              With our massive production capacity, we can handle large-scale orders from commercial and industrial partners. Custom production schedules available upon request.
             </p>
           </div>
         </div>
@@ -179,6 +218,11 @@ export default function Products() {
                 <h3 className="text-2xl font-display font-bold text-gray-900 dark:text-amber-50 mb-3">
                   {product.name}
                 </h3>
+
+                {/* Production Badge */}
+                <div className="inline-block px-3 py-1 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-full text-sm font-sans font-bold text-green-700 dark:text-green-400 mb-4">
+                  ⚡ {product.production}
+                </div>
 
                 {/* Description */}
                 <p className="text-gray-700 dark:text-amber-100 font-serif text-sm mb-6">
@@ -243,66 +287,6 @@ export default function Products() {
                     <Shield className="w-4 h-4 inline mr-2" />
                     {product.certification}
                   </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Bulk Pricing Tiers */}
-      <section className="py-20 bg-gradient-to-br from-green-50 dark:from-green-950 to-white dark:to-gray-900 transition-colors duration-300">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-display font-bold text-center text-gray-900 dark:text-amber-50 mb-4 animate-slide-in-up">
-            Bulk Pricing & Order Tiers
-          </h2>
-          <p className="text-center text-gray-700 dark:text-amber-100 font-serif mb-16 max-w-2xl mx-auto">
-            Flexible pricing for retail, wholesale, commercial, and industrial requirements
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            {bulkPricingTiers.map((tier, idx) => (
-              <div
-                key={idx}
-                className={`p-6 bg-gradient-to-br ${tier.color} border ${tier.borderColor} rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 animate-fade-scale`}
-                style={{ animationDelay: `${idx * 0.1}s` }}
-              >
-                <h3 className="text-xl font-display font-bold text-gray-900 dark:text-amber-50 mb-4">
-                  {tier.tier}
-                </h3>
-                <div className="space-y-3 text-sm">
-                  <div>
-                    <p className="font-sans font-medium text-gray-700 dark:text-amber-100">
-                      Volume
-                    </p>
-                    <p className="text-gray-600 dark:text-amber-200 font-serif">
-                      {tier.volume}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="font-sans font-medium text-gray-700 dark:text-amber-100">
-                      Discount
-                    </p>
-                    <p className="text-green-700 dark:text-green-400 font-serif font-bold">
-                      {tier.discount}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="font-sans font-medium text-gray-700 dark:text-amber-100">
-                      Delivery
-                    </p>
-                    <p className="text-gray-600 dark:text-amber-200 font-serif">
-                      {tier.delivery}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="font-sans font-medium text-gray-700 dark:text-amber-100">
-                      MOQ
-                    </p>
-                    <p className="text-gray-600 dark:text-amber-200 font-serif">
-                      {tier.moq}
-                    </p>
-                  </div>
                 </div>
               </div>
             ))}
@@ -396,7 +380,7 @@ export default function Products() {
             Ready to Order?
           </h2>
           <p className="text-lg font-serif mb-8 max-w-2xl mx-auto">
-            Contact Rudra Dairy & Farm today for pricing, samples, and bulk order inquiries. We offer flexible terms for commercial and industrial partners.
+            Contact Rudra Dairy & Farm today for bulk orders, custom production schedules, and partnerships. With our massive production capacity, we can meet any commercial or industrial requirement.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
