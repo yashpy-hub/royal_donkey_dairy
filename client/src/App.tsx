@@ -10,6 +10,8 @@ import About from "./pages/About";
 import Trust from "./pages/Trust";
 import Certifications from "./pages/Certifications";
 import Contact from "./pages/Contact";
+import WhoWeAre from "./pages/WhoWeAre";
+import Applications from "./pages/Applications";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
@@ -17,6 +19,8 @@ function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path="/who-we-are" component={WhoWeAre} />
+      <Route path="/applications" component={Applications} />
       <Route path={"/products"} component={Products} />
       <Route path={"/about"} component={About} />
       <Route path={"/trust"} component={Trust} />

@@ -18,9 +18,9 @@ export default function Navigation() {
 
   const navLinks = [
     { href: "/", label: "Home" },
+    { href: "/who-we-are", label: "Who We Are" },
     { href: "/products", label: "Products" },
-    { href: "/about", label: "About Founder" },
-    { href: "/trust", label: "Trust & Values" },
+    { href: "/applications", label: "Applications" },
     { href: "/certifications", label: "Certifications" },
     { href: "/contact", label: "Contact" },
   ];
@@ -36,10 +36,10 @@ export default function Navigation() {
             </div>
             <div className="hidden sm:block">
               <div className="text-lg font-display font-bold text-amber-700 dark:text-amber-400">
-                Royal Donkey Dairy
+                Rudra Dairy & Farm
               </div>
               <div className="text-xs text-amber-600 dark:text-amber-500 font-sans">
-                Premium Artisanal Milk
+                Trusted Suppliers Since 2022
               </div>
             </div>
           </Link>
@@ -73,7 +73,7 @@ export default function Navigation() {
               className="p-2 hover:bg-amber-50 dark:hover:bg-amber-900/30 rounded-lg transition-colors"
             >
               {isOpen ? (
-                <X className="w-6 h-6 text-amber-700 dark:text-amber-400" />
+                <X className="w-6 h-6 text-amber-700 dark:text-amber-400 animate-spin" />
               ) : (
                 <Menu className="w-6 h-6 text-amber-700 dark:text-amber-400" />
               )}
@@ -83,22 +83,22 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-2 border-t border-amber-100 dark:border-amber-900/30 pt-4 animate-slide-in-down">
+          <div className="md:hidden mt-4 pb-4 space-y-2 border-t border-amber-100 dark:border-amber-900/30 pt-4 animate-slide-in-down" style={{animationDuration: '0.3s'}}>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-2 text-sm font-sans text-gray-700 dark:text-amber-100 hover:bg-amber-50 dark:hover:bg-amber-900/30 hover:text-amber-700 dark:hover:text-amber-300 rounded-lg transition-colors"
+                className="block px-4 py-2 text-sm font-sans text-gray-700 dark:text-amber-100 hover:bg-amber-50 dark:hover:bg-amber-900/30 hover:text-amber-700 dark:hover:text-amber-300 rounded-lg transition-all duration-200 hover:translate-x-1"
               >
                 {link.label}
               </Link>
             ))}
             <Button
               asChild
-              className="w-full bg-amber-700 hover:bg-amber-800 dark:bg-amber-600 dark:hover:bg-amber-700 text-white font-sans mt-2"
+              className="w-full bg-amber-700 hover:bg-amber-800 dark:bg-amber-600 dark:hover:bg-amber-700 text-white font-sans mt-2 transition-all duration-300 hover:shadow-lg"
             >
-              <Link href="/contact">Get in Touch</Link>
+              <Link href="/contact">Contact Us</Link>
             </Button>
           </div>
         )}

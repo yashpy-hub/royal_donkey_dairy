@@ -1,14 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
+import { Mail, Phone, MessageCircle, Instagram, Facebook } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
 /**
- * Contact Page
- * Premium Artisanal Heritage Design
- * - Contact information (email, phone, social)
- * - Contact form for inquiries
- * - Business model specific contact options
+ * Contact Page - Rudra Dairy & Farm
+ * Contact information and inquiry form
+ * Advanced animations and dark mode support
  */
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -46,98 +44,100 @@ export default function Contact() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-amber-50 to-green-50 py-16">
+      <section className="bg-gradient-to-br from-amber-50 dark:from-gray-900 to-green-50 dark:to-gray-900 py-16 transition-colors duration-300">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-display font-bold text-gray-900 mb-6">
+          <div className="text-center max-w-3xl mx-auto animate-slide-in-up">
+            <h1 className="text-5xl md:text-6xl font-display font-bold text-gray-900 dark:text-amber-50 mb-6">
               Get in Touch
             </h1>
-            <p className="text-xl text-gray-700 font-serif">
-              Have questions about our products or partnership opportunities?
-              We'd love to hear from you.
+            <p className="text-xl text-gray-700 dark:text-amber-100 font-serif">
+              Contact Rudra Dairy & Farm for donkey milk and powder inquiries, partnerships, and business opportunities.
             </p>
           </div>
         </div>
       </section>
 
       {/* Contact Information */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-display font-bold text-center text-gray-900 mb-12">
+          <h2 className="text-4xl font-display font-bold text-center text-gray-900 dark:text-amber-50 mb-12 animate-slide-in-up">
             Contact Information
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
-            {/* Email */}
-            <div className="p-8 bg-gradient-to-br from-amber-50 to-white border border-amber-200 rounded-xl text-center hover:shadow-lg transition-shadow">
-              <Mail className="w-12 h-12 text-amber-700 mx-auto mb-4" />
-              <h3 className="text-xl font-display font-bold text-gray-900 mb-2">
+            {/* WhatsApp */}
+            <div className="p-8 bg-gradient-to-br from-green-50 dark:from-green-900/20 to-white dark:to-gray-800 border border-green-200 dark:border-green-900/30 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 animate-slide-in-up" style={{animationDelay: '0.1s'}}>
+              <MessageCircle className="w-12 h-12 text-green-700 dark:text-green-400 mx-auto mb-4" />
+              <h3 className="text-xl font-display font-bold text-gray-900 dark:text-amber-50 mb-2">
+                WhatsApp
+              </h3>
+              <a
+                href="https://wa.me/919112327322"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-sans font-medium"
+              >
+                +91 9112327322
+              </a>
+              <p className="text-sm text-gray-600 dark:text-amber-200 font-serif mt-2">
+                Business WhatsApp - Quick Response
+              </p>
+            </div>
+
+            {/* Email 1 */}
+            <div className="p-8 bg-gradient-to-br from-amber-50 dark:from-amber-900/20 to-white dark:to-gray-800 border border-amber-200 dark:border-amber-900/30 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 animate-slide-in-up" style={{animationDelay: '0.2s'}}>
+              <Mail className="w-12 h-12 text-amber-700 dark:text-amber-400 mx-auto mb-4" />
+              <h3 className="text-xl font-display font-bold text-gray-900 dark:text-amber-50 mb-2">
                 Email
               </h3>
               <a
-                href="mailto:yashpawar.py@gmail.com"
-                className="text-amber-700 hover:text-amber-800 font-sans font-medium break-all"
+                href="mailto:donkeyfarm79@gmail.com"
+                className="text-amber-700 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 font-sans font-medium break-all text-sm"
               >
-                yashpawar.py@gmail.com
+                donkeyfarm79@gmail.com
               </a>
             </div>
 
-            {/* Phone */}
-            <div className="p-8 bg-gradient-to-br from-green-50 to-white border border-green-200 rounded-xl text-center hover:shadow-lg transition-shadow">
-              <Phone className="w-12 h-12 text-green-700 mx-auto mb-4" />
-              <h3 className="text-xl font-display font-bold text-gray-900 mb-2">
-                Phone
+            {/* Email 2 */}
+            <div className="p-8 bg-gradient-to-br from-blue-50 dark:from-blue-900/20 to-white dark:to-gray-800 border border-blue-200 dark:border-blue-900/30 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 animate-slide-in-up" style={{animationDelay: '0.3s'}}>
+              <Mail className="w-12 h-12 text-blue-700 dark:text-blue-400 mx-auto mb-4" />
+              <h3 className="text-xl font-display font-bold text-gray-900 dark:text-amber-50 mb-2">
+                Email
               </h3>
               <a
-                href="tel:+919657142020"
-                className="text-green-700 hover:text-green-800 font-sans font-medium"
+                href="mailto:donkeyfarm79@outlook.com"
+                className="text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-sans font-medium break-all text-sm"
               >
-                +91 96571 42020
+                donkeyfarm79@outlook.com
               </a>
-              <p className="text-sm text-gray-600 font-serif mt-2">
-                Available 9 AM - 6 PM IST
-              </p>
-            </div>
-
-            {/* Location */}
-            <div className="p-8 bg-gradient-to-br from-amber-50 to-white border border-amber-200 rounded-xl text-center hover:shadow-lg transition-shadow">
-              <MapPin className="w-12 h-12 text-amber-700 mx-auto mb-4" />
-              <h3 className="text-xl font-display font-bold text-gray-900 mb-2">
-                Location
-              </h3>
-              <p className="text-gray-700 font-serif text-sm">
-                Royal Donkey Dairy Farm
-                <br />
-                India
-              </p>
             </div>
           </div>
 
           {/* Social Media */}
           <div className="text-center">
-            <h3 className="text-2xl font-display font-bold text-gray-900 mb-6">
+            <h3 className="text-2xl font-display font-bold text-gray-900 dark:text-amber-50 mb-6 animate-slide-in-up">
               Follow Us on Social Media
             </h3>
-            <div className="flex justify-center gap-6">
+            <div className="flex justify-center gap-6 animate-slide-in-up" style={{animationDelay: '0.2s'}}>
               <a
-                href="https://instagram.com/royaldonkeydairy"
+                href="https://instagram.com/rudradairyandform"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-pink-50 to-orange-50 border border-orange-200 rounded-lg hover:shadow-lg transition-shadow"
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-pink-50 dark:from-pink-900/20 to-orange-50 dark:to-orange-900/20 border border-orange-200 dark:border-orange-900/30 rounded-lg hover:shadow-lg hover:scale-110 transition-all duration-300"
               >
-                <Instagram className="w-6 h-6 text-orange-600" />
-                <span className="font-sans font-medium text-gray-900">
+                <Instagram className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+                <span className="font-sans font-medium text-gray-900 dark:text-amber-50">
                   Instagram
                 </span>
               </a>
               <a
-                href="https://facebook.com/royaldonkeydairy"
+                href="https://facebook.com/rudradairyandform"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg hover:shadow-lg transition-shadow"
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-blue-50 dark:from-blue-900/20 to-blue-100 dark:to-blue-900/20 border border-blue-200 dark:border-blue-900/30 rounded-lg hover:shadow-lg hover:scale-110 transition-all duration-300"
               >
-                <Facebook className="w-6 h-6 text-blue-600" />
-                <span className="font-sans font-medium text-gray-900">
+                <Facebook className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                <span className="font-sans font-medium text-gray-900 dark:text-amber-50">
                   Facebook
                 </span>
               </a>
@@ -147,17 +147,17 @@ export default function Contact() {
       </section>
 
       {/* Contact Form */}
-      <section className="py-20 bg-gradient-to-br from-green-50 to-amber-50">
+      <section className="py-20 bg-gradient-to-br from-green-50 dark:from-green-950 to-amber-50 dark:to-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-display font-bold text-center text-gray-900 mb-12">
+          <h2 className="text-4xl font-display font-bold text-center text-gray-900 dark:text-amber-50 mb-12 animate-slide-in-up">
             Send Us a Message
           </h2>
 
-          <div className="max-w-2xl mx-auto bg-white p-8 rounded-xl border border-amber-200 shadow-sm">
+          <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-xl border border-amber-200 dark:border-amber-900/30 shadow-sm animate-fade-scale">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name */}
               <div>
-                <label className="block text-sm font-sans font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-sans font-medium text-gray-700 dark:text-amber-100 mb-2">
                   Full Name
                 </label>
                 <input
@@ -166,14 +166,14 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-700 focus:border-transparent font-sans"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-amber-700 dark:focus:ring-amber-600 focus:border-transparent font-sans transition-all duration-200"
                   placeholder="Your name"
                 />
               </div>
 
               {/* Email */}
               <div>
-                <label className="block text-sm font-sans font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-sans font-medium text-gray-700 dark:text-amber-100 mb-2">
                   Email Address
                 </label>
                 <input
@@ -182,14 +182,14 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-700 focus:border-transparent font-sans"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-amber-700 dark:focus:ring-amber-600 focus:border-transparent font-sans transition-all duration-200"
                   placeholder="your@email.com"
                 />
               </div>
 
               {/* Phone */}
               <div>
-                <label className="block text-sm font-sans font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-sans font-medium text-gray-700 dark:text-amber-100 mb-2">
                   Phone Number
                 </label>
                 <input
@@ -197,33 +197,34 @@ export default function Contact() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-700 focus:border-transparent font-sans"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-amber-700 dark:focus:ring-amber-600 focus:border-transparent font-sans transition-all duration-200"
                   placeholder="+91 XXXXX XXXXX"
                 />
               </div>
 
               {/* Business Type */}
               <div>
-                <label className="block text-sm font-sans font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-sans font-medium text-gray-700 dark:text-amber-100 mb-2">
                   I'm interested in
                 </label>
                 <select
                   name="businessType"
                   value={formData.businessType}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-700 focus:border-transparent font-sans"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-amber-700 dark:focus:ring-amber-600 focus:border-transparent font-sans transition-all duration-200"
                 >
                   <option value="b2b">B2B Partnership</option>
                   <option value="b2c">B2C / Retail</option>
                   <option value="wholesale">Wholesale Distribution</option>
-                  <option value="retail">Retail Store Partnership</option>
-                  <option value="inquiry">General Inquiry</option>
+                  <option value="cosmetics">Cosmetics Industry</option>
+                  <option value="pharmaceutical">Pharmaceutical</option>
+                  <option value="other">Other</option>
                 </select>
               </div>
 
               {/* Message */}
               <div>
-                <label className="block text-sm font-sans font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-sans font-medium text-gray-700 dark:text-amber-100 mb-2">
                   Message
                 </label>
                 <textarea
@@ -232,7 +233,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-700 focus:border-transparent font-sans"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-amber-700 dark:focus:ring-amber-600 focus:border-transparent font-sans transition-all duration-200"
                   placeholder="Tell us about your inquiry..."
                 />
               </div>
@@ -240,7 +241,7 @@ export default function Contact() {
               {/* Submit Button */}
               <Button
                 type="submit"
-                className="w-full bg-amber-700 hover:bg-amber-800 text-white font-sans font-medium h-12"
+                className="w-full bg-amber-700 hover:bg-amber-800 dark:bg-amber-600 dark:hover:bg-amber-700 text-white font-sans font-medium h-12 transition-all duration-300 hover:shadow-lg hover:scale-105"
               >
                 Send Message
               </Button>
@@ -249,70 +250,22 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Business Model Specific Contact */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-display font-bold text-center text-gray-900 mb-12">
-            Partnership Inquiries
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="p-8 bg-gradient-to-br from-green-50 to-white border border-green-200 rounded-xl">
-              <h3 className="text-2xl font-display font-bold text-gray-900 mb-4">
-                B2B & Wholesale
-              </h3>
-              <p className="text-gray-700 font-serif mb-6">
-                For bulk orders, distribution agreements, and wholesale
-                partnerships, contact us with details about your business needs.
-              </p>
-              <Button
-                asChild
-                className="w-full bg-green-700 hover:bg-green-800 text-white font-sans"
-              >
-                <a href="mailto:yashpawar.py@gmail.com?subject=B2B%20Partnership%20Inquiry">
-                  B2B Inquiry
-                </a>
-              </Button>
-            </div>
-
-            <div className="p-8 bg-gradient-to-br from-amber-50 to-white border border-amber-200 rounded-xl">
-              <h3 className="text-2xl font-display font-bold text-gray-900 mb-4">
-                B2C & Retail
-              </h3>
-              <p className="text-gray-700 font-serif mb-6">
-                For individual purchases, retail store partnerships, and online
-                ordering, reach out with your requirements.
-              </p>
-              <Button
-                asChild
-                className="w-full bg-amber-700 hover:bg-amber-800 text-white font-sans"
-              >
-                <a href="mailto:yashpawar.py@gmail.com?subject=B2C%20Retail%20Inquiry">
-                  Retail Inquiry
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Response Time */}
-      <section className="py-20 bg-gradient-to-br from-amber-700 to-green-800 text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-20 bg-gradient-to-br from-amber-700 dark:from-amber-900 to-green-800 dark:to-green-900 text-white transition-colors duration-300">
+        <div className="container mx-auto px-4 text-center animate-slide-in-up">
           <h2 className="text-3xl font-display font-bold mb-4">
             We're Here to Help
           </h2>
           <p className="text-lg font-serif mb-6 max-w-2xl mx-auto">
-            We typically respond to inquiries within 24 hours. For urgent matters,
-            please call us directly.
+            Rudra Dairy & Farm is committed to providing quick and professional support for all your donkey milk and powder requirements.
           </p>
           <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-amber-200/30 max-w-2xl mx-auto">
             <p className="font-sans font-medium">
-              Response Time: 24 hours
+              WhatsApp Response: Immediate
               <br />
-              Phone Support: 9 AM - 6 PM IST
+              Email Response: Within 24 hours
               <br />
-              Email: Always monitored
+              Business Hours: 9 AM - 6 PM IST (Monday - Saturday)
             </p>
           </div>
         </div>

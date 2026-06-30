@@ -1,25 +1,25 @@
 import { Link } from "wouter";
-import { Mail, Phone, Instagram, Facebook } from "lucide-react";
+import { Mail, Phone, Instagram, Facebook, MessageCircle } from "lucide-react";
 
 /**
- * Footer Component
- * Premium Artisanal Heritage Design
+ * Footer Component - Rudra Dairy & Farm
  * - Forest green background (#2D5016)
  * - Golden cream text (#F5E6D3)
  * - Contact information and social links
+ * - Dark mode support with animations
  */
 export default function Footer() {
   return (
-    <footer className="bg-green-900 text-amber-50 mt-20">
+    <footer className="bg-gradient-to-br from-green-900 dark:from-green-950 to-green-800 dark:to-green-900 text-amber-50 mt-20 transition-colors duration-300">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 animate-slide-in-up">
           {/* Brand */}
-          <div>
+          <div className="hover:scale-105 transition-transform duration-300">
             <div className="text-2xl font-display font-bold mb-2">
-              Royal Donkey Dairy
+              Rudra Dairy & Farm
             </div>
             <p className="text-amber-100 text-sm font-serif">
-              Premium artisanal donkey milk from trusted heritage farming
+              Most trusted suppliers of premium donkey milk and powder since 2022. Serving multiple businesses with excellence.
             </p>
           </div>
 
@@ -30,33 +30,41 @@ export default function Footer() {
               <li>
                 <Link
                   href="/"
-                  className="text-amber-100 hover:text-amber-50 transition-colors"
+                  className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
                   Home
                 </Link>
               </li>
               <li>
                 <Link
+                  href="/who-we-are"
+                  className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
+                >
+                  Who We Are
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/products"
-                  className="text-amber-100 hover:text-amber-50 transition-colors"
+                  className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
                   Products
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/about"
-                  className="text-amber-100 hover:text-amber-50 transition-colors"
+                  href="/applications"
+                  className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
-                  About Founder
+                  Applications
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/trust"
-                  className="text-amber-100 hover:text-amber-50 transition-colors"
+                  href="/certifications"
+                  className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
-                  Trust & Values
+                  Certifications
                 </Link>
               </li>
             </ul>
@@ -66,39 +74,51 @@ export default function Footer() {
           <div>
             <h4 className="font-display font-bold text-lg mb-4">We Serve</h4>
             <ul className="space-y-2 text-amber-100 text-sm">
-              <li>✓ B2B Partnerships</li>
-              <li>✓ B2C Retail</li>
-              <li>✓ Wholesale Distributors</li>
-              <li>✓ Direct Retailers</li>
+              <li className="hover:text-white transition-colors">✓ B2B Partnerships</li>
+              <li className="hover:text-white transition-colors">✓ B2C Retail</li>
+              <li className="hover:text-white transition-colors">✓ Wholesale Distributors</li>
+              <li className="hover:text-white transition-colors">✓ Direct Retailers</li>
+              <li className="hover:text-white transition-colors">✓ Cosmetic Industry</li>
+              <li className="hover:text-white transition-colors">✓ Pharmaceutical</li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-display font-bold text-lg mb-4">Contact</h4>
+            <h4 className="font-display font-bold text-lg mb-4">Contact Us</h4>
             <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                <span className="text-sm">+91 96571 42020</span>
+              <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
+                <MessageCircle className="w-4 h-4" />
+                <a href="https://wa.me/919112327322" target="_blank" rel="noopener noreferrer" className="text-sm">
+                  +91 9112327322
+                </a>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
                 <Mail className="w-4 h-4" />
-                <span className="text-sm">yashpawar.py@gmail.com</span>
+                <a href="mailto:donkeyfarm79@gmail.com" className="text-sm break-all">
+                  donkeyfarm79@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
+                <Mail className="w-4 h-4" />
+                <a href="mailto:donkeyfarm79@outlook.com" className="text-sm break-all">
+                  donkeyfarm79@outlook.com
+                </a>
               </div>
               <div className="flex gap-4 mt-4">
                 <a
-                  href="https://instagram.com/royaldonkeydairy"
+                  href="https://instagram.com/rudradairyandform"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-amber-50 transition-colors"
+                  className="hover:text-amber-300 transition-all duration-300 hover:scale-125"
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://facebook.com/royaldonkeydairy"
+                  href="https://facebook.com/rudradairyandform"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-amber-50 transition-colors"
+                  className="hover:text-amber-300 transition-all duration-300 hover:scale-125"
                 >
                   <Facebook className="w-5 h-5" />
                 </a>
@@ -108,19 +128,14 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-green-800 pt-8">
+        <div className="border-t border-green-800 dark:border-green-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center text-amber-100 text-sm">
             <p>
-              © 2024 Royal Donkey Dairy. All rights reserved. | Founder: Yash
+              © 2024 Rudra Dairy & Farm. Most Trusted Suppliers Since 2022. All rights reserved.
             </p>
-            <div className="flex gap-6 mt-4 md:mt-0">
-              <Link href="/certifications" className="hover:text-amber-50">
-                Certifications
-              </Link>
-              <Link href="/contact" className="hover:text-amber-50">
-                Contact Us
-              </Link>
-            </div>
+            <p className="text-amber-200 text-xs mt-2 md:mt-0">
+              Executive Partner of Rudra Dairy and Farms
+            </p>
           </div>
         </div>
       </div>
