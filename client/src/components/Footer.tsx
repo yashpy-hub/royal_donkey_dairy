@@ -128,7 +128,7 @@ export default function Footer() {
         <div className="border-t border-green-800 dark:border-green-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center text-amber-100 text-sm">
             <p>
-              © 2024 Rudra Dairy & Farm. Most Trusted Suppliers Since 2022. All rights reserved.
+              © 2026 Rudra Dairy & Farm. Most Trusted Suppliers Since 2022. All rights reserved.
             </p>
             <p className="text-amber-200 text-xs mt-2 md:mt-0">
               Executive Partner of Rudra Dairy and Farms
