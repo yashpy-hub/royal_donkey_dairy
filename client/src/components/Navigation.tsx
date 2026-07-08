@@ -19,7 +19,9 @@ export default function Navigation() {
     { href: "/", label: "Home" },
     { href: "/who-we-are", label: "Who We Are" },
     { href: "/products", label: "Products" },
-    { href: "/applications", label: "Applications" },
+    { href: "/applications-detail", label: "Applications" },
+    { href: "/markets", label: "Markets" },
+    { href: "/resources", label: "Resources" },
     { href: "/certifications", label: "Certifications" },
     { href: "/contact", label: "Contact" },
   ];

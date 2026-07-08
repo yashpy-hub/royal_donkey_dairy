@@ -12,6 +12,9 @@ import Certifications from "./pages/Certifications";
 import Contact from "./pages/Contact";
 import WhoWeAre from "./pages/WhoWeAre";
 import Applications from "./pages/Applications";
+import Markets from "./pages/Markets";
+import ApplicationsDetail from "./pages/ApplicationsDetail";
+import Resources from "./pages/Resources";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
@@ -22,6 +25,9 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path="/who-we-are" component={WhoWeAre} />
       <Route path="/applications" component={Applications} />
+      <Route path="/applications-detail" component={ApplicationsDetail} />
+      <Route path="/markets" component={Markets} />
+      <Route path="/resources" component={Resources} />
       <Route path={"/products"} component={Products} />
       <Route path={"/about"} component={About} />
       <Route path={"/trust"} component={Trust} />
