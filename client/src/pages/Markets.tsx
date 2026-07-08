@@ -147,11 +147,11 @@ export default function Markets() {
       {/* Markets Grid */}
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-6">
-            {markets.map((market) => (
+          <div className="grid md:grid-cols-2 gap-6 animate-fade-in-up">
+            {markets.map((market, idx) => (
+              <div key={market.id} style={{ animationDelay: `${idx * 0.1}s` }} className="animate-fade-in-up">
               <Card
-                key={market.id}
-                className="p-6 hover:shadow-lg transition-all duration-300 cursor-pointer border-2 hover:border-orange-500 dark:hover:border-orange-400"
+                className="p-6 hover:shadow-lg transition-all duration-300 cursor-pointer border-2 hover:border-orange-500 dark:hover:border-orange-400 hover-lift stagger-item"
                 onClick={() => setLocation(`/markets/${market.id}`)}
               >
                 <div className="flex items-start justify-between mb-4">
@@ -200,6 +200,7 @@ export default function Markets() {
                   Explore Market →
                 </Button>
               </Card>
+              </div>
             ))}
           </div>
         </div>

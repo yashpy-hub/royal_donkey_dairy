@@ -188,18 +188,18 @@ export default function ApplicationsDetail() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
       {/* Header */}
-      <section className="py-12 px-4">
+      <section className="py-12 px-4 animate-fade-in-up">
         <div className="max-w-6xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900 px-4 py-2 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900 px-4 py-2 rounded-full mb-6 animate-bounce-in">
             <Sparkles className="w-4 h-4 text-orange-600" />
             <span className="text-sm font-medium text-orange-700 dark:text-orange-200">
               Industry Solutions
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 animate-slide-in-up">
             Application-Focused Solutions
           </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
             Donkey milk and powder for cosmetics, pharmaceuticals, nutraceuticals, and more
           </p>
         </div>
@@ -234,13 +234,13 @@ export default function ApplicationsDetail() {
                   {/* Benefits & Products */}
                   <div className="grid md:grid-cols-2 gap-6">
                     {/* Benefits */}
-                    <Card className="p-6">
+                    <Card className="p-6 hover-lift">
                       <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
                         Key Benefits
                       </h3>
                       <ul className="space-y-3">
                         {app.benefits.map((benefit, idx) => (
-                          <li key={idx} className="flex items-start gap-3">
+                          <li key={idx} className="flex items-start gap-3 stagger-item" style={{ animationDelay: `${idx * 0.1}s` }}>
                             <span className="text-orange-600 dark:text-orange-400 font-bold">
                               ✓
                             </span>
@@ -253,13 +253,13 @@ export default function ApplicationsDetail() {
                     </Card>
 
                     {/* Products */}
-                    <Card className="p-6">
+                    <Card className="p-6 hover-lift">
                       <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
                         Typical Products
                       </h3>
                       <ul className="space-y-3">
                         {app.products.map((product, idx) => (
-                          <li key={idx} className="flex items-start gap-3">
+                          <li key={idx} className="flex items-start gap-3 stagger-item" style={{ animationDelay: `${idx * 0.1}s` }}>
                             <span className="text-green-600 dark:text-green-400 font-bold">
                               •
                             </span>
@@ -273,13 +273,13 @@ export default function ApplicationsDetail() {
                   </div>
 
                   {/* Specifications */}
-                  <Card className="p-6">
+                  <Card className="p-6 hover-glow">
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
                       Product Specifications
                     </h3>
                     <div className="grid md:grid-cols-4 gap-4">
-                      {Object.entries(app.specifications).map(([key, value]) => (
-                        <div key={key} className="bg-orange-50 dark:bg-slate-700 p-4 rounded">
+                      {Object.entries(app.specifications).map(([key, value], idx) => (
+                        <div key={key} className="bg-orange-50 dark:bg-slate-700 p-4 rounded hover-scale stagger-item" style={{ animationDelay: `${idx * 0.1}s` }}>
                           <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase mb-1">
                             {key.replace(/_/g, " ")}
                           </p>
