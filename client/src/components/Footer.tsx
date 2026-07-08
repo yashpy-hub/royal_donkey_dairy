@@ -53,10 +53,26 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/applications"
+                  href="/applications-detail"
                   className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
                   Applications
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/markets"
+                  className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
+                >
+                  Markets
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/resources"
+                  className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
+                >
+                  Resources
                 </Link>
               </li>
               <li>
