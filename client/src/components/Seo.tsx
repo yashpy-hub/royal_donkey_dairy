@@ -1,78 +1,116 @@
 import { useEffect } from "react";
+import { BUSINESS } from "@shared/business";
+
+const SITE = "https://rudradairyandfarm.shop";
+const DEFAULT_OG = `${SITE}/og-image.png`;
 
 /**
- * Seo — dependency-free per-page metadata for the Rudra Dairy & Farm SPA.
- *
- * Because the site is client-rendered, this component writes the document
- * <title>, standard meta tags, Open Graph / Twitter tags, a canonical link,
- * and a JSON-LD script on mount (and cleans up on unmount where relevant).
- *
- * Usage in a page:
- *   <Seo
- *     title="..."
- *     description="..."
- *     path="/products"
- *     type="website"
- *     jsonLd={{ ... }}
- *   />
+ * Global entity graph (Organization + WebSite with Sitelinks SearchAction).
+ * Injected ONCE and left in the DOM across route changes so every page
+ * contributes to the same knowledge-graph entity in Google's index.
  */
-
-const SITE_NAME = "Rudra Dairy & Farm";
-const SITE_URL = "https://rudradairyandfarm.shop";
-const TWITTER = "@rudradairyandfarm";
-const OG_IMAGE = "https://rudradairyandfarm.shop/og-image.svg";
-
-type SeoProps = {
-  title: string;
-  description: string;
-  /** Route path including leading slash, e.g. "/products". Home is "/". */
-  path?: string;
-  type?: "website" | "article";
-  image?: string;
-  /** JSON-LD object (Organization, Product, BreadcrumbList, etc.). */
-  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
-  noindex?: boolean;
+const ENTITY_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE}/#organization`,
+      name: BUSINESS.name,
+      alternateName: BUSINESS.alternateName,
+      url: SITE,
+      logo: DEFAULT_OG,
+      image: DEFAULT_OG,
+      foundingDate: BUSINESS.foundingDate,
+      priceRange: BUSINESS.priceRange,
+      email: BUSINESS.emails.all,
+      telephone: BUSINESS.phone,
+      areaServed: BUSINESS.areaServed,
+      address: [
+        {
+          "@type": "PostalAddress",
+          "@id": `${SITE}/#office`,
+          streetAddress: BUSINESS.officeAddress.streetAddress,
+          addressLocality: BUSINESS.officeAddress.locality,
+          addressRegion: BUSINESS.officeAddress.region,
+          postalCode: BUSINESS.officeAddress.postalCode,
+          addressCountry: BUSINESS.officeAddress.country,
+        },
+        {
+          "@type": "PostalAddress",
+          "@id": `${SITE}/#farm`,
+          streetAddress: BUSINESS.farmAddress.streetAddress,
+          addressLocality: BUSINESS.farmAddress.locality,
+          addressRegion: BUSINESS.farmAddress.region,
+          postalCode: BUSINESS.farmAddress.postalCode,
+          addressCountry: BUSINESS.farmAddress.country,
+        },
+      ],
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: BUSINESS.geo.office.latitude,
+        longitude: BUSINESS.geo.office.longitude,
+      },
+      sameAs: [
+        BUSINESS.social.instagram,
+        BUSINESS.social.facebook,
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: BUSINESS.phone,
+        contactType: "sales",
+        email: BUSINESS.emails.primary,
+        areaServed: "IN",
+        availableLanguage: ["en", "hi"],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE}/#website`,
+      url: SITE,
+      name: BUSINESS.name,
+      publisher: { "@id": `${SITE}/#organization` },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${SITE}/?s={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
+    },
+  ],
 };
 
-function absoluteUrl(path = "/") {
-  const clean = path.startsWith("/") ? path : `/${path}`;
-  return `${SITE_URL}${clean}`;
+interface FaqItem {
+  question: string;
+  answer: string;
 }
 
-/** Ensure a <meta> by name or property exists and set its content. */
-function upsertMeta(selector: "name" | "property", key: string, content: string) {
-  if (!content) return;
-  const attr = selector === "name" ? "name" : "property";
-  let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
+interface SeoProps {
+  title: string;
+  description: string;
+  path?: string;
+  type?: string;
+  image?: string;
+  jsonLd?: Record<string, any> | Record<string, any>[];
+  faq?: FaqItem[];
+  noindex?: boolean;
+}
+
+function upsertMeta(
+  selector: string,
+  attrs: Record<string, string>,
+  content: string
+) {
+  let el = document.head.querySelector(selector) as HTMLElement | null;
   if (!el) {
-    el = document.createElement("meta");
-    el.setAttribute(attr, key);
+    el = document.createElement(
+      selector.startsWith("link") ? "link" : "meta"
+    ) as HTMLElement;
     document.head.appendChild(el);
   }
-  el.setAttribute("content", content);
-}
-
-/** Ensure a <link rel="canonical"> exists and set its href. */
-function upsertCanonical(href: string) {
-  let el = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-  if (!el) {
-    el = document.createElement("link");
-    el.setAttribute("rel", "canonical");
-    document.head.appendChild(el);
-  }
-  el.setAttribute("href", href);
-}
-
-/** Manage a JSON-LD <script> tagged so we can remove it on page change. */
-function upsertJsonLd(id: string, data: unknown) {
-  const existing = document.getElementById(id);
-  if (existing) existing.remove();
-  if (data == null) return;
-  const script = document.createElement("script");
-  script.type = "application/ld+json";
-  script.id = id;
-  script.textContent = JSON.stringify(data);
-  document.head.appendChild(script);
+  for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+  if (content !== undefined) el.setAttribute("content", content);
 }
 
 export default function Seo({
@@ -80,54 +118,103 @@ export default function Seo({
   description,
   path = "/",
   type = "website",
-  image = OG_IMAGE,
+  image = DEFAULT_OG,
   jsonLd,
+  faq,
   noindex = false,
 }: SeoProps) {
-  const url = absoluteUrl(path);
-  const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+  const url = `${SITE}${path}`;
 
+  // ---- per-page tags (re-applied on every route change) ----
   useEffect(() => {
+    const fullTitle = title.includes("Rudra Dairy")
+      ? title
+      : `${title} | Rudra Dairy & Farm`;
+
     document.title = fullTitle;
 
-    // Canonical
-    upsertCanonical(url);
+    // canonical
+    upsertMeta(
+      "link[rel='canonical']",
+      { rel: "canonical", href: url },
+      url
+    );
 
-    // Robots
-    upsertMeta("name", "robots", noindex ? "noindex,nofollow" : "index,follow");
+    // description
+    upsertMeta("meta[name='description']", { name: "description" }, description);
 
-    // Standard description
-    upsertMeta("name", "description", description);
+    // robots
+    upsertMeta(
+      "meta[name='robots']",
+      { name: "robots" },
+      noindex ? "noindex,nofollow" : "index,follow"
+    );
 
     // Open Graph
-    upsertMeta("property", "og:site_name", SITE_NAME);
-    upsertMeta("property", "og:type", type);
-    upsertMeta("property", "og:title", fullTitle);
-    upsertMeta("property", "og:description", description);
-    upsertMeta("property", "og:url", url);
-    upsertMeta("property", "og:image", image);
+    upsertMeta("meta[property='og:type']", { property: "og:type" }, type);
+    upsertMeta("meta[property='og:site_name']", { property: "og:site_name" }, "Rudra Dairy & Farm");
+    upsertMeta("meta[property='og:title']", { property: "og:title" }, fullTitle);
+    upsertMeta("meta[property='og:description']", { property: "og:description" }, description);
+    upsertMeta("meta[property='og:url']", { property: "og:url" }, url);
+    upsertMeta("meta[property='og:image']", { property: "og:image" }, image);
+    upsertMeta("meta[property='og:image:width']", { property: "og:image:width" }, "1200");
+    upsertMeta("meta[property='og:image:height']", { property: "og:image:height" }, "630");
 
     // Twitter
-    upsertMeta("name", "twitter:card", "summary_large_image");
-    upsertMeta("name", "twitter:site", TWITTER);
-    upsertMeta("name", "twitter:title", fullTitle);
-    upsertMeta("name", "twitter:description", description);
-    upsertMeta("name", "twitter:image", image);
+    upsertMeta("meta[name='twitter:card']", { name: "twitter:card" }, "summary_large_image");
+    upsertMeta("meta[name='twitter:title']", { name: "twitter:title" }, fullTitle);
+    upsertMeta("meta[name='twitter:description']", { name: "twitter:description" }, description);
+    upsertMeta("meta[name='twitter:image']", { name: "twitter:image" }, image);
 
-    // JSON-LD (scoped id so we can clean up on navigation)
+    // ---- page-specific JSON-LD ----
+    const scripts: Record<string, any>[] = [];
     if (jsonLd) {
-      upsertJsonLd("seo-jsonld", jsonLd);
-    } else {
-      const old = document.getElementById("seo-jsonld");
-      if (old) old.remove();
+      if (Array.isArray(jsonLd)) scripts.push(...jsonLd);
+      else scripts.push(jsonLd);
+    }
+    if (faq && faq.length) {
+      scripts.push({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.map((q) => ({
+          "@type": "Question",
+          name: q.question,
+          acceptedAnswer: { "@type": "Answer", text: q.answer },
+        })),
+      });
     }
 
-    // Cleanup on unmount so the next page doesn't leak stale JSON-LD
+    // remove any previous page script
+    const prev = document.getElementById("ld-page");
+    if (prev) prev.remove();
+
+    if (scripts.length) {
+      const node = document.createElement("script");
+      node.type = "application/ld+json";
+      node.id = "ld-page";
+      node.textContent = JSON.stringify(
+        scripts.length === 1
+          ? scripts[0]
+          : { "@context": "https://schema.org", "@graph": scripts }
+      );
+      document.head.appendChild(node);
+    }
+
     return () => {
-      const old = document.getElementById("seo-jsonld");
-      if (old) old.remove();
+      const p = document.getElementById("ld-page");
+      if (p) p.remove();
     };
-  }, [fullTitle, description, url, type, image, noindex, jsonLd]);
+  }, [title, description, path, type, image, jsonLd, faq, noindex]);
+
+  // ---- global entity (injected once, persists across routes) ----
+  useEffect(() => {
+    if (document.getElementById("ld-entity")) return;
+    const node = document.createElement("script");
+    node.type = "application/ld+json";
+    node.id = "ld-entity";
+    node.textContent = JSON.stringify(ENTITY_LD);
+    document.head.appendChild(node);
+  }, []);
 
   return null;
 }

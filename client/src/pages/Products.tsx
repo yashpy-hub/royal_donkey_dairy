@@ -134,24 +134,65 @@ export default function Products() {
         title="Donkey Milk Powder & Fresh Donkey Milk — Bulk B2B Supplier"
         description="Buy FSSAI & ISO certified donkey milk powder and fresh donkey milk in bulk from Rudra Dairy & Farm. Pack sizes 500ml to bulk tanker. 1000+ kg powder in 15 days. Private label & OEM available."
         path="/products"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "Product",
-          name: "Premium Donkey Milk Powder",
-          brand: { "@type": "Brand", name: "Rudra Dairy & Farm" },
-          description:
-            "High-quality donkey milk powder with extended shelf life for cosmetic, pharmaceutical, and nutritional use.",
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: "4.9",
-            reviewCount: "100",
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Donkey Milk Powder & Fresh Donkey Milk — Bulk B2B Supplier",
+            url: "https://rudradairyandfarm.shop/products",
+            isPartOf: { "@id": "https://rudradairyandfarm.shop/#website" },
+            breadcrumb: {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://rudradairyandfarm.shop/" },
+                { "@type": "ListItem", position: 2, name: "Products", item: "https://rudradairyandfarm.shop/products" },
+              ],
+            },
           },
-          offers: {
-            "@type": "Offer",
-            availability: "https://schema.org/InStock",
-            priceCurrency: "INR",
+          {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: "Premium Donkey Milk Powder",
+            image: "https://rudradairyandfarm.shop/og-image.png",
+            description:
+              "High-quality spray/freeze-dried donkey milk powder with extended shelf life for cosmetic, pharmaceutical, nutraceutical and food manufacturing.",
+            brand: { "@type": "Brand", name: "Rudra Dairy & Farm" },
+            category: "Food & Beverage > Dairy > Milk Powder",
+            sku: "RDF-DMP-001",
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "INR",
+              availability: "https://schema.org/InStock",
+              seller: { "@id": "https://rudradairyandfarm.shop/#organization" },
+              url: "https://rudradairyandfarm.shop/products",
+            },
+            additionalProperty: [
+              { "@type": "PropertyValue", name: "Shelf life", value: "24+ months" },
+              { "@type": "PropertyValue", name: "Lead time", value: "1000+ kg in 15 days" },
+            ],
           },
-        }}
+          {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: "Premium Fresh Donkey Milk",
+            image: "https://rudradairyandfarm.shop/og-image.png",
+            description:
+              "Pure, fresh donkey milk collected daily from our herd. Available 500ml to bulk tanker for commercial and industrial use.",
+            brand: { "@type": "Brand", name: "Rudra Dairy & Farm" },
+            category: "Food & Beverage > Dairy > Milk",
+            sku: "RDF-DMM-001",
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "INR",
+              availability: "https://schema.org/InStock",
+              seller: { "@id": "https://rudradairyandfarm.shop/#organization" },
+              url: "https://rudradairyandfarm.shop/products",
+            },
+            additionalProperty: [
+              { "@type": "PropertyValue", name: "Lead time", value: "100+ liters in 5 days" },
+            ],
+          },
+        ]}
       />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-amber-50 dark:from-gray-900 via-white dark:via-gray-800 to-green-50 dark:to-gray-900 py-20 transition-colors duration-300">

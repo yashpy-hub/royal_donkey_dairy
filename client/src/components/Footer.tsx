@@ -115,6 +115,14 @@ export default function Footer() {
                   Certifications
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/appoint-meeting"
+                  className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
+                >
+                  Appoint Meeting
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -141,11 +149,28 @@ export default function Footer() {
                   +91 9112327322
                 </a>
               </div>
-              <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
+              <div className="flex items-center gap-2 hover:text-white transition-colors">
                 <Mail className="w-4 h-4" />
-                <a href="mailto:info@rudradairyandfarm.shop" className="text-sm break-all font-semibold">
-                  info@rudradairyandfarm.shop
-                </a>
+                <div className="text-sm text-center">
+                  <a href="mailto:info@rudradairyandfarm.shop" className="font-semibold block break-all hover:text-white">
+                    info@rudradairyandfarm.shop
+                  </a>
+                  <a href="mailto:donkeyfarm79@gmail.com" className="block break-all hover:text-white">
+                    donkeyfarm79@gmail.com
+                  </a>
+                  <a href="mailto:donkeyfarm79@outlook.com" className="block break-all hover:text-white">
+                    donkeyfarm79@outlook.com
+                  </a>
+                </div>
+              </div>
+              <div className="text-xs text-amber-200 mt-2 max-w-xs text-center leading-relaxed">
+                <strong>Office:</strong> Rudra Dairy and Milks, Near VIT College, Bibwewadi, Pune - 411037
+              </div>
+              <div className="text-xs text-amber-200 max-w-xs text-center leading-relaxed">
+                <strong>Farm:</strong> Street Road, Jategao Road, PAT Vasti, Pune, Maharashtra - 412208
+              </div>
+              <div className="text-xs text-amber-100 mt-1 max-w-xs text-center leading-relaxed">
+                Multiple cold storages, warehouses & open shelters — PAN India
               </div>
               <div className="text-sm text-amber-200 mt-2">
                 <strong>Website:</strong> rudradairyandfarm.shop

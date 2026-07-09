@@ -58,6 +58,12 @@ export default function Navigation() {
             <ThemeToggle />
             <Button
               asChild
+              className="bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors"
+            >
+              <Link href="/appoint-meeting">Book Meeting</Link>
+            </Button>
+            <Button
+              asChild
               className="bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg transition-colors"
             >
               <Link href="/contact">Get in Touch</Link>
@@ -93,6 +99,12 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
+            <Button
+              asChild
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold mt-4 rounded-lg"
+            >
+              <Link href="/appoint-meeting">Book Meeting</Link>
+            </Button>
             <Button
               asChild
               className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold mt-4 rounded-lg"

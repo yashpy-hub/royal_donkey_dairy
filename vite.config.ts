@@ -166,6 +166,38 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    // Raise warning threshold + split heavy vendors into their own chunks
+    // so the initial route download stays small (Core Web Vitals / LCP).
+    chunkSizeWarningLimit: 900,
+    rollupOptions: {
+      output: {
+        manualChunks(id: string) {
+          if (!id.includes("node_modules")) return undefined;
+          if (/node_modules\/(react|react-dom|scheduler)\//.test(id))
+            return "react-vendor";
+          if (
+            id.includes("framer-motion") ||
+            id.includes("motion-dom") ||
+            id.includes("motion-utils")
+          )
+            return "motion-vendor";
+          if (
+            id.includes("recharts") ||
+            id.includes("d3-") ||
+            id.includes("victory")
+          )
+            return "charts-vendor";
+          if (id.includes("lucide-react")) return "icons-vendor";
+          if (id.includes("@emailjs")) return "emailjs-vendor";
+          if (
+            id.includes("sonner") ||
+            id.includes("class-variance-authority")
+          )
+            return "ui-vendor";
+          return undefined;
+        },
+      },
+    },
   },
   server: {
     port: 3000,

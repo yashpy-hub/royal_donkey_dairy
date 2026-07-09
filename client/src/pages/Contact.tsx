@@ -1,10 +1,11 @@
-import { Mail, Phone, MessageCircle, Instagram, Facebook, Loader2 } from "lucide-react";
+import { Mail, Phone, MessageCircle, Instagram, Facebook, MapPin, Building2, Clock, CalendarCheck, Handshake, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { sendContactEmail } from "@/lib/emailService";
 import { Button } from "@/components/ui/button";
 import Seo from "@/components/Seo";
 import { Link } from "wouter";
+import { BUSINESS } from "@shared/business";
 
 /**
  * Contact Page - Rudra Dairy & Farm
@@ -81,17 +82,63 @@ export default function Contact() {
     <div className="min-h-screen">
       <Seo
         title="Contact Rudra Dairy & Farm — Bulk Donkey Milk Inquiries"
-        description="Contact Rudra Dairy & Farm for bulk donkey milk and powder quotes, private label, and B2B partnerships. Email info@rudradairyandfarm.shop or WhatsApp +91 9112327322."
+        description="Contact Rudra Dairy & Farm for bulk donkey milk and powder quotes, private label, and B2B partnerships. Email info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com or WhatsApp +91 9112327322."
         path="/contact"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          name: "Rudra Dairy & Farm",
-          email: "info@rudradairyandfarm.shop",
-          telephone: "+919112327322",
-          url: "https://rudradairyandfarm.shop",
-          address: { "@type": "PostalAddress", addressCountry: "IN" },
-        }}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Contact Rudra Dairy & Farm — Bulk Donkey Milk Inquiries",
+            url: "https://rudradairyandfarm.shop/contact",
+            isPartOf: { "@id": "https://rudradairyandfarm.shop/#website" },
+            breadcrumb: {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://rudradairyandfarm.shop/" },
+                { "@type": "ListItem", position: 2, name: "Contact", item: "https://rudradairyandfarm.shop/contact" },
+              ],
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "@id": "https://rudradairyandfarm.shop/#organization",
+            name: BUSINESS.name,
+            image: "https://rudradairyandfarm.shop/og-image.png",
+            url: "https://rudradairyandfarm.shop",
+            email: BUSINESS.emails.all,
+            telephone: BUSINESS.phone,
+            priceRange: BUSINESS.priceRange,
+            address: [
+              {
+                "@type": "PostalAddress",
+                "@id": "https://rudradairyandfarm.shop/#office",
+                streetAddress: BUSINESS.officeAddress.streetAddress,
+                addressLocality: BUSINESS.officeAddress.locality,
+                addressRegion: BUSINESS.officeAddress.region,
+                postalCode: BUSINESS.officeAddress.postalCode,
+                addressCountry: BUSINESS.officeAddress.country,
+              },
+              {
+                "@type": "PostalAddress",
+                "@id": "https://rudradairyandfarm.shop/#farm",
+                streetAddress: BUSINESS.farmAddress.streetAddress,
+                addressLocality: BUSINESS.farmAddress.locality,
+                addressRegion: BUSINESS.farmAddress.region,
+                postalCode: BUSINESS.farmAddress.postalCode,
+                addressCountry: BUSINESS.farmAddress.country,
+              },
+            ],
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: BUSINESS.geo.office.latitude,
+              longitude: BUSINESS.geo.office.longitude,
+            },
+            openingHoursSpecification: BUSINESS.openingHoursSpecification,
+            areaServed: BUSINESS.areaServed,
+            sameAs: [BUSINESS.social.instagram, BUSINESS.social.facebook],
+          },
+        ]}
       />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-amber-50 dark:from-gray-900 to-green-50 dark:to-gray-900 py-16 transition-colors duration-300">
@@ -103,6 +150,14 @@ export default function Contact() {
             <p className="text-xl text-gray-700 dark:text-gray-300">
               Contact Rudra Dairy & Farm for donkey milk and powder inquiries, partnerships, and business opportunities.
             </p>
+            <div className="mt-8">
+              <Link
+                href="/appoint-meeting"
+                className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold h-12 px-8 rounded-lg transition-colors"
+              >
+                <CalendarCheck className="w-5 h-5" /> Appoint a Meeting for Business Collaboration
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -140,14 +195,28 @@ export default function Contact() {
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 text-center">
                 Email
               </h3>
-              <a
-                href="mailto:info@rudradairyandfarm.shop"
-                className="text-orange-700 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 font-medium text-center block break-all"
-              >
-                info@rudradairyandfarm.shop
-              </a>
+              <div className="text-center space-y-1">
+                <a
+                  href="mailto:info@rudradairyandfarm.shop"
+                  className="text-orange-700 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 font-medium block break-all"
+                >
+                  info@rudradairyandfarm.shop
+                </a>
+                <a
+                  href="mailto:donkeyfarm79@gmail.com"
+                  className="text-orange-700 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 font-medium block break-all"
+                >
+                  donkeyfarm79@gmail.com
+                </a>
+                <a
+                  href="mailto:donkeyfarm79@outlook.com"
+                  className="text-orange-700 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 font-medium block break-all"
+                >
+                  donkeyfarm79@outlook.com
+                </a>
+              </div>
               <p className="text-sm text-gray-600 dark:text-gray-400 text-center mt-2">
-                Primary Email
+                All mailboxes monitored
               </p>
             </div>
 
@@ -199,7 +268,7 @@ export default function Contact() {
               Send us a Message
             </h2>
             <p className="text-center text-gray-600 dark:text-gray-300 mb-12">
-              Fill out the form below and we'll get back to you within 24 hours at info@rudradairyandfarm.shop
+              Fill out the form below and we'll get back to you within 24 hours.
             </p>
 
             <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
@@ -320,42 +389,79 @@ export default function Contact() {
               </Button>
 
               <p className="text-xs text-gray-600 dark:text-gray-400 text-center mt-4">
-                All emails will be sent to: <strong>info@rudradairyandfarm.shop</strong>
+                All emails will be sent to: <strong>{BUSINESS.emails.all.join(", ")}</strong>
               </p>
             </form>
           </div>
         </div>
       </section>
 
-      {/* Additional Info */}
+      {/* Addresses + PAN India network + trust */}
       <section className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-              Why Contact Us?
-            </h3>
-            <ul className="space-y-4 text-gray-700 dark:text-gray-300">
-              <li className="flex gap-3">
-                <span className="text-orange-600 font-bold">✓</span>
-                <span><strong>Bulk Orders:</strong> We handle large-scale commercial and industrial orders with custom production schedules.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-orange-600 font-bold">✓</span>
-                <span><strong>Product Samples:</strong> Request samples of our Fresh Donkey Milk or Powder to test quality.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-orange-600 font-bold">✓</span>
-                <span><strong>Partnerships:</strong> Explore B2B, wholesale, and distribution opportunities.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-orange-600 font-bold">✓</span>
-                <span><strong>Certifications:</strong> Learn more about our FSSAI, ISO, IEC, and HACCP certifications.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-orange-600 font-bold">✓</span>
-                <span><strong>Custom Requirements:</strong> Discuss custom packaging, delivery, and product specifications.</span>
-              </li>
-            </ul>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-10">
+              Our Presence
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              {/* Office */}
+              <div className="p-8 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+                <div className="flex items-center gap-3 mb-4">
+                  <Building2 className="w-8 h-8 text-orange-600" />
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    {BUSINESS.officeAddress.label}
+                  </h3>
+                </div>
+                <p className="text-gray-700 dark:text-gray-300 flex gap-2">
+                  <MapPin className="w-5 h-5 text-orange-600 shrink-0 mt-0.5" />
+                  {BUSINESS.officeAddress.full}
+                </p>
+              </div>
+
+              {/* Farm */}
+              <div className="p-8 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+                <div className="flex items-center gap-3 mb-4">
+                  <MapPin className="w-8 h-8 text-green-600" />
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    {BUSINESS.farmAddress.label}
+                  </h3>
+                </div>
+                <p className="text-gray-700 dark:text-gray-300 flex gap-2">
+                  <MapPin className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+                  {BUSINESS.farmAddress.full}
+                </p>
+              </div>
+            </div>
+
+            {/* PAN India network */}
+            <div className="p-8 bg-gradient-to-br from-green-50 to-amber-50 dark:from-gray-800 dark:to-gray-800 rounded-xl border border-green-200 dark:border-green-900/30 mb-8">
+              <div className="flex items-center gap-3 mb-4">
+                <Clock className="w-8 h-8 text-green-700 dark:text-green-400" />
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  PAN India Storage & Logistics Network
+                </h3>
+              </div>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                {BUSINESS.panIndiaNetwork.summary}
+              </p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-700 dark:text-gray-300">
+                {BUSINESS.panIndiaNetwork.facilities.map((f) => (
+                  <li key={f} className="flex gap-2">
+                    <span className="text-green-600 font-bold">✓</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Long-term trust statement */}
+            <div className="p-8 bg-green-600 dark:bg-green-700 text-white rounded-xl text-center">
+              <Handshake className="w-10 h-10 mx-auto mb-3" />
+              <p className="text-xl font-semibold">
+                {BUSINESS.trustStatement}
+              </p>
+            </div>
           </div>
         </div>
       </section>

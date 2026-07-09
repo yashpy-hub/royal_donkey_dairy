@@ -19,6 +19,7 @@ import DynamicCommercialPage from "./pages/DynamicCommercialPage";
 import CommercialHub from "./pages/CommercialHub";
 import DownloadCenter from "./pages/DownloadCenter";
 import Eeat from "./pages/Eeat";
+import AppointMeeting from "./pages/AppointMeeting";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
@@ -37,6 +38,7 @@ function Router() {
       <Route path={"/trust"} component={Trust} />
       <Route path={"/certifications"} component={Certifications} />
       <Route path={"/contact"} component={Contact} />
+      <Route path={"/appoint-meeting"} component={AppointMeeting} />
       <Route path={"/money/:slug"}>
         {(params) => <DynamicCommercialPage kind="money" slug={params.slug!} />}
       </Route>
