@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { CheckCircle, Award, Shield } from "lucide-react";
+import Seo from "@/components/Seo";
 
 /**
  * Certifications Page
@@ -43,6 +44,19 @@ export default function Certifications() {
 
   return (
     <div className="min-h-screen">
+      <Seo
+        title="FSSAI, ISO, HACCP Certified Donkey Milk Supplier"
+        description="Rudra Dairy & Farm is FSSAI, ISO, IEC, and HACCP certified for donkey milk and powder. Learn about our quality standards, compliance, and international certifications."
+        path="/certifications"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://rudradairyandfarm.shop/" },
+            { "@type": "ListItem", position: 2, name: "Certifications", item: "https://rudradairyandfarm.shop/certifications" },
+          ],
+        }}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-green-50 to-amber-50 py-16">
         <div className="container mx-auto px-4">
@@ -51,7 +65,7 @@ export default function Certifications() {
               Quality Certifications
             </h1>
             <p className="text-xl text-gray-700 font-serif">
-              Royal Donkey Dairy is certified and compliant with all major
+              Rudra Dairy & Farm is certified and compliant with all major
               international and national quality standards.
             </p>
           </div>
@@ -93,7 +107,7 @@ export default function Certifications() {
           <div className="flex justify-center mb-16">
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663058292192/3D4mTBAV8JSrjdMbxwumwS/certifications-badge-K5VPuPCUmYXRn8v3vE2TEc.webp"
-              alt="Royal Donkey Dairy Certifications Badge"
+              alt="Rudra Dairy & Farm Certifications Badge"
               className="w-full max-w-sm h-auto rounded-xl shadow-xl"
             />
           </div>
@@ -215,7 +229,7 @@ export default function Certifications() {
 
           <div className="max-w-4xl mx-auto space-y-6 font-serif">
             <p>
-              Royal Donkey Dairy operates in full compliance with all Indian
+              Rudra Dairy & Farm operates in full compliance with all Indian
               government regulations and international standards. Our commitment
               to regulatory excellence ensures that every product meets or exceeds
               the highest quality benchmarks.
@@ -301,7 +315,7 @@ export default function Certifications() {
           </h2>
           <p className="text-lg font-serif mb-8 max-w-2xl mx-auto">
             Our certifications are your guarantee of quality, safety, and
-            excellence. Partner with Royal Donkey Dairy with confidence.
+            excellence. Partner with Rudra Dairy & Farm with confidence.
           </p>
           <Button
             asChild

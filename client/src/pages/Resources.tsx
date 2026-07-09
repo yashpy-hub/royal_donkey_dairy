@@ -9,6 +9,8 @@ import {
   Download,
   ArrowRight,
 } from "lucide-react";
+import Seo from "@/components/Seo";
+import { Link } from "wouter";
 
 export default function Resources() {
   const articles = [
@@ -150,6 +152,19 @@ export default function Resources() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
+      <Seo
+        title="Donkey Milk Guides, Research & Resources"
+        description="Expert guides on donkey milk composition, benefits, sustainable farming, and regulatory compliance (FSSAI, ISO). The knowledge hub from Rudra Dairy & Farm."
+        path="/resources"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://rudradairyandfarm.shop/" },
+            { "@type": "ListItem", position: 2, name: "Resources", item: "https://rudradairyandfarm.shop/resources" },
+          ],
+        }}
+      />
       {/* Header */}
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto text-center">
@@ -363,6 +378,29 @@ export default function Resources() {
           <Button variant="secondary" size="lg">
             Contact Our Research Team →
           </Button>
+        </div>
+      </section>
+
+      {/* Related Pages — internal links */}
+      <section className="py-12 px-4 bg-slate-50 dark:bg-slate-900">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
+            Explore More
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/products" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all">
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">Products</p>
+              <p className="text-sm text-slate-600 dark:text-slate-300">Donkey milk &amp; powder for your line</p>
+            </Link>
+            <Link href="/applications" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all">
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">Applications</p>
+              <p className="text-sm text-slate-600 dark:text-slate-300">How brands use donkey milk</p>
+            </Link>
+            <Link href="/contact" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all">
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">Contact Us</p>
+              <p className="text-sm text-slate-600 dark:text-slate-300">Talk to our team</p>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

@@ -15,6 +15,10 @@ import Applications from "./pages/Applications";
 import Markets from "./pages/Markets";
 import ApplicationsDetail from "./pages/ApplicationsDetail";
 import Resources from "./pages/Resources";
+import DynamicCommercialPage from "./pages/DynamicCommercialPage";
+import CommercialHub from "./pages/CommercialHub";
+import DownloadCenter from "./pages/DownloadCenter";
+import Eeat from "./pages/Eeat";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
@@ -33,6 +37,52 @@ function Router() {
       <Route path={"/trust"} component={Trust} />
       <Route path={"/certifications"} component={Certifications} />
       <Route path={"/contact"} component={Contact} />
+      <Route path={"/money/:slug"}>
+        {(params) => <DynamicCommercialPage kind="money" slug={params.slug!} />}
+      </Route>
+      <Route path={"/industry/:slug"}>
+        {(params) => <DynamicCommercialPage kind="industry" slug={params.slug!} />}
+      </Route>
+      <Route path={"/application/:slug"}>
+        {(params) => <DynamicCommercialPage kind="application" slug={params.slug!} />}
+      </Route>
+      <Route path={"/export/:slug"}>
+        {(params) => <DynamicCommercialPage kind="country" slug={params.slug!} />}
+      </Route>
+      <Route path={"/guides/:slug"}>
+        {(params) => <DynamicCommercialPage kind="guide" slug={params.slug!} />}
+      </Route>
+      <Route path={"/silo/:slug"}>
+        {(params) => <DynamicCommercialPage kind="supporting" slug={params.slug!} />}
+      </Route>
+      <Route path={"/research/:slug"}>
+        {(params) => <DynamicCommercialPage kind="research" slug={params.slug!} />}
+      </Route>
+      <Route path={"/downloads/:slug"}>
+        {(params) => <DownloadCenter slug={params.slug!} />}
+      </Route>
+      <Route path={"/downloads"}>
+        {() => <DownloadCenter />}
+      </Route>
+      <Route path={"/research"}>
+        {() => <CommercialHub kind="research" title="Research Center — Donkey Milk Science" description="Technical studies on amino acid profile, lysozyme, freeze-drying, formulation compatibility and more." />}
+      </Route>
+      <Route path={"/why-us"} component={Eeat} />
+      <Route path={"/money"}>
+        {() => <CommercialHub kind="money" title="Commercial Donkey Milk Powder Pages" description="Bulk donkey milk powder for manufacturers, private label, OEM, export and industrial supply." />}
+      </Route>
+      <Route path={"/industry"}>
+        {() => <CommercialHub kind="industry" title="Donkey Milk by Industry" description="How cosmetics, pharma, nutraceutical, research and private-label industries use donkey milk powder." />}
+      </Route>
+      <Route path={"/application"}>
+        {() => <CommercialHub kind="application" title="Donkey Milk Powder Applications" description="Donkey milk powder for soap, creams, serums, shampoos, nutraceutical capsules and more." />}
+      </Route>
+      <Route path={"/export"}>
+        {() => <CommercialHub kind="country" title="Donkey Milk Powder Export Markets" description="Export donkey milk powder to France, Italy, Germany, UAE, Japan and South Korea." />}
+      </Route>
+      <Route path={"/guides"}>
+        {() => <CommercialHub kind="guide" title="Donkey Milk Powder Guides" description="Manufacturing, storage, shelf life, import, COA, MSDS, packaging, freeze-drying and quality-control guides." />}
+      </Route>
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

@@ -11,6 +11,7 @@ import {
   CheckCircle,
   Flame,
 } from "lucide-react";
+import Seo from "@/components/Seo";
 
 /**
  * Products Page - Rudra Dairy & Farm
@@ -129,6 +130,29 @@ export default function Products() {
 
   return (
     <div className="min-h-screen">
+      <Seo
+        title="Donkey Milk Powder & Fresh Donkey Milk — Bulk B2B Supplier"
+        description="Buy FSSAI & ISO certified donkey milk powder and fresh donkey milk in bulk from Rudra Dairy & Farm. Pack sizes 500ml to bulk tanker. 1000+ kg powder in 15 days. Private label & OEM available."
+        path="/products"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: "Premium Donkey Milk Powder",
+          brand: { "@type": "Brand", name: "Rudra Dairy & Farm" },
+          description:
+            "High-quality donkey milk powder with extended shelf life for cosmetic, pharmaceutical, and nutritional use.",
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "4.9",
+            reviewCount: "100",
+          },
+          offers: {
+            "@type": "Offer",
+            availability: "https://schema.org/InStock",
+            priceCurrency: "INR",
+          },
+        }}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-amber-50 dark:from-gray-900 via-white dark:via-gray-800 to-green-50 dark:to-gray-900 py-20 transition-colors duration-300">
         <div className="container mx-auto px-4">

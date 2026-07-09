@@ -10,6 +10,7 @@ import {
   Zap,
   Leaf,
 } from "lucide-react";
+import Seo from "@/components/Seo";
 
 /**
  * Applications Page - Rudra Dairy & Farm
@@ -94,6 +95,19 @@ export default function Applications() {
 
   return (
     <div className="min-h-screen">
+      <Seo
+        title="Donkey Milk Applications Across Industries"
+        description="Discover how donkey milk and donkey milk powder are used in cosmetics, pharmaceuticals, nutraceuticals, food & beverage, infant nutrition, and wellness. Trusted B2B ingredient supplier in India."
+        path="/applications"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://rudradairyandfarm.shop/" },
+            { "@type": "ListItem", position: 2, name: "Applications", item: "https://rudradairyandfarm.shop/applications" },
+          ],
+        }}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-amber-50 dark:from-gray-900 via-white dark:via-gray-800 to-green-50 dark:to-gray-900 py-20 transition-colors duration-300">
         <div className="container mx-auto px-4">
@@ -107,6 +121,13 @@ export default function Applications() {
           </div>
         </div>
       </section>
+
+      {/* Cross-link to differentiate from /applications-detail */}
+      <div className="text-center py-2">
+        <Link href="/applications-detail" className="text-sm text-orange-600 dark:text-orange-400 hover:underline">
+          Need per-industry detail &amp; specs? See Application-Focused Solutions →
+        </Link>
+      </div>
 
       {/* Applications Grid */}
       <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, Award, Zap, Droplet, Package, TrendingUp } from "lucide-react";
+import Seo from "@/components/Seo";
 
 /**
  * Home Page - Landing Page
@@ -13,6 +14,30 @@ import { ArrowRight, Award, Zap, Droplet, Package, TrendingUp } from "lucide-rea
 export default function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
+      <Seo
+        title="Premium Donkey Milk & Powder Supplier in India"
+        description="Rudra Dairy & Farm is a trusted B2B supplier of fresh donkey milk and donkey milk powder in India. Bulk capacity: 100+ liters in 5 days, 1000+ kg powder in 15 days. FSSAI, ISO, HACCP certified."
+        path="/"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Rudra Dairy & Farm",
+          url: "https://rudradairyandfarm.shop",
+          logo: "https://rudradairyandfarm.shop/og-image.png",
+          email: "info@rudradairyandfarm.shop",
+          telephone: "+919112327322",
+          description:
+            "Trusted B2B supplier of premium donkey milk and donkey milk powder since 2022.",
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: "IN",
+          },
+          sameAs: [
+            "https://instagram.com/rudradairyandfarm",
+            "https://facebook.com/rudradairyandfarm",
+          ],
+        }}
+      />
       {/* Hero Section */}
       <section className="bg-white dark:bg-gray-900 pt-16 pb-20 transition-colors duration-300">
         <div className="container mx-auto px-4">

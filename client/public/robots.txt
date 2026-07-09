@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://rudradairyandfarm.shop/sitemap.xml
+
+# Block CMS / utility paths if any existed (none currently)
+# Disallow: /api/

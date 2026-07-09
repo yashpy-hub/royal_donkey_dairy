@@ -1,4 +1,4 @@
-# Royal Donkey Dairy - Design Brainstorm
+# Rudra Dairy & Farm - Design Brainstorm
 
 ## Design Approach Selected: Premium Artisanal Heritage
 

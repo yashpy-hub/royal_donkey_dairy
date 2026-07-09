@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Shield, Handshake, TrendingUp, Users } from "lucide-react";
+import Seo from "@/components/Seo";
 
 /**
  * Trust Page - Integrity, Loyalty & Business Model
@@ -12,6 +13,19 @@ import { Shield, Handshake, TrendingUp, Users } from "lucide-react";
 export default function Trust() {
   return (
     <div className="min-h-screen">
+      <Seo
+        title="Why Businesses Trust Rudra Dairy & Farm"
+        description="Rudra Dairy & Farm is built on transparency, certified quality, and honest B2B partnerships. Learn why cosmetic, pharmaceutical, and retail businesses trust our donkey milk supply."
+        path="/trust"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://rudradairyandfarm.shop/" },
+            { "@type": "ListItem", position: 2, name: "Trust", item: "https://rudradairyandfarm.shop/trust" },
+          ],
+        }}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-green-50 to-amber-50 py-16">
         <div className="container mx-auto px-4">
@@ -20,7 +34,7 @@ export default function Trust() {
               Built on Trust & Integrity
             </h1>
             <p className="text-xl text-gray-700 font-serif">
-              Royal Donkey Dairy is founded on principles of transparency,
+              Rudra Dairy & Farm is founded on principles of transparency,
               quality, and honest partnerships.
             </p>
           </div>
@@ -199,7 +213,7 @@ export default function Trust() {
 
           <div className="max-w-3xl mx-auto space-y-6 font-serif">
             <p>
-              At Royal Donkey Dairy, we believe transparency is the foundation of
+              At Rudra Dairy & Farm, we believe transparency is the foundation of
               trust. We openly share information about our production methods,
               certifications, sourcing practices, and business operations.
             </p>
@@ -234,7 +248,7 @@ export default function Trust() {
             Join Our Community of Trusted Partners
           </h2>
           <p className="text-lg text-gray-600 font-serif mb-8 max-w-2xl mx-auto">
-            Experience the Royal Donkey Dairy difference. Quality, integrity, and
+            Experience the Rudra Dairy & Farm difference. Quality, integrity, and
             partnership that you can trust.
           </p>
           <Button

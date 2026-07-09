@@ -3,6 +3,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { sendContactEmail } from "@/lib/emailService";
 import { Button } from "@/components/ui/button";
+import Seo from "@/components/Seo";
+import { Link } from "wouter";
 
 /**
  * Contact Page - Rudra Dairy & Farm
@@ -77,6 +79,20 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen">
+      <Seo
+        title="Contact Rudra Dairy & Farm — Bulk Donkey Milk Inquiries"
+        description="Contact Rudra Dairy & Farm for bulk donkey milk and powder quotes, private label, and B2B partnerships. Email info@rudradairyandfarm.shop or WhatsApp +91 9112327322."
+        path="/contact"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "Rudra Dairy & Farm",
+          email: "info@rudradairyandfarm.shop",
+          telephone: "+919112327322",
+          url: "https://rudradairyandfarm.shop",
+          address: { "@type": "PostalAddress", addressCountry: "IN" },
+        }}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-amber-50 dark:from-gray-900 to-green-50 dark:to-gray-900 py-16 transition-colors duration-300">
         <div className="container mx-auto px-4">
@@ -340,6 +356,29 @@ export default function Contact() {
                 <span><strong>Custom Requirements:</strong> Discuss custom packaging, delivery, and product specifications.</span>
               </li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Related Pages — internal links for SEO + conversion */}
+      <section className="py-12 bg-gradient-to-br from-amber-50 to-green-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">
+            Explore More
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <Link href="/products" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all text-center">
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">Products</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Fresh donkey milk &amp; powder for bulk supply</p>
+            </Link>
+            <Link href="/markets" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all text-center">
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">Export Markets</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">UAE, GCC, EU, Korea &amp; worldwide shipping</p>
+            </Link>
+            <Link href="/certifications" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all text-center">
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">Certifications</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">FSSAI, ISO, IEC &amp; HACCP certified quality</p>
+            </Link>
           </div>
         </div>
       </section>

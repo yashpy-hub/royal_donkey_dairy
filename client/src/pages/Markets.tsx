@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Globe, TrendingUp, Award, Zap } from "lucide-react";
 import { useLocation } from "wouter";
+import { Link } from "wouter";
+import Seo from "@/components/Seo";
 
 export default function Markets() {
   const [, setLocation] = useLocation();
@@ -126,6 +128,19 @@ export default function Markets() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white dark:from-slate-900 dark:to-slate-800">
+      <Seo
+        title="Donkey Milk Powder Export Markets — UAE, GCC, EU, Korea"
+        description="Rudra Dairy & Farm exports certified donkey milk and powder worldwide: Middle East & GCC, European Union, North America, and Southeast Asia. Halal, FSSAI, ISO certified supply."
+        path="/markets"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://rudradairyandfarm.shop/" },
+            { "@type": "ListItem", position: 2, name: "Markets", item: "https://rudradairyandfarm.shop/markets" },
+          ],
+        }}
+      />
       {/* Header */}
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto text-center">
@@ -252,6 +267,29 @@ export default function Markets() {
           >
             Get in Touch →
           </Button>
+        </div>
+      </section>
+
+      {/* Related Pages — internal links */}
+      <section className="py-12 px-4 bg-orange-50 dark:bg-slate-900">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
+            Explore More
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <Link href="/products" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all">
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">Products</p>
+              <p className="text-sm text-slate-600 dark:text-slate-300">Bulk donkey milk &amp; powder supply</p>
+            </Link>
+            <Link href="/applications" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all">
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">Applications</p>
+              <p className="text-sm text-slate-600 dark:text-slate-300">Cosmetics, pharma &amp; nutrition uses</p>
+            </Link>
+            <Link href="/contact" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all">
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">Get a Quote</p>
+              <p className="text-sm text-slate-600 dark:text-slate-300">Talk to our export team</p>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

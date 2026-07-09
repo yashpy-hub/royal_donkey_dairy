@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Instagram, Facebook, Mail, Phone } from "lucide-react";
+import { Instagram, Facebook, Mail, Phone, Linkedin } from "lucide-react";
+import Seo from "@/components/Seo";
 
 /**
  * About Page - Founder Profile
@@ -12,19 +13,39 @@ import { Instagram, Facebook, Mail, Phone } from "lucide-react";
 export default function About() {
   return (
     <div className="min-h-screen">
+      <Seo
+        title="Meet Yash Pawar — Co-Founder & Managing Director of Rudra Dairy & Farm"
+        description="Meet Yash Pawar, the founder behind Rudra Dairy & Farm — a trusted Indian supplier of premium donkey milk and donkey milk powder for B2B, cosmetic, and pharmaceutical clients since 2022."
+        path="/about"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://rudradairyandfarm.shop/" },
+            { "@type": "ListItem", position: 2, name: "Founder", item: "https://rudradairyandfarm.shop/about" },
+          ],
+        }}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-amber-50 to-green-50 py-16">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-display font-bold text-gray-900 mb-6">
-              Meet Yash, Founder
+              Meet Yash, Co-Founder &amp; Managing Director
             </h1>
             <p className="text-xl text-gray-700 font-serif">
-              The visionary behind Royal Donkey Dairy
+              The visionary behind Rudra Dairy & Farm
             </p>
           </div>
         </div>
       </section>
+
+      {/* Cross-link to differentiate from /who-we-are */}
+      <div className="text-center py-2">
+        <Link href="/who-we-are" className="text-sm text-orange-600 dark:text-orange-400 hover:underline">
+          Prefer the company story? Read Who We Are →
+        </Link>
+      </div>
 
       {/* Founder Profile Section */}
       <section className="py-20 bg-white">
@@ -34,8 +55,8 @@ export default function About() {
             <div className="flex justify-center">
               <div className="relative">
                 <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663058292192/3D4mTBAV8JSrjdMbxwumwS/founder-portrait-iCoyjarrfNDGHQMRMt4sAD.webp"
-                  alt="Yash - Founder of Royal Donkey Dairy"
+                  src="/founder-yash.png"
+                  alt="Yash Pawar - Co-Founder & Managing Director of Rudra Dairy & Farm"
                   className="w-full max-w-md h-auto rounded-2xl shadow-2xl"
                 />
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/10 to-transparent" />
@@ -49,13 +70,13 @@ export default function About() {
                   Yash Pawar
                 </h2>
                 <p className="text-lg text-amber-700 font-sans font-semibold">
-                  Founder & Visionary
+                  Co-Founder &amp; Managing Director
                 </p>
               </div>
 
               <div className="space-y-6 font-serif text-gray-700 leading-relaxed">
                 <p>
-                  Yash Pawar founded Royal Donkey Dairy with a singular vision:
+                  Yash Pawar founded Rudra Dairy & Farm with a singular vision:
                   to bring the world's finest artisanal donkey milk to discerning
                   consumers and businesses. With deep roots in agricultural
                   heritage and a commitment to quality, Yash has transformed a
@@ -72,10 +93,10 @@ export default function About() {
                 </p>
 
                 <p>
-                  Today, Royal Donkey Dairy stands as a testament to Yash's
+                  Today, Rudra Dairy & Farm stands as a testament to Yash's
                   dedication—a thriving business that serves B2B partners, retail
                   customers, and wholesale distributors across India. Every
-                  product bearing the Royal Donkey Dairy name reflects his
+                  product bearing the Rudra Dairy & Farm name reflects his
                   commitment to excellence, integrity, and trust.
                 </p>
               </div>
@@ -88,33 +109,35 @@ export default function About() {
 
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <Mail className="w-5 h-5 text-amber-700" />
+                    <Phone className="w-5 h-5 text-amber-700" />
                     <a
-                      href="mailto:yashpawar.py@gmail.com"
+                      href="tel:+91965714327"
                       className="text-amber-700 hover:text-amber-800 font-sans"
                     >
-                      yashpawar.py@gmail.com
+                      +91 965714327
                     </a>
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-amber-700" />
+                    <Linkedin className="w-5 h-5 text-amber-700" />
                     <a
-                      href="tel:+919657142020"
+                      href="https://www.linkedin.com/in/yash-pawarpy/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-amber-700 hover:text-amber-800 font-sans"
                     >
-                      +91 96571 42020
+                      linkedin.com/in/yash-pawarpy
                     </a>
                   </div>
                 </div>
 
                 <div className="pt-4 border-t border-amber-200">
                   <p className="text-sm text-gray-700 font-sans mb-3">
-                    Follow Royal Donkey Dairy on social media:
+                    Follow Rudra Dairy & Farm on social media:
                   </p>
                   <div className="flex gap-4">
                     <a
-                      href="https://instagram.com/royaldonkeydairy"
+                      href="https://instagram.com/rudradairyandfarm"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg hover:bg-amber-100 transition-colors"
@@ -125,7 +148,7 @@ export default function About() {
                       </span>
                     </a>
                     <a
-                      href="https://facebook.com/royaldonkeydairy"
+                      href="https://facebook.com/rudradairyandfarm"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg hover:bg-amber-100 transition-colors"
@@ -198,7 +221,7 @@ export default function About() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-display font-bold text-center text-gray-900 mb-12">
-            The Royal Donkey Dairy Journey
+            The Rudra Dairy & Farm Journey
           </h2>
 
           <div className="max-w-3xl mx-auto space-y-8">
@@ -247,8 +270,8 @@ export default function About() {
                   Certifications & Quality
                 </h3>
                 <p className="text-gray-700 font-serif">
-                  Obtained FSSAI, ISO, and IEC certifications, establishing Royal
-                  Donkey Dairy as a trusted, certified producer.
+                  Obtained FSSAI, ISO, and IEC certifications, establishing Rudra
+                  Dairy & Farm as a trusted, certified producer.
                 </p>
               </div>
             </div>
@@ -277,7 +300,7 @@ export default function About() {
       <section className="py-20 bg-gradient-to-br from-amber-700 to-green-800 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-display font-bold mb-6">
-            Partner with Royal Donkey Dairy
+            Partner with Rudra Dairy & Farm
           </h2>
           <p className="text-lg font-serif mb-8 max-w-2xl mx-auto">
             Yash is always open to discussing new partnerships and opportunities.

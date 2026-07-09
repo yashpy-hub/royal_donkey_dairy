@@ -1,8 +1,8 @@
-# Royal Donkey Dairy - Complete Website Package
+# Rudra Dairy & Farm - Complete Website Package
 
 ## 🎯 Project Overview
 
-This is a **complete, production-ready website** for Royal Donkey Dairy - a premium donkey milk seller. The website features advanced animations, dark/light mode toggle, and modern tech stack optimizations.
+This is a **complete, production-ready website** for Rudra Dairy & Farm - a premium donkey milk seller. The website features advanced animations, dark/light mode toggle, and modern tech stack optimizations.
 
 ## ✨ Key Features
 
@@ -48,8 +48,8 @@ This is a **complete, production-ready website** for Royal Donkey Dairy - a prem
 
 ```bash
 # Extract the ZIP file
-unzip royal_donkey_dairy_complete.zip
-cd royal_donkey_dairy
+unzip rudra-dairy-farm_complete.zip
+cd rudra-dairy-farm
 
 # Install dependencies
 pnpm install
@@ -63,7 +63,7 @@ The website will be available at `http://localhost:3000`
 ## 📦 Project Structure
 
 ```
-royal_donkey_dairy/
+rudra-dairy-farm/
 ├── client/
 │   ├── src/
 │   │   ├── pages/           # All page components
@@ -188,8 +188,8 @@ pnpm preview
 **Founder**: Yash Pawar
 - **Email**: yashpawar.py@gmail.com
 - **Phone**: +91 96571 42020
-- **Instagram**: @royaldonkeydairy
-- **Facebook**: Royal Donkey Dairy
+- **Instagram**: @rudradairyandfarm
+- **Facebook**: Rudra Dairy & Farm
 
 ## 🎯 Business Models Supported
 
@@ -224,4 +224,4 @@ For issues or questions, contact:
 **Last Updated**: March 27, 2026
 **License**: MIT
 
-Enjoy your premium Royal Donkey Dairy website! 🐴🥛
+Enjoy your premium Rudra Dairy & Farm website! 🐴🥛

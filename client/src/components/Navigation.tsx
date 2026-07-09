@@ -21,7 +21,6 @@ export default function Navigation() {
     { href: "/products", label: "Products" },
     { href: "/applications-detail", label: "Applications" },
     { href: "/markets", label: "Markets" },
-    { href: "/resources", label: "Resources" },
     { href: "/certifications", label: "Certifications" },
     { href: "/contact", label: "Contact" },
   ];

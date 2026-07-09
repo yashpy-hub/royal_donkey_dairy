@@ -6,25 +6,25 @@ import { Mail, Phone, Instagram, Facebook, MessageCircle } from "lucide-react";
  * - Forest green background (#2D5016)
  * - Golden cream text (#F5E6D3)
  * - Contact information and social links
- * - Dark mode support with animations
+ * - Centered layout, dark mode support with animations
  */
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-br from-green-900 dark:from-green-950 to-green-800 dark:to-green-900 text-amber-50 mt-20 transition-colors duration-300">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 animate-slide-in-up">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 text-center animate-slide-in-up">
           {/* Brand */}
-          <div className="hover:scale-105 transition-transform duration-300">
+          <div className="hover:scale-105 transition-transform duration-300 flex flex-col items-center">
             <div className="text-2xl font-display font-bold mb-2">
               Rudra Dairy & Farm
             </div>
-            <p className="text-amber-100 text-sm font-serif">
+            <p className="text-amber-100 text-sm font-serif max-w-xs">
               Most trusted suppliers of premium donkey milk and powder since 2022. Serving multiple businesses with excellence.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="flex flex-col items-center">
             <h4 className="font-display font-bold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
@@ -77,6 +77,38 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/money"
+                  className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
+                >
+                  Commercial
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/research"
+                  className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
+                >
+                  Research
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/downloads"
+                  className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
+                >
+                  Downloads
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/why-us"
+                  className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
+                >
+                  Why Us
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/certifications"
                   className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
@@ -87,7 +119,7 @@ export default function Footer() {
           </div>
 
           {/* Business Models */}
-          <div>
+          <div className="flex flex-col items-center">
             <h4 className="font-display font-bold text-lg mb-4">We Serve</h4>
             <ul className="space-y-2 text-amber-100 text-sm">
               <li className="hover:text-white transition-colors">✓ B2B Partnerships</li>
@@ -100,9 +132,9 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="flex flex-col items-center">
             <h4 className="font-display font-bold text-lg mb-4">Contact Us</h4>
-            <div className="space-y-3">
+            <div className="space-y-3 flex flex-col items-center">
               <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
                 <MessageCircle className="w-4 h-4" />
                 <a href="https://wa.me/919112327322" target="_blank" rel="noopener noreferrer" className="text-sm">
@@ -118,9 +150,9 @@ export default function Footer() {
               <div className="text-sm text-amber-200 mt-2">
                 <strong>Website:</strong> rudradairyandfarm.shop
               </div>
-              <div className="flex gap-4 mt-4">
+              <div className="flex gap-4 mt-4 justify-center">
                 <a
-                  href="https://instagram.com/rudradairyandform"
+                  href="https://instagram.com/rudradairyandfarm"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-amber-300 transition-all duration-300 hover:scale-125"
@@ -128,7 +160,7 @@ export default function Footer() {
                   <Instagram className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://facebook.com/rudradairyandform"
+                  href="https://facebook.com/rudradairyandfarm"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-amber-300 transition-all duration-300 hover:scale-125"
@@ -142,11 +174,11 @@ export default function Footer() {
 
         {/* Divider */}
         <div className="border-t border-green-800 dark:border-green-700 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center text-amber-100 text-sm">
+          <div className="flex flex-col md:flex-row justify-center items-center text-center text-amber-100 text-sm gap-2 md:gap-4">
             <p>
               © 2026 Rudra Dairy & Farm. Most Trusted Suppliers Since 2022. All rights reserved.
             </p>
-            <p className="text-amber-200 text-xs mt-2 md:mt-0">
+            <p className="text-amber-200 text-xs md:mt-0">
               Executive Partner of Rudra Dairy and Farms
             </p>
           </div>
