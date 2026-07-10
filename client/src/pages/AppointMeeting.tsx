@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { sendMeetingRequestEmail } from "@/lib/emailService";
+import { AnalyticsEvents } from "@/lib/analytics";
 import { BUSINESS } from "@shared/business";
 import Seo from "@/components/Seo";
 import { useT } from "@/i18n";
@@ -79,6 +80,10 @@ export default function AppointMeeting() {
       });
 
       if (success) {
+        AnalyticsEvents.meetingSubmit({
+          purpose: formData.purpose || "unspecified",
+          page: "/appoint-meeting",
+        });
         toast.success(t("products.m_toastSuccess"));
         setFormData({
           name: "",

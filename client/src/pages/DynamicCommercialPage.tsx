@@ -2,6 +2,9 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import Seo from "@/components/Seo";
 import ConversionBlock from "@/components/ConversionBlock";
+import QuoteForm from "@/components/QuoteForm";
+import StickyQuoteBar from "@/components/StickyQuoteBar";
+import { AnalyticsEvents } from "@/lib/analytics";
 import {
   getEntry,
   KIND_PATH,
@@ -77,6 +80,15 @@ export default function DynamicCommercialPage({ kind, slug }: Props) {
           <p className="text-slate-600 dark:text-slate-300">{entry.intro}</p>
         </div>
       </section>
+
+      <QuoteForm
+        productInterest={entry.title}
+        country={
+          kind === "country"
+            ? entry.title.replace("Donkey Milk Powder Exporter to ", "")
+            : undefined
+        }
+      />
 
       {entry.sections.map((s, i) => (
         <section key={i} className="py-6 px-4">
@@ -174,6 +186,11 @@ export default function DynamicCommercialPage({ kind, slug }: Props) {
           <Button
             asChild
             className="bg-orange-600 hover:bg-orange-700 text-white"
+            onClick={() =>
+              AnalyticsEvents.ctaClick("request_quotation", {
+                page: `${KIND_PATH[kind]}/${slug}`,
+              })
+            }
           >
             <Link href="/appoint-meeting">
               {entry.ctaLabel ?? "Request Quotation"}
@@ -183,6 +200,8 @@ export default function DynamicCommercialPage({ kind, slug }: Props) {
       </section>
 
       <ConversionBlock />
+
+      <StickyQuoteBar label={entry.ctaLabel ?? "Get a Bulk Quote"} />
 
       <section className="py-8 px-4">
         <div className="max-w-3xl mx-auto">

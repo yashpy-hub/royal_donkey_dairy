@@ -195,10 +195,50 @@ export const sendMeetingRequestEmail = async (data: {
   }
 };
 
+export const sendQuoteRequestEmail = async (data: {
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  country: string;
+  productInterest: string;
+  quantity: string;
+  timeline: string;
+  message?: string;
+}): Promise<boolean> => {
+  try {
+    const templateParams = {
+      to_email: ALL_EMAILS,
+      from_name: data.name,
+      from_email: data.email,
+      phone: data.phone,
+      subject: `Quote Request — ${data.productInterest || "Donkey Milk Powder"}${data.country ? ` (${data.country})` : ""}`,
+      message: `Company: ${data.company || "Not specified"}\nCountry: ${data.country || "Not specified"}\nProduct: ${data.productInterest || "Not specified"}\nMonthly Volume: ${data.quantity || "Not specified"}\nTarget Timeline: ${data.timeline || "Not specified"}\n\nMessage: ${data.message || "—"}`,
+      business_type: "Quote Request",
+      product_interest: data.productInterest || "Not specified",
+      website: "rudradairyandfarm.shop",
+      timestamp: new Date().toLocaleString("en-IN"),
+    };
+
+    const response = await emailjs.send(
+      SERVICE_ID,
+      TEMPLATE_ID,
+      templateParams
+    );
+
+    console.log("Quote request email sent successfully:", response);
+    return true;
+  } catch (error) {
+    console.error("Failed to send quote request email:", error);
+    return false;
+  }
+};
+
 export default {
   sendContactEmail,
   sendSampleRequestEmail,
   sendBulkOrderEmail,
   sendMeetingRequestEmail,
+  sendQuoteRequestEmail,
   PRIMARY_EMAIL,
 };

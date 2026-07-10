@@ -8,11 +8,13 @@ import {
   Award,
   Download,
   ArrowRight,
+  Lightbulb,
 } from "lucide-react";
 import Seo from "@/components/Seo";
 import { Link } from "wouter";
 import { useT } from "@/i18n";
 import { usePageKeywords } from "@/i18n/seoKeywords";
+import Reviews from "@/components/Reviews";
 
 export default function Resources() {
   const t = useT();
@@ -130,6 +132,81 @@ export default function Resources() {
     },
   ];
 
+  const buyerGuides = [
+    {
+      title: "How to Import Donkey Milk Powder (Step by Step)",
+      excerpt:
+        "The documents, duties and market steps every buyer needs before placing a first order — EU, UAE, Japan, Korea and beyond.",
+      readTime: "9 min",
+      links: [
+        { label: "Import Guide", href: "/guides/import-guide" },
+        { label: "COA Explained", href: "/guides/coa-guide" },
+      ],
+    },
+    {
+      title: "How to Formulate with Donkey Milk Powder",
+      excerpt:
+        "Add donkey milk powder to the water phase at 1–10%, validate preservation, and scale from pilot to production across skincare and soap.",
+      readTime: "11 min",
+      links: [
+        { label: "Applications", href: "/applications" },
+        {
+          label: "Cosmetic Manufacturers",
+          href: "/money/donkey-milk-powder-for-cosmetic-manufacturers",
+        },
+      ],
+    },
+    {
+      title: "Reading a Certificate of Analysis (COA)",
+      excerpt:
+        "What every line on a donkey milk powder COA means — moisture, solubility, microbial limits and batch traceability — so you can qualify a supplier fast.",
+      readTime: "7 min",
+      links: [
+        { label: "COA Guide", href: "/guides/coa-guide" },
+        { label: "Quality Control", href: "/guides/quality-control" },
+      ],
+    },
+    {
+      title: "Spray-Dried vs Freeze-Dried Donkey Milk Powder",
+      excerpt:
+        "When to choose each process for your product — native protein retention, cost and shelf life — with guidance for premium skincare and nutraceuticals.",
+      readTime: "8 min",
+      links: [
+        {
+          label: "Freeze-Dried Manufacturer",
+          href: "/money/freeze-dried-donkey-milk-powder-manufacturer",
+        },
+        { label: "Manufacturing Guide", href: "/guides/manufacturing-guide" },
+      ],
+    },
+    {
+      title: "Donkey Milk Powder Shelf Life & Storage",
+      excerpt:
+        "How to store powder to protect composition, what shortens shelf life, and how to read expiry on a batch COA.",
+      readTime: "6 min",
+      links: [
+        { label: "Shelf Life", href: "/guides/shelf-life" },
+        { label: "Storage Guide", href: "/guides/storage-guide" },
+      ],
+    },
+    {
+      title: "Private Label & OEM: Launch Your Own Line",
+      excerpt:
+        "From 25 kg MOQ to custom packs and labelling — how brands launch a donkey-milk line under their own name with certified manufacturing.",
+      readTime: "10 min",
+      links: [
+        {
+          label: "Private Label",
+          href: "/money/private-label-donkey-milk-powder",
+        },
+        {
+          label: "OEM Manufacturer",
+          href: "/money/oem-donkey-milk-powder-manufacturer",
+        },
+      ],
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
       <Seo
@@ -178,9 +255,10 @@ export default function Resources() {
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <Tabs defaultValue="articles" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
+            <TabsList className="grid w-full grid-cols-4 mb-8">
               <TabsTrigger value="articles">{t("res.tabArticles")}</TabsTrigger>
               <TabsTrigger value="cases">{t("res.tabCases")}</TabsTrigger>
+              <TabsTrigger value="guides">Buyer Guides</TabsTrigger>
               <TabsTrigger value="papers">{t("res.tabPapers")}</TabsTrigger>
             </TabsList>
 
@@ -303,6 +381,45 @@ export default function Resources() {
               </div>
             </TabsContent>
 
+            {/* Buyer Guides Tab */}
+            <TabsContent value="guides" className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                {buyerGuides.map((g, i) => (
+                  <Card
+                    key={i}
+                    className="hover:shadow-lg transition-all duration-300 overflow-hidden"
+                  >
+                    <div className="p-6">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Lightbulb className="w-4 h-4 text-orange-600" />
+                        <span className="text-xs text-slate-500 dark:text-slate-400">
+                          {g.readTime} read
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                        {g.title}
+                      </h3>
+                      <p className="text-slate-600 dark:text-slate-300 text-sm mb-4">
+                        {g.excerpt}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {g.links.map((l, j) => (
+                          <Link
+                            key={j}
+                            href={l.href}
+                            className="inline-flex items-center gap-1 text-xs font-medium px-3 py-1.5 rounded-full bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-200 hover:bg-orange-200 dark:hover:bg-orange-800 transition-colors"
+                          >
+                            {l.label}
+                            <ArrowRight className="w-3 h-3" />
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </TabsContent>
+
             {/* White Papers Tab */}
             <TabsContent value="papers" className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
@@ -418,6 +535,8 @@ export default function Resources() {
           </div>
         </div>
       </section>
+
+      <Reviews />
     </div>
   );
 }

@@ -5,12 +5,31 @@ import { useT } from "@/i18n";
 import { usePageKeywords } from "@/i18n/seoKeywords";
 
 // Phase 7 - EEAT. Evidence we are a real manufacturer.
-// Photo slots use placeholder divs; swap in real /public images when available.
 const ASSETS = [
-  { titleKey: "eeatp.asset1Title", noteKey: "eeatp.asset1Note" },
-  { titleKey: "eeatp.asset2Title", noteKey: "eeatp.asset2Note" },
-  { titleKey: "eeatp.asset3Title", noteKey: "eeatp.asset3Note" },
-  { titleKey: "eeatp.asset4Title", noteKey: "eeatp.asset4Note" },
+  {
+    titleKey: "eeatp.asset1Title",
+    noteKey: "eeatp.asset1Note",
+    img: "/eeat/farm-donkeys.webp",
+    alt: "Rudra Dairy donkey herd and milking facility in India",
+  },
+  {
+    titleKey: "eeatp.asset2Title",
+    noteKey: "eeatp.asset2Note",
+    img: "/eeat/freeze-dried-powder.webp",
+    alt: "Rudra Dairy donkey milk powder pouch and packing",
+  },
+  {
+    titleKey: "eeatp.asset3Title",
+    noteKey: "eeatp.asset3Note",
+    img: "/eeat/laboratory-certs.webp",
+    alt: "Rudra Dairy food-safety and quality certifications",
+  },
+  {
+    titleKey: "eeatp.asset4Title",
+    noteKey: "eeatp.asset4Note",
+    img: "/eeat/packaging-line.webp",
+    alt: "Rudra Dairy donkey milk bottle packaging",
+  },
 ];
 
 const CERTS = [
@@ -60,9 +79,13 @@ export default function Eeat() {
               key={t(a.titleKey)}
               className="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800"
             >
-              <div className="h-40 bg-gradient-to-br from-orange-100 to-amber-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center text-slate-400 dark:text-slate-500 text-sm">
-                {t("eeatp.photoLabel", { title: t(a.titleKey) })}
-              </div>
+              <img
+                src={a.img}
+                alt={a.alt}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-40 object-cover"
+              />
               <div className="p-4">
                 <p className="font-semibold text-slate-900 dark:text-white">
                   {t(a.titleKey)}
@@ -74,9 +97,6 @@ export default function Eeat() {
             </div>
           ))}
         </div>
-        <p className="text-center text-xs text-slate-400 mt-4">
-          {t("eeatp.photoNote")}
-        </p>
       </section>
 
       <section className="py-10 px-4">

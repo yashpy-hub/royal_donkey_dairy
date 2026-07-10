@@ -19,6 +19,7 @@ import Seo from "@/components/Seo";
 import { BUSINESS } from "@shared/business";
 import { useT } from "@/i18n";
 import { usePageKeywords } from "@/i18n/seoKeywords";
+import { AnalyticsEvents } from "@/lib/analytics";
 
 /**
  * Home Page - Landing Page
@@ -430,7 +431,10 @@ export default function Home() {
                 asChild
                 className="bg-white text-green-700 hover:bg-gray-100 font-semibold h-12 px-8 rounded-lg transition-colors"
               >
-                <Link href="/appoint-meeting">
+                <Link
+                  href="/appoint-meeting"
+                  onClick={() => AnalyticsEvents.ctaClick("home_book_meeting")}
+                >
                   {t("home.bookMeetingCta")}{" "}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
@@ -512,7 +516,12 @@ export default function Home() {
               asChild
               className="bg-white text-orange-600 hover:bg-gray-100 font-semibold h-12 px-8 rounded-lg transition-colors"
             >
-              <Link href="/contact">{t("home.requestQuote")}</Link>
+              <Link
+                href="/contact"
+                onClick={() => AnalyticsEvents.ctaClick("home_request_quote")}
+              >
+                {t("home.requestQuote")}
+              </Link>
             </Button>
             <Button
               asChild

@@ -1,5 +1,6 @@
 import { MessageCircle } from "lucide-react";
 import { useState } from "react";
+import { AnalyticsEvents } from "@/lib/analytics";
 
 /**
  * FloatingWhatsApp Component
@@ -17,6 +18,8 @@ export default function FloatingWhatsApp() {
     "Hello! I'm interested in Rudra Dairy & Farm's donkey milk and powder products.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
+  const trackWhatsApp = () => AnalyticsEvents.contactClick("whatsapp");
+
   return (
     <>
       {/* Floating WhatsApp Button */}
@@ -24,6 +27,7 @@ export default function FloatingWhatsApp() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={trackWhatsApp}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className="fixed bottom-6 right-6 z-40 group"
@@ -63,6 +67,7 @@ export default function FloatingWhatsApp() {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={trackWhatsApp}
           className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 font-sans font-medium text-sm"
         >
           <MessageCircle className="w-5 h-5" />

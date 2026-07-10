@@ -330,6 +330,162 @@ export const MONEY_PAGES: CommercialEntry[] = [
       "industry:research-laboratory",
     ],
   },
+  {
+    slug: "buy-donkey-milk-powder",
+    kind: "money",
+    title: "Buy Donkey Milk Powder in Bulk",
+    intro:
+      "Buy donkey milk powder in bulk - place a B2B order for cosmetic, food or freeze-dried grade with Rudra Dairy & Farm. Transparent MOQs, documentation and worldwide shipping for buyers.",
+    sections: [
+      {
+        heading: "How to Buy from Us",
+        body: "Tell us your grade (cosmetic, food or freeze-dried), pack size and volume, and we return a quotation with lead time and Incoterms. MOQs start at 5 kg, samples from 500 g, so you can validate before committing to a full order.",
+      },
+      {
+        heading: "What You Receive",
+        body: "Each order ships with a Certificate of Analysis, specification sheet, MSDS and traceability record. Private-label and OEM options are available from 25 kg.",
+      },
+    ],
+    specs: [
+      { label: "MOQ", value: "5 kg (samples 500 g)" },
+      { label: "Grades", value: "Cosmetic, food, freeze-dried" },
+      { label: "Pack", value: "1 / 5 / 25 kg" },
+      { label: "Ship", value: "Worldwide (FOB/CIF/DAP)" },
+    ],
+    faqs: [
+      {
+        q: "What is the minimum to buy?",
+        a: "5 kg for standard grades; 0.5 kg freeze-dried for R&D. Samples start at 500 g.",
+      },
+      {
+        q: "Do you sell to individuals or only B2B?",
+        a: "We are a B2B supplier to manufacturers, brands, distributors and labs - not a consumer retail shop.",
+      },
+    ],
+    ctaLabel: "Buy Now / Request Quote",
+    related: [
+      "donkey-milk-powder-wholesale",
+      "donkey-milk-powder-distributor",
+      "private-label-donkey-milk-powder",
+    ],
+  },
+  {
+    slug: "donkey-milk-powder-wholesale",
+    kind: "money",
+    title: "Donkey Milk Powder Wholesale Supplier",
+    intro:
+      "Donkey milk powder wholesale supplier - volume pricing and reliable B2B supply for distributors and manufacturers. Rudra Dairy & Farm ships certified powder worldwide with full documentation.",
+    sections: [
+      {
+        heading: "Wholesale Supply, Built for Resellers",
+        body: "We support distributors and wholesalers with consistent volume, batch-level documentation and flexible pack sizes. Set up a recurring schedule against a framework PO to lock supply and pricing.",
+      },
+      {
+        heading: "Volume & Pricing",
+        body: "Pricing scales with volume and grade. Share your annual requirement and target markets and we will quote wholesale rates with Incoterms and lead time.",
+      },
+    ],
+    specs: [
+      { label: "Model", value: "Wholesale / distributor" },
+      { label: "MOQ", value: "5 kg (bulk from 25 kg)" },
+      { label: "Grades", value: "Cosmetic, food, freeze-dried" },
+      { label: "Docs", value: "COA, MSDS, TDS, traceability" },
+    ],
+    faqs: [
+      {
+        q: "Do you offer distributor pricing?",
+        a: "Yes - volume-based wholesale rates. Tell us your annual volume to quote.",
+      },
+      {
+        q: "Can you white-label for our distribution brand?",
+        a: "Yes - private-label from 25 kg under your brand with our certifications behind it.",
+      },
+    ],
+    ctaLabel: "Get Wholesale Quote",
+    related: [
+      "buy-donkey-milk-powder",
+      "donkey-milk-powder-distributor",
+      "private-label-donkey-milk-powder",
+    ],
+  },
+  {
+    slug: "donkey-milk-powder-price",
+    kind: "money",
+    title: "Donkey Milk Powder Price & Cost per kg",
+    intro:
+      "Donkey milk powder price and cost per kg - factors that drive B2B pricing (grade, process, volume, Incoterms) and how to get a current quote from Rudra Dairy & Farm.",
+    sections: [
+      {
+        heading: "What Drives the Price",
+        body: "Price per kg depends on grade (cosmetic vs food), process (freeze-dried costs more than spray-dried), pack size, order volume and delivery terms (FOB/CIF/DAP). Donkey milk is low-volume and labour-intensive to produce, which sets the baseline above commodity dairy powders.",
+      },
+      {
+        heading: "How to Get a Current Quote",
+        body: "Because milk yield and grade vary, we quote per enquiry rather than publishing a fixed rate. Share grade, quantity and destination and we return a tailored price with lead time. Samples start at 500 g so you can qualify the material first.",
+      },
+    ],
+    specs: [
+      { label: "Pricing", value: "Quote-based (per enquiry)" },
+      { label: "Drivers", value: "Grade, process, volume, Incoterms" },
+      { label: "Freeze-dried", value: "Premium vs spray-dried" },
+      { label: "Sample", value: "From 500 g" },
+    ],
+    faqs: [
+      {
+        q: "Why is donkey milk powder more expensive than cow milk powder?",
+        a: "Donkeys yield far less milk per animal and the powder is produced in small, controlled batches - supply is inherently limited.",
+      },
+      {
+        q: "Do you publish a price list?",
+        a: "We quote per enquiry because grade, volume and destination change the landed cost. Request a quote for current pricing.",
+      },
+    ],
+    ctaLabel: "Request Current Price",
+    related: [
+      "buy-donkey-milk-powder",
+      "donkey-milk-powder-wholesale",
+      "freeze-dried-donkey-milk-powder-manufacturer",
+    ],
+  },
+  {
+    slug: "donkey-milk-powder-distributor",
+    kind: "money",
+    title: "Donkey Milk Powder Distributor & Reseller",
+    intro:
+      "Donkey milk powder distributor and reseller program - become a regional B2B distributor for Rudra Dairy & Farm. Certified supply, marketing support and reliable export logistics.",
+    sections: [
+      {
+        heading: "Partner as a Distributor",
+        body: "We work with ingredient distributors and resellers who want a reliable donkey-milk source for their regional market. Partners get consistent supply, documentation packs, and support with import and labelling requirements.",
+      },
+      {
+        heading: "What We Provide",
+        body: "Certified product (FSSAI, ISO, HACCP, IEC), COA/MSDS/TDS per batch, export documentation, and flexible Incoterms. We can support halal documentation on request for relevant markets.",
+      },
+    ],
+    specs: [
+      { label: "Program", value: "Distributor / reseller" },
+      { label: "Supply", value: "Recurring, scheduled" },
+      { label: "Support", value: "Docs, export, labelling" },
+      { label: "Certs", value: "FSSAI, ISO, HACCP, IEC" },
+    ],
+    faqs: [
+      {
+        q: "Can we become the distributor for our country?",
+        a: "We evaluate distribution partners by market and capability. Contact us with your region and volume.",
+      },
+      {
+        q: "Do you support halal documentation for our market?",
+        a: "Yes - we support halal documentation on request; discuss at quotation.",
+      },
+    ],
+    ctaLabel: "Become a Distributor",
+    related: [
+      "donkey-milk-powder-wholesale",
+      "buy-donkey-milk-powder",
+      "donkey-milk-powder-exporter",
+    ],
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -845,6 +1001,520 @@ export const COUNTRY_PAGES: CommercialEntry[] = [
       "uae",
       "japan",
     ],
+  },
+  {
+    slug: "usa",
+    kind: "country",
+    title: "Donkey Milk Powder Exporter to USA",
+    intro:
+      "Export donkey milk powder to the United States - shipping, FDA/MoCRA requirements, industries served and B2B supply from Rudra Dairy & Farm for American buyers.",
+    sections: [
+      {
+        heading: "Shipping to the USA",
+        body: "Air freight to New York, Los Angeles and Chicago (4-6 days); sea to major ports (28-40 days). DAP/FOB/CIF terms available. We support both small R&D parcels and full container loads.",
+      },
+      {
+        heading: "Regulations (typical)",
+        body: "Under MoCRA, US cosmetics do not require pre-market approval but need facility registration, product listing and compliant INCI labelling. Food and supplement uses fall under FDA rules. We supply COA, MSDS, TDS and specification sheets to support your dossier. Confirm with your US regulatory advisor.",
+      },
+      {
+        heading: "Industries We Serve",
+        body: "Natural skincare brands, supplement companies, private-label houses and contract manufacturers across the US market.",
+      },
+    ],
+    specs: [
+      { label: "Transit", value: "Air 4-6d / Sea 28-40d" },
+      { label: "Framework", value: "FDA / MoCRA cosmetics" },
+      { label: "Label", value: "INCI / English" },
+      { label: "Industries", value: "Skincare, supplements, private label" },
+    ],
+    faqs: [
+      {
+        q: "Do you ship small R&D quantities to the USA?",
+        a: "Yes - freeze-dried packs from 0.5 kg for US labs and formulators.",
+      },
+      {
+        q: "Can you support halal or organic claims?",
+        a: "We support documentation where available; final claim substantiation stays with the brand.",
+      },
+    ],
+    ctaLabel: "Get USA Quote",
+    related: [
+      "donkey-milk-powder-exporter",
+      "industry:cosmetics",
+      "industry:nutraceutical",
+      "canada",
+    ],
+  },
+  {
+    slug: "uk",
+    kind: "country",
+    title: "Donkey Milk Powder Exporter to UK",
+    intro:
+      "Export donkey milk powder to the United Kingdom - shipping, UK cosmetic regulations, industries served and B2B supply from Rudra Dairy & Farm for British buyers.",
+    sections: [
+      {
+        heading: "Shipping to the UK",
+        body: "Air to London and Manchester (3-5 days); sea to Felixstowe and Southampton (18-25 days). DAP/FOB/CIF available.",
+      },
+      {
+        heading: "Regulations (typical)",
+        body: "UK cosmetics follow the UK Cosmetics Regulation (post-Brexit divergence from EU). A UK Responsible Person and UK SCPN notification are required, with English labelling. We supply COA, MSDS and TDS to support your dossier. Confirm with your UK regulatory advisor.",
+      },
+      {
+        heading: "Industries We Serve",
+        body: "Indie beauty brands, skincare houses, supplement companies and private-label manufacturers across the UK.",
+      },
+    ],
+    specs: [
+      { label: "Transit", value: "Air 3-5d / Sea 18-25d" },
+      { label: "Framework", value: "UK Cosmetics Regulation" },
+      { label: "Label", value: "English required" },
+      { label: "Industries", value: "Indie beauty, skincare, supplements" },
+    ],
+    faqs: [
+      {
+        q: "Do you help with UK SCPN notification?",
+        a: "We provide the ingredient documentation; your UK Responsible Person handles notification.",
+      },
+    ],
+    ctaLabel: "Get UK Quote",
+    related: ["donkey-milk-powder-exporter", "industry:cosmetics", "usa"],
+  },
+  {
+    slug: "canada",
+    kind: "country",
+    title: "Donkey Milk Powder Exporter to Canada",
+    intro:
+      "Export donkey milk powder to Canada - shipping, Health Canada requirements, industries served and B2B supply from Rudra Dairy & Farm for Canadian buyers.",
+    sections: [
+      {
+        heading: "Shipping to Canada",
+        body: "Air to Toronto and Vancouver (4-6 days); sea (25-35 days). DAP/FOB/CIF available.",
+      },
+      {
+        heading: "Regulations (typical)",
+        body: "Cosmetics are notified to Health Canada with INCI labelling; natural health products (supplements) follow NHP Directorate rules. We supply COA, MSDS, TDS and specification sheets. Confirm with your Canadian regulatory advisor.",
+      },
+      {
+        heading: "Industries We Serve",
+        body: "Clean-beauty brands, supplement companies and private-label manufacturers across Canada.",
+      },
+    ],
+    specs: [
+      { label: "Transit", value: "Air 4-6d / Sea 25-35d" },
+      { label: "Framework", value: "Health Canada" },
+      { label: "Label", value: "Bilingual (EN/FR) advised" },
+      {
+        label: "Industries",
+        value: "Clean beauty, supplements, private label",
+      },
+    ],
+    faqs: [
+      {
+        q: "Do you supply food-grade powder for Canadian supplements?",
+        a: "Yes - our food-grade powder ships with the documentation NHP importers require.",
+      },
+    ],
+    ctaLabel: "Get Canada Quote",
+    related: ["donkey-milk-powder-exporter", "industry:nutraceutical", "usa"],
+  },
+  {
+    slug: "australia",
+    kind: "country",
+    title: "Donkey Milk Powder Exporter to Australia",
+    intro:
+      "Export donkey milk powder to Australia - shipping, TGA / AICIS requirements, industries served and B2B supply from Rudra Dairy & Farm for Australian buyers.",
+    sections: [
+      {
+        heading: "Shipping to Australia",
+        body: "Air to Sydney and Melbourne (5-7 days); sea (20-30 days). DAP/FOB/CIF available.",
+      },
+      {
+        heading: "Regulations (typical)",
+        body: "Cosmetic ingredients are regulated under AICIS; therapeutic goods under the TGA. We supply COA, MSDS, TDS and specification sheets to support import. Confirm with your Australian regulatory advisor.",
+      },
+      {
+        heading: "Industries We Serve",
+        body: "Clean-beauty and natural-skincare brands, plus boutique supplement companies across Australia.",
+      },
+    ],
+    specs: [
+      { label: "Transit", value: "Air 5-7d / Sea 20-30d" },
+      { label: "Framework", value: "AICIS / TGA" },
+      { label: "Label", value: "English" },
+      { label: "Industries", value: "Clean beauty, natural skincare" },
+    ],
+    faqs: [
+      {
+        q: "Can you supply small batches for Australian formulators?",
+        a: "Yes - freeze-dried packs from 0.5 kg for labs and boutique brands.",
+      },
+    ],
+    ctaLabel: "Get Australia Quote",
+    related: [
+      "donkey-milk-powder-exporter",
+      "industry:cosmetics",
+      "new-zealand",
+    ],
+  },
+  {
+    slug: "netherlands",
+    kind: "country",
+    title: "Donkey Milk Powder Exporter to Netherlands",
+    intro:
+      "Export donkey milk powder to the Netherlands - shipping via the Rotterdam/EU hub, EU compliance, industries served and B2B supply from Rudra Dairy & Farm for Dutch buyers.",
+    sections: [
+      {
+        heading: "Shipping to the Netherlands",
+        body: "Air to Amsterdam (3-5 days); sea to Rotterdam (12-18 days) - a major EU distribution gateway. DAP/FOB/CIF available.",
+      },
+      {
+        heading: "Regulations (typical)",
+        body: "EU 1223/2009 with Dutch labelling; the Netherlands is a key ingredient-distribution hub. We supply COA, MSDS and TDS for your dossier. Confirm with your EU regulatory advisor.",
+      },
+      {
+        heading: "Industries We Serve",
+        body: "Ingredient distributors, cosmetics manufacturers and private-label brands serving the wider EU from Dutch hubs.",
+      },
+    ],
+    specs: [
+      { label: "Transit", value: "Air 3-5d / Sea 12-18d" },
+      { label: "Framework", value: "EU 1223/2009" },
+      { label: "Hub", value: "Rotterdam / Amsterdam" },
+      { label: "Industries", value: "Distributors, cosmetics, private label" },
+    ],
+    faqs: [
+      {
+        q: "Do you ship to EU distributors for re-export?",
+        a: "Yes - many Dutch clients re-distribute across the EU; we support consolidated shipments.",
+      },
+    ],
+    ctaLabel: "Get Netherlands Quote",
+    related: ["donkey-milk-powder-exporter", "germany", "france"],
+  },
+  {
+    slug: "spain",
+    kind: "country",
+    title: "Donkey Milk Powder Exporter to Spain",
+    intro:
+      "Export donkey milk powder to Spain - shipping, EU compliance, dermo-cosmetics industries served and B2B supply from Rudra Dairy & Farm for Spanish buyers.",
+    sections: [
+      {
+        heading: "Shipping to Spain",
+        body: "Air to Madrid and Barcelona (3-5 days); sea (12-18 days). DAP/FOB/CIF available.",
+      },
+      {
+        heading: "Regulations (typical)",
+        body: "EU 1223/2009 with Spanish labelling. We supply COA, MSDS, TDS and specification sheets. Confirm with your EU regulatory advisor.",
+      },
+      {
+        heading: "Industries We Serve",
+        body: "Dermo-cosmetics and natural-cosmetics manufacturers, soap makers and private-label brands across Spain.",
+      },
+    ],
+    specs: [
+      { label: "Transit", value: "Air 3-5d / Sea 12-18d" },
+      { label: "Framework", value: "EU 1223/2009" },
+      { label: "Label", value: "Spanish required" },
+      { label: "Industries", value: "Dermo-cosmetics, soap, private label" },
+    ],
+    faqs: [
+      {
+        q: "Do you ship R&D quantities to Spanish labs?",
+        a: "Yes - freeze-dried packs from 0.5 kg for formulators and universities.",
+      },
+    ],
+    ctaLabel: "Get Spain Quote",
+    related: ["donkey-milk-powder-exporter", "industry:cosmetics", "italy"],
+  },
+  {
+    slug: "poland",
+    kind: "country",
+    title: "Donkey Milk Powder Exporter to Poland",
+    intro:
+      "Export donkey milk powder to Poland - shipping, EU compliance, contract-manufacturing industries served and B2B supply from Rudra Dairy & Farm for Polish buyers.",
+    sections: [
+      {
+        heading: "Shipping to Poland",
+        body: "Air to Warsaw (3-5 days); sea to Gdansk (12-18 days). DAP/FOB/CIF available.",
+      },
+      {
+        heading: "Regulations (typical)",
+        body: "EU 1223/2009 with Polish labelling. We supply COA, MSDS, TDS and specification sheets. Confirm with your EU regulatory advisor.",
+      },
+      {
+        heading: "Industries We Serve",
+        body: "A growing cosmetics-manufacturing and private-label/contract-manufacturing sector across Poland.",
+      },
+    ],
+    specs: [
+      { label: "Transit", value: "Air 3-5d / Sea 12-18d" },
+      { label: "Framework", value: "EU 1223/2009" },
+      { label: "Label", value: "Polish required" },
+      { label: "Industries", value: "Cosmetics mfg, private label, OEM" },
+    ],
+    faqs: [
+      {
+        q: "Do you work with Polish contract manufacturers?",
+        a: "Yes - our OEM and private-label service supports Polish CM/OEM houses.",
+      },
+    ],
+    ctaLabel: "Get Poland Quote",
+    related: [
+      "donkey-milk-powder-exporter",
+      "oem-donkey-milk-powder-manufacturer",
+      "germany",
+    ],
+  },
+  {
+    slug: "turkey",
+    kind: "country",
+    title: "Donkey Milk Powder Exporter to Turkey",
+    intro:
+      "Export donkey milk powder to Turkey - shipping, Turkish cosmetics regulation, halal personal-care industries served and B2B supply from Rudra Dairy & Farm for Turkish buyers.",
+    sections: [
+      {
+        heading: "Shipping to Turkey",
+        body: "Air to Istanbul (2-4 days); sea (10-15 days). DAP/FOB/CIF available. Turkey is a short-haul, fast-turnaround market.",
+      },
+      {
+        heading: "Regulations (typical)",
+        body: "Cosmetics are regulated by TITCK; halal documentation is valued in the personal-care segment. We support halal documentation on request and supply COA, MSDS, TDS. Confirm with your Turkish regulatory advisor.",
+      },
+      {
+        heading: "Industries We Serve",
+        body: "Cosmetics manufacturers, halal personal-care brands, soap makers and distributors across Turkey.",
+      },
+    ],
+    specs: [
+      { label: "Transit", value: "Air 2-4d / Sea 10-15d" },
+      { label: "Framework", value: "TITCK (Turkey)" },
+      { label: "Note", value: "Halal docs on request" },
+      { label: "Industries", value: "Cosmetics, halal care, soap" },
+    ],
+    faqs: [
+      {
+        q: "Can you support halal certification for Turkey?",
+        a: "We can support halal documentation; discuss at quotation.",
+      },
+    ],
+    ctaLabel: "Get Turkey Quote",
+    related: ["donkey-milk-powder-exporter", "industry:cosmetics", "uae"],
+  },
+  {
+    slug: "saudi-arabia",
+    kind: "country",
+    title: "Donkey Milk Powder Exporter to Saudi Arabia",
+    intro:
+      "Export donkey milk powder to Saudi Arabia - shipping, SFDA requirements, halal personal-care industries served and B2B supply from Rudra Dairy & Farm for Saudi buyers.",
+    sections: [
+      {
+        heading: "Shipping to Saudi Arabia",
+        body: "Air to Riyadh and Jeddah (3-5 days); sea (12-18 days). DAP/FOB/CIF available.",
+      },
+      {
+        heading: "Regulations (typical)",
+        body: "Cosmetics and personal care are regulated by the SFDA; halal certification is important for the market. We support halal documentation on request and supply COA, MSDS, TDS. Confirm with your Saudi regulatory advisor.",
+      },
+      {
+        heading: "Industries We Serve",
+        body: "Halal cosmetics and personal-care brands, distributors and importers across the Kingdom.",
+      },
+    ],
+    specs: [
+      { label: "Transit", value: "Air 3-5d / Sea 12-18d" },
+      { label: "Framework", value: "SFDA (Saudi)" },
+      { label: "Note", value: "Halal important" },
+      { label: "Industries", value: "Halal cosmetics, personal care" },
+    ],
+    faqs: [
+      {
+        q: "Do you provide halal certificates for Saudi import?",
+        a: "We support halal documentation on request; discuss at quotation.",
+      },
+    ],
+    ctaLabel: "Get Saudi Quote",
+    related: ["donkey-milk-powder-exporter", "uae", "qatar", "kuwait"],
+  },
+  {
+    slug: "qatar",
+    kind: "country",
+    title: "Donkey Milk Powder Exporter to Qatar",
+    intro:
+      "Export donkey milk powder to Qatar - shipping, Qatari requirements, luxury personal-care industries served and B2B supply from Rudra Dairy & Farm for Qatari buyers.",
+    sections: [
+      {
+        heading: "Shipping to Qatar",
+        body: "Air to Doha (3-5 days). DAP/FOB/CIF available; small, fast-turnaround market.",
+      },
+      {
+        heading: "Regulations (typical)",
+        body: "Cosmetics are regulated under the Ministry of Public Health; halal documentation is valued. We support halal docs on request and supply COA, MSDS, TDS. Confirm with your Qatari regulatory advisor.",
+      },
+      {
+        heading: "Industries We Serve",
+        body: "Luxury personal-care brands, distributors and importers serving the Qatari market.",
+      },
+    ],
+    specs: [
+      { label: "Transit", value: "Air 3-5d" },
+      { label: "Framework", value: "MOPH (Qatar)" },
+      { label: "Note", value: "Halal valued" },
+      { label: "Industries", value: "Luxury personal care, distributors" },
+    ],
+    faqs: [
+      {
+        q: "Can you supply small premium batches to Qatar?",
+        a: "Yes - freeze-dried packs from 0.5 kg for premium and boutique brands.",
+      },
+    ],
+    ctaLabel: "Get Qatar Quote",
+    related: ["donkey-milk-powder-exporter", "saudi-arabia", "uae"],
+  },
+  {
+    slug: "kuwait",
+    kind: "country",
+    title: "Donkey Milk Powder Exporter to Kuwait",
+    intro:
+      "Export donkey milk powder to Kuwait - shipping, Kuwaiti requirements, halal personal-care industries served and B2B supply from Rudra Dairy & Farm for Kuwaiti buyers.",
+    sections: [
+      {
+        heading: "Shipping to Kuwait",
+        body: "Air to Kuwait City (3-5 days). DAP/FOB/CIF available.",
+      },
+      {
+        heading: "Regulations (typical)",
+        body: "Cosmetics are regulated by the Kuwait Foodstuff & Nutrition Department (KFD); halal documentation is valued. We support halal docs on request and supply COA, MSDS, TDS. Confirm with your Kuwaiti regulatory advisor.",
+      },
+      {
+        heading: "Industries We Serve",
+        body: "Halal personal-care brands, distributors and importers across Kuwait.",
+      },
+    ],
+    specs: [
+      { label: "Transit", value: "Air 3-5d" },
+      { label: "Framework", value: "KFD (Kuwait)" },
+      { label: "Note", value: "Halal valued" },
+      { label: "Industries", value: "Halal personal care, distributors" },
+    ],
+    faqs: [
+      {
+        q: "Do you support halal documentation for Kuwait?",
+        a: "Yes - we support halal documentation on request; discuss at quotation.",
+      },
+    ],
+    ctaLabel: "Get Kuwait Quote",
+    related: ["donkey-milk-powder-exporter", "saudi-arabia", "uae"],
+  },
+  {
+    slug: "singapore",
+    kind: "country",
+    title: "Donkey Milk Powder Exporter to Singapore",
+    intro:
+      "Export donkey milk powder to Singapore - shipping, HSA requirements, APAC R&D industries served and B2B supply from Rudra Dairy & Farm for Singapore buyers.",
+    sections: [
+      {
+        heading: "Shipping to Singapore",
+        body: "Air to Singapore (3-5 days). DAP/FOB/CIF available; a key APAC hub.",
+      },
+      {
+        heading: "Regulations (typical)",
+        body: "Cosmetics are controlled by the HSA under the ASEAN Cosmetic Directive; Singapore is also a halal hub. We supply COA, MSDS, TDS and support documentation. Confirm with your Singapore regulatory advisor.",
+      },
+      {
+        heading: "Industries We Serve",
+        body: "APAC HQ brands, cosmetics R&D houses and OEM manufacturers based in Singapore.",
+      },
+    ],
+    specs: [
+      { label: "Transit", value: "Air 3-5d" },
+      { label: "Framework", value: "HSA (ASEAN ACD)" },
+      { label: "Hub", value: "APAC HQ / R&D" },
+      { label: "Industries", value: "APAC brands, R&D, OEM" },
+    ],
+    faqs: [
+      {
+        q: "Do you work with Singapore-based OEM manufacturers?",
+        a: "Yes - our OEM and private-label service supports APAC contract manufacturing.",
+      },
+    ],
+    ctaLabel: "Get Singapore Quote",
+    related: [
+      "donkey-milk-powder-exporter",
+      "oem-donkey-milk-powder-manufacturer",
+      "malaysia",
+    ],
+  },
+  {
+    slug: "malaysia",
+    kind: "country",
+    title: "Donkey Milk Powder Exporter to Malaysia",
+    intro:
+      "Export donkey milk powder to Malaysia - shipping, NPRA requirements, halal cosmetics industries served and B2B supply from Rudra Dairy & Farm for Malaysian buyers.",
+    sections: [
+      {
+        heading: "Shipping to Malaysia",
+        body: "Air to Kuala Lumpur (3-5 days); sea (10-15 days). DAP/FOB/CIF available.",
+      },
+      {
+        heading: "Regulations (typical)",
+        body: "Cosmetics are notified to the NPRA under the ASEAN Cosmetic Directive; JAKIM halal certification is important for the market. We support halal documentation on request and supply COA, MSDS, TDS. Confirm with your Malaysian regulatory advisor.",
+      },
+      {
+        heading: "Industries We Serve",
+        body: "Halal cosmetics manufacturers, OEM houses and private-label brands across Malaysia.",
+      },
+    ],
+    specs: [
+      { label: "Transit", value: "Air 3-5d / Sea 10-15d" },
+      { label: "Framework", value: "NPRA (ASEAN ACD)" },
+      { label: "Note", value: "Halal (JAKIM) important" },
+      { label: "Industries", value: "Halal cosmetics, OEM, private label" },
+    ],
+    faqs: [
+      {
+        q: "Can you support JAKIM halal documentation?",
+        a: "We support halal documentation on request; discuss at quotation.",
+      },
+    ],
+    ctaLabel: "Get Malaysia Quote",
+    related: ["donkey-milk-powder-exporter", "singapore", "industry:cosmetics"],
+  },
+  {
+    slug: "mexico",
+    kind: "country",
+    title: "Donkey Milk Powder Exporter to Mexico",
+    intro:
+      "Export donkey milk powder to Mexico - shipping, COFEPRIS requirements, personal-care industries served and B2B supply from Rudra Dairy & Farm for Mexican buyers.",
+    sections: [
+      {
+        heading: "Shipping to Mexico",
+        body: "Air to Mexico City (4-6 days); sea (22-30 days). DAP/FOB/CIF available.",
+      },
+      {
+        heading: "Regulations (typical)",
+        body: "Cosmetics are regulated by COFEPRIS with NOM labelling. We supply COA, MSDS, TDS and specification sheets to support import. Confirm with your Mexican regulatory advisor.",
+      },
+      {
+        heading: "Industries We Serve",
+        body: "Cosmetics manufacturers, personal-care brands and distributors serving the Mexican and wider LATAM market.",
+      },
+    ],
+    specs: [
+      { label: "Transit", value: "Air 4-6d / Sea 22-30d" },
+      { label: "Framework", value: "COFEPRIS (Mexico)" },
+      { label: "Label", value: "Spanish (NOM)" },
+      { label: "Industries", value: "Cosmetics, personal care, distributors" },
+    ],
+    faqs: [
+      {
+        q: "Do you ship to Mexico for re-export into LATAM?",
+        a: "Yes - many Mexican clients distribute across LATAM; we support consolidated shipments.",
+      },
+    ],
+    ctaLabel: "Get Mexico Quote",
+    related: ["donkey-milk-powder-exporter", "industry:cosmetics", "usa"],
   },
 ];
 

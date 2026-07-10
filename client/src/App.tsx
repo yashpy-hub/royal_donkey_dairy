@@ -1,7 +1,9 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
+import { useEffect } from "react";
+import { AnalyticsEvents } from "@/lib/analytics";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -26,6 +28,14 @@ import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import { I18nProvider } from "./i18n";
 
 function Router() {
+  const [location] = useLocation();
+
+  // SPA page views: wouter does client-side navigation, so GA never hears
+  // about route changes on its own. Report every navigation as a page_view.
+  useEffect(() => {
+    AnalyticsEvents.pageView(location);
+  }, [location]);
+
   return (
     <Switch>
       <Route path={"/"} component={Home} />

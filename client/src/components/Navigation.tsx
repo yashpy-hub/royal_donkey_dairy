@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useT } from "@/i18n";
+import { AnalyticsEvents } from "@/lib/analytics";
 
 /**
  * Navigation Component
@@ -64,7 +65,12 @@ export default function Navigation() {
               asChild
               className="bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg transition-colors"
             >
-              <Link href="/contact">{t("common.getInTouch")}</Link>
+              <Link
+                href="/contact"
+                onClick={() => AnalyticsEvents.ctaClick("get_in_touch")}
+              >
+                {t("common.getInTouch")}
+              </Link>
             </Button>
           </div>
 
@@ -102,7 +108,12 @@ export default function Navigation() {
               asChild
               className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold mt-4 rounded-lg"
             >
-              <Link href="/contact">{t("common.getInTouch")}</Link>
+              <Link
+                href="/contact"
+                onClick={() => AnalyticsEvents.ctaClick("get_in_touch")}
+              >
+                {t("common.getInTouch")}
+              </Link>
             </Button>
           </div>
         )}

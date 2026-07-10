@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Mail, Phone, Instagram, Facebook, MessageCircle } from "lucide-react";
 import { useT } from "@/i18n";
+import { AnalyticsEvents } from "@/lib/analytics";
 
 /**
  * Footer Component - Rudra Dairy & Farm
@@ -170,6 +171,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm"
+                  onClick={() => AnalyticsEvents.contactClick("whatsapp")}
                 >
                   +91 9112327322
                 </a>
@@ -180,18 +182,21 @@ export default function Footer() {
                   <a
                     href="mailto:info@rudradairyandfarm.shop"
                     className="font-semibold block break-all hover:text-white"
+                    onClick={() => AnalyticsEvents.contactClick("email")}
                   >
                     info@rudradairyandfarm.shop
                   </a>
                   <a
                     href="mailto:donkeyfarm79@gmail.com"
                     className="block break-all hover:text-white"
+                    onClick={() => AnalyticsEvents.contactClick("email")}
                   >
                     donkeyfarm79@gmail.com
                   </a>
                   <a
                     href="mailto:donkeyfarm79@outlook.com"
                     className="block break-all hover:text-white"
+                    onClick={() => AnalyticsEvents.contactClick("email")}
                   >
                     donkeyfarm79@outlook.com
                   </a>

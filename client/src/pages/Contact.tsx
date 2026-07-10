@@ -14,6 +14,7 @@ import {
 import { useState } from "react";
 import { toast } from "sonner";
 import { sendContactEmail } from "@/lib/emailService";
+import { AnalyticsEvents } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import Seo from "@/components/Seo";
 import { Link } from "wouter";
@@ -69,6 +70,10 @@ export default function Contact() {
       });
 
       if (success) {
+        AnalyticsEvents.leadSubmit({
+          business_type: formData.businessType || "unspecified",
+          page: "/contact",
+        });
         toast.success(t("products.c_toastSuccess"));
         setFormData({
           name: "",

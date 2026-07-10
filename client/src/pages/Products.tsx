@@ -12,6 +12,7 @@ import {
   Flame,
 } from "lucide-react";
 import Seo from "@/components/Seo";
+import { AnalyticsEvents } from "@/lib/analytics";
 import { useT } from "@/i18n";
 import { usePageKeywords } from "@/i18n/seoKeywords";
 
@@ -502,7 +503,14 @@ export default function Products() {
               asChild
               className="bg-white text-green-700 hover:bg-amber-50 font-sans h-12 px-8 transition-all duration-300 hover:shadow-lg"
             >
-              <Link href="/contact">{t("products.requestQuote")}</Link>
+              <Link
+                href="/contact"
+                onClick={() =>
+                  AnalyticsEvents.ctaClick("products_request_quote")
+                }
+              >
+                {t("products.requestQuote")}
+              </Link>
             </Button>
             <Button
               asChild
