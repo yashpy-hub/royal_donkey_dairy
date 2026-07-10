@@ -88,17 +88,20 @@ VITE_WEBSITE_NAME=Rudra Dairy & Farm
 ## Troubleshooting
 
 ### Build Fails
+
 ```bash
 # Clear cache and rebuild
 vercel --prod --force
 ```
 
 ### EmailJS Not Working
+
 - Verify public key in Environment Variables
 - Check EmailJS template exists in dashboard
 - Ensure service ID is correct
 
 ### Custom Domain Not Working
+
 - Wait 24-48 hours for DNS propagation
 - Check nameserver settings at domain registrar
 - Verify DNS records in Vercel dashboard
@@ -112,6 +115,7 @@ vercel --prod --force
 ## Automatic Deployments
 
 Vercel automatically deploys on:
+
 - Push to `main` branch → Production
 - Push to other branches → Preview deployments
 - Pull requests → Preview deployments
@@ -119,6 +123,7 @@ Vercel automatically deploys on:
 ## Rollback
 
 To rollback to previous version:
+
 1. Go to Vercel Dashboard
 2. Click **Deployments**
 3. Find previous deployment

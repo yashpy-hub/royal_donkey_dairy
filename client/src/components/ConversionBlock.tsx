@@ -35,27 +35,44 @@ export default function ConversionBlock({
             ["Export Markets", markets],
             ["Packaging", "1 / 5 / 25 kg, private label from 25 kg"],
           ].map(([k, v]) => (
-            <div key={k} className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700">
-              <p className="text-xs uppercase tracking-wide text-orange-600 dark:text-orange-400 font-semibold">{k}</p>
-              <p className="text-sm text-slate-700 dark:text-slate-300 mt-1">{v}</p>
+            <div
+              key={k}
+              className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700"
+            >
+              <p className="text-xs uppercase tracking-wide text-orange-600 dark:text-orange-400 font-semibold">
+                {k}
+              </p>
+              <p className="text-sm text-slate-700 dark:text-slate-300 mt-1">
+                {v}
+              </p>
             </div>
           ))}
         </div>
         <div className="flex flex-wrap justify-center gap-3">
-          <a href={whatsapp} target="_blank" rel="noopener noreferrer"
-             className="px-5 py-3 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700">
+          <a
+            href={whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-3 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700"
+          >
             WhatsApp Us
           </a>
-          <a href={email}
-             className="px-5 py-3 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-700">
+          <a
+            href={email}
+            className="px-5 py-3 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-700"
+          >
             Email Sales
           </a>
-          <Link href="/downloads/technical-data-sheet"
-                className="px-5 py-3 rounded-xl bg-white border border-orange-400 text-orange-700 font-semibold hover:bg-orange-50">
+          <Link
+            href="/downloads/technical-data-sheet"
+            className="px-5 py-3 rounded-xl bg-white border border-orange-400 text-orange-700 font-semibold hover:bg-orange-50"
+          >
             Download TDS
           </Link>
-          <Link href="/contact"
-                className="px-5 py-3 rounded-xl bg-orange-600 text-white font-semibold hover:bg-orange-700">
+          <Link
+            href="/contact"
+            className="px-5 py-3 rounded-xl bg-orange-600 text-white font-semibold hover:bg-orange-700"
+          >
             {ctaLabel}
           </Link>
         </div>

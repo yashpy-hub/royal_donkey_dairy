@@ -4,9 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: 'Playfair Display', serif;
-  --font-serif: 'Lora', serif;
-  --font-sans: 'Inter', sans-serif;
+  --font-display: "Playfair Display", serif;
+  --font-serif: "Lora", serif;
+  --font-sans: "Inter", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -47,75 +47,75 @@
 
 :root {
   /* Clean & Attractive Minimalist Color Palette */
-  --primary: #D97706; /* Warm Orange */
-  --primary-foreground: #FFFFFF; /* White */
-  --sidebar-primary: #1F2937; /* Dark Gray */
-  --sidebar-primary-foreground: #FFFFFF;
-  --chart-1: #D97706;
-  --chart-2: #1F2937;
-  --chart-3: #10B981;
-  --chart-4: #3B82F6;
-  --chart-5: #8B5CF6;
+  --primary: #d97706; /* Warm Orange */
+  --primary-foreground: #ffffff; /* White */
+  --sidebar-primary: #1f2937; /* Dark Gray */
+  --sidebar-primary-foreground: #ffffff;
+  --chart-1: #d97706;
+  --chart-2: #1f2937;
+  --chart-3: #10b981;
+  --chart-4: #3b82f6;
+  --chart-5: #8b5cf6;
   --radius: 0.5rem;
-  --background: #FFFFFF; /* Clean White */
-  --foreground: #1F2937; /* Dark Gray */
-  --card: #F9FAFB;
-  --card-foreground: #1F2937;
-  --popover: #FFFFFF;
-  --popover-foreground: #1F2937;
-  --secondary: #10B981; /* Green */
-  --secondary-foreground: #FFFFFF;
-  --muted: #E5E7EB;
-  --muted-foreground: #6B7280;
-  --accent: #D97706; /* Orange */
-  --accent-foreground: #FFFFFF;
-  --destructive: #EF4444;
-  --destructive-foreground: #FFFFFF;
-  --border: #E5E7EB;
-  --input: #FFFFFF;
-  --ring: #D97706;
-  --sidebar: #FFFFFF;
-  --sidebar-foreground: #1F2937;
-  --sidebar-accent: #D97706;
-  --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #E5E7EB;
-  --sidebar-ring: #D97706;
+  --background: #ffffff; /* Clean White */
+  --foreground: #1f2937; /* Dark Gray */
+  --card: #f9fafb;
+  --card-foreground: #1f2937;
+  --popover: #ffffff;
+  --popover-foreground: #1f2937;
+  --secondary: #10b981; /* Green */
+  --secondary-foreground: #ffffff;
+  --muted: #e5e7eb;
+  --muted-foreground: #6b7280;
+  --accent: #d97706; /* Orange */
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #ffffff;
+  --ring: #d97706;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1f2937;
+  --sidebar-accent: #d97706;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #d97706;
 }
 
 .dark {
   /* Dark Mode - Clean & Minimalist */
-  --primary: #D97706; /* Warm Orange */
-  --primary-foreground: #1F2937;
-  --sidebar-primary: #10B981; /* Green */
-  --sidebar-primary-foreground: #FFFFFF;
+  --primary: #d97706; /* Warm Orange */
+  --primary-foreground: #1f2937;
+  --sidebar-primary: #10b981; /* Green */
+  --sidebar-primary-foreground: #ffffff;
   --background: #111827; /* Dark Gray */
-  --foreground: #F3F4F6; /* Light Gray */
-  --card: #1F2937;
-  --card-foreground: #F3F4F6;
-  --popover: #1F2937;
-  --popover-foreground: #F3F4F6;
-  --secondary: #10B981; /* Green */
-  --secondary-foreground: #FFFFFF;
+  --foreground: #f3f4f6; /* Light Gray */
+  --card: #1f2937;
+  --card-foreground: #f3f4f6;
+  --popover: #1f2937;
+  --popover-foreground: #f3f4f6;
+  --secondary: #10b981; /* Green */
+  --secondary-foreground: #ffffff;
   --muted: #374151;
-  --muted-foreground: #D1D5DB;
-  --accent: #D97706;
-  --accent-foreground: #FFFFFF;
-  --destructive: #EF4444;
-  --destructive-foreground: #FFFFFF;
+  --muted-foreground: #d1d5db;
+  --accent: #d97706;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
   --border: #374151;
-  --input: #1F2937;
-  --ring: #D97706;
-  --chart-1: #D97706;
-  --chart-2: #10B981;
-  --chart-3: #3B82F6;
-  --chart-4: #8B5CF6;
-  --chart-5: #EC4899;
-  --sidebar: #1F2937;
-  --sidebar-foreground: #F3F4F6;
-  --sidebar-accent: #D97706;
-  --sidebar-accent-foreground: #FFFFFF;
+  --input: #1f2937;
+  --ring: #d97706;
+  --chart-1: #d97706;
+  --chart-2: #10b981;
+  --chart-3: #3b82f6;
+  --chart-4: #8b5cf6;
+  --chart-5: #ec4899;
+  --sidebar: #1f2937;
+  --sidebar-foreground: #f3f4f6;
+  --sidebar-accent: #d97706;
+  --sidebar-accent-foreground: #ffffff;
   --sidebar-border: #374151;
-  --sidebar-ring: #D97706;
+  --sidebar-ring: #d97706;
 }
 
 @layer base {
@@ -125,7 +125,12 @@
   body {
     @apply bg-background text-foreground font-serif;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-display font-bold;
   }
   h1 {
@@ -187,18 +192,32 @@
 
   /* Advanced Animation Utilities */
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
   }
 
   @keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(193, 122, 92, 0.3); }
-    50% { box-shadow: 0 0 40px rgba(193, 122, 92, 0.6); }
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(193, 122, 92, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(193, 122, 92, 0.6);
+    }
   }
 
   @keyframes shimmer {
-    0% { background-position: -1000px 0; }
-    100% { background-position: 1000px 0; }
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
   }
 
   @keyframes slideInUp {
@@ -235,7 +254,8 @@
   }
 
   @keyframes pulse-glow {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 1;
       box-shadow: 0 0 0 0 rgba(193, 122, 92, 0.7);
     }
@@ -255,7 +275,12 @@
 
   .animate-shimmer {
     animation: shimmer 2s infinite;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
     background-size: 1000px 100%;
   }
 
@@ -277,7 +302,8 @@
 
   /* WhatsApp Button Animations */
   @keyframes whatsapp-pulse {
-    0%, 100% {
+    0%,
+    100% {
       box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
     }
     50% {
@@ -286,7 +312,8 @@
   }
 
   @keyframes whatsapp-bounce {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px);
     }
     50% {
@@ -421,10 +448,22 @@
     animation: fadeInUp 0.6s ease-out forwards;
   }
 
-  .stagger-item:nth-child(1) { animation-delay: 0.1s; }
-  .stagger-item:nth-child(2) { animation-delay: 0.2s; }
-  .stagger-item:nth-child(3) { animation-delay: 0.3s; }
-  .stagger-item:nth-child(4) { animation-delay: 0.4s; }
-  .stagger-item:nth-child(5) { animation-delay: 0.5s; }
-  .stagger-item:nth-child(6) { animation-delay: 0.6s; }
+  .stagger-item:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .stagger-item:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .stagger-item:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .stagger-item:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .stagger-item:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .stagger-item:nth-child(6) {
+    animation-delay: 0.6s;
+  }
 }

@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import { sendMeetingRequestEmail } from "@/lib/emailService";
 import { BUSINESS } from "@shared/business";
 import Seo from "@/components/Seo";
+import { useT } from "@/i18n";
 
 /**
  * Appoint a Meeting — Business Collaboration
@@ -24,6 +25,8 @@ import Seo from "@/components/Seo";
  * active business mailboxes via EmailJS.
  */
 export default function AppointMeeting() {
+  const t = useT();
+
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -44,7 +47,7 @@ export default function AppointMeeting() {
     >
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -57,7 +60,7 @@ export default function AppointMeeting() {
       !formData.date ||
       !formData.message
     ) {
-      toast.error("Please fill in all required fields");
+      toast.error(t("products.c_toastRequired"));
       return;
     }
 
@@ -76,9 +79,7 @@ export default function AppointMeeting() {
       });
 
       if (success) {
-        toast.success(
-          "Meeting request sent! Our team will confirm your appointment shortly."
-        );
+        toast.success(t("products.m_toastSuccess"));
         setFormData({
           name: "",
           company: "",
@@ -91,11 +92,11 @@ export default function AppointMeeting() {
           message: "",
         });
       } else {
-        toast.error("Failed to send request. Please try again.");
+        toast.error(t("products.m_toastFail"));
       }
     } catch (error) {
       console.error("Error sending meeting request:", error);
-      toast.error("An error occurred. Please try again.");
+      toast.error(t("products.m_toastError"));
     } finally {
       setIsLoading(false);
     }
@@ -104,21 +105,31 @@ export default function AppointMeeting() {
   return (
     <div className="min-h-screen">
       <Seo
-        title="Appoint a Meeting — Business Collaboration | Rudra Dairy & Farm"
-        description="Book a business collaboration meeting with Rudra Dairy & Farm. Discuss B2B donkey milk & powder supply, private label, export, and long-term partnerships. In-person, video, or phone."
+        title={t("products.m_title")}
+        description={t("products.m_desc")}
         path="/appoint-meeting"
         jsonLd={[
           {
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Appoint a Meeting — Business Collaboration | Rudra Dairy & Farm",
+            name: t("products.m_title"),
             url: "https://rudradairyandfarm.shop/appoint-meeting",
             isPartOf: { "@id": "https://rudradairyandfarm.shop/#website" },
             breadcrumb: {
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://rudradairyandfarm.shop/" },
-                { "@type": "ListItem", position: 2, name: "Appoint a Meeting", item: "https://rudradairyandfarm.shop/appoint-meeting" },
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: t("nav.home"),
+                  item: "https://rudradairyandfarm.shop/",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: t("nav.appointMeeting"),
+                  item: "https://rudradairyandfarm.shop/appoint-meeting",
+                },
               ],
             },
           },
@@ -139,7 +150,8 @@ export default function AppointMeeting() {
               "@type": "Offer",
               price: "0",
               priceCurrency: "INR",
-              description: "Free consultation for qualified B2B buyers and partners.",
+              description:
+                "Free consultation for qualified B2B buyers and partners.",
             },
           },
         ]}
@@ -150,19 +162,13 @@ export default function AppointMeeting() {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto animate-slide-in-up">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-lg text-sm font-semibold mb-4">
-              <Handshake className="w-4 h-4" /> Business Collaboration
+              <Handshake className="w-4 h-4" /> {t("products.m_businessCollab")}
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              Appoint a Meeting
+              {t("products.m_appoint")}
             </h1>
             <p className="text-xl text-gray-700 dark:text-gray-300">
-              Schedule a one-on-one discussion for B2B supply, private label,
-              export, or long-term partnership. We are committed to
-              relationships built on{" "}
-              <strong className="text-green-700 dark:text-green-400">
-                trust and faith
-              </strong>
-              .
+              {t("products.m_heroSub")}
             </p>
           </div>
         </div>
@@ -180,7 +186,7 @@ export default function AppointMeeting() {
             >
               <MessageCircle className="w-10 h-10 text-green-700 dark:text-green-400 mx-auto mb-3" />
               <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
-                WhatsApp
+                {t("products.c_whatsapp")}
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 {BUSINESS.phone.replace("+91 ", "")}
@@ -192,7 +198,7 @@ export default function AppointMeeting() {
             >
               <Mail className="w-10 h-10 text-orange-700 dark:text-orange-400 mx-auto mb-3" />
               <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
-                Email
+                {t("products.c_email")}
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 break-all">
                 {BUSINESS.emails.primary}
@@ -201,7 +207,7 @@ export default function AppointMeeting() {
             <div className="p-6 bg-gradient-to-br from-blue-50 dark:from-blue-900/20 to-white dark:to-gray-800 border border-blue-200 dark:border-blue-900/30 rounded-xl hover:shadow-lg hover:scale-105 transition-all text-center">
               <Phone className="w-10 h-10 text-blue-700 dark:text-blue-400 mx-auto mb-3" />
               <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
-                Phone
+                {t("products.c_phone")}
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 {BUSINESS.phone.replace("+91 ", "")}
@@ -216,11 +222,10 @@ export default function AppointMeeting() {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">
-              Request Your Meeting
+              {t("products.m_requestMeeting")}
             </h2>
             <p className="text-center text-gray-600 dark:text-gray-300 mb-12">
-              Pick a mode, date, and time that works for you. Our team confirms
-              within 24 hours.
+              {t("products.m_requestSub")}
             </p>
 
             <form
@@ -230,14 +235,14 @@ export default function AppointMeeting() {
               {/* Name */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Full Name *
+                  {t("products.c_fullName")}
                 </label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Your full name"
+                  placeholder={t("products.c_namePh")}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-600 transition-all"
                   required
                 />
@@ -246,14 +251,14 @@ export default function AppointMeeting() {
               {/* Company */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Company / Organization
+                  {t("products.m_company")}
                 </label>
                 <input
                   type="text"
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  placeholder="Your company name"
+                  placeholder={t("products.m_companyPh")}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-600 transition-all"
                 />
               </div>
@@ -261,14 +266,14 @@ export default function AppointMeeting() {
               {/* Email */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Email Address *
+                  {t("products.c_emailAddr")}
                 </label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="your@email.com"
+                  placeholder={t("products.c_emailPh")}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-600 transition-all"
                   required
                 />
@@ -277,14 +282,14 @@ export default function AppointMeeting() {
               {/* Phone */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Phone Number *
+                  {t("products.c_phoneNum")}
                 </label>
                 <input
                   type="tel"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="+91 XXXXXXXXXX"
+                  placeholder={t("products.c_phonePh")}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-600 transition-all"
                   required
                 />
@@ -293,7 +298,7 @@ export default function AppointMeeting() {
               {/* Meeting mode */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Meeting Mode
+                  {t("products.m_meetingMode")}
                 </label>
                 <select
                   name="mode"
@@ -301,16 +306,18 @@ export default function AppointMeeting() {
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-600 transition-all"
                 >
-                  <option value="in-person">In-person (at our office)</option>
-                  <option value="video">Video Call</option>
-                  <option value="phone">Phone Call</option>
+                  <option value="in-person">
+                    {t("products.m_modeInPerson")}
+                  </option>
+                  <option value="video">{t("products.m_modeVideo")}</option>
+                  <option value="phone">{t("products.m_modePhone")}</option>
                 </select>
               </div>
 
               {/* Date */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Preferred Date *
+                  {t("products.m_prefDate")}
                 </label>
                 <input
                   type="date"
@@ -325,7 +332,7 @@ export default function AppointMeeting() {
               {/* Time slot */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Preferred Time
+                  {t("products.m_prefTime")}
                 </label>
                 <select
                   name="timeSlot"
@@ -333,16 +340,18 @@ export default function AppointMeeting() {
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-600 transition-all"
                 >
-                  <option value="morning">Morning (9 AM – 12 PM)</option>
-                  <option value="afternoon">Afternoon (12 PM – 4 PM)</option>
-                  <option value="evening">Evening (4 PM – 7 PM)</option>
+                  <option value="morning">{t("products.m_timeMorning")}</option>
+                  <option value="afternoon">
+                    {t("products.m_timeAfternoon")}
+                  </option>
+                  <option value="evening">{t("products.m_timeEvening")}</option>
                 </select>
               </div>
 
               {/* Purpose */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Purpose of Collaboration
+                  {t("products.m_purpose")}
                 </label>
                 <select
                   name="purpose"
@@ -350,26 +359,34 @@ export default function AppointMeeting() {
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-600 transition-all"
                 >
-                  <option value="b2b">B2B Bulk Supply</option>
-                  <option value="private-label">Private Label / OEM</option>
-                  <option value="export">Export Partnership</option>
-                  <option value="cosmetic">Cosmetic Industry</option>
-                  <option value="pharma">Pharmaceutical</option>
-                  <option value="distribution">Distribution / Wholesale</option>
-                  <option value="other">Other</option>
+                  <option value="b2b">{t("products.m_purpB2B")}</option>
+                  <option value="private-label">
+                    {t("products.m_purpPrivateLabel")}
+                  </option>
+                  <option value="export">{t("products.m_purpExport")}</option>
+                  <option value="cosmetic">
+                    {t("products.m_purpCosmetic")}
+                  </option>
+                  <option value="pharmaceutical">
+                    {t("products.m_purpPharma")}
+                  </option>
+                  <option value="distribution">
+                    {t("products.m_purpDistribution")}
+                  </option>
+                  <option value="other">{t("products.c_optOther")}</option>
                 </select>
               </div>
 
               {/* Message */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Message *
+                  {t("products.c_message")}
                 </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Tell us about your requirements, volumes, and timelines..."
+                  placeholder={t("products.m_messagePh")}
                   rows={5}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-600 transition-all resize-none"
                   required
@@ -383,17 +400,19 @@ export default function AppointMeeting() {
               >
                 {isLoading ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin" /> Sending...
+                    <Loader2 className="w-4 h-4 animate-spin" />{" "}
+                    {t("products.c_sending")}
                   </>
                 ) : (
                   <>
-                    <CalendarCheck className="w-4 h-4" /> Request Meeting
+                    <CalendarCheck className="w-4 h-4" />{" "}
+                    {t("products.m_requestBtn")}
                   </>
                 )}
               </Button>
 
               <p className="text-xs text-gray-600 dark:text-gray-400 text-center">
-                Your request goes to:{" "}
+                {t("products.c_allMonitored")}:{" "}
                 <strong>{BUSINESS.emails.all.join(", ")}</strong>
               </p>
             </form>
@@ -439,14 +458,14 @@ export default function AppointMeeting() {
             <div className="flex items-center gap-3 mb-4">
               <Clock className="w-8 h-8 text-green-700 dark:text-green-400" />
               <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                PAN India Storage & Logistics Network
+                {t("products.c_panIndia")}
               </h3>
             </div>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
               {BUSINESS.panIndiaNetwork.summary}
             </p>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-700 dark:text-gray-300">
-              {BUSINESS.panIndiaNetwork.facilities.map((f) => (
+              {BUSINESS.panIndiaNetwork.facilities.map(f => (
                 <li key={f} className="flex gap-2">
                   <span className="text-green-600 font-bold">✓</span>
                   {f}
@@ -468,7 +487,7 @@ export default function AppointMeeting() {
       <section className="py-12 bg-gradient-to-br from-amber-50 to-green-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">
-            Explore More
+            {t("products.c_exploreMore")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <Link
@@ -476,10 +495,10 @@ export default function AppointMeeting() {
               className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all text-center"
             >
               <p className="font-semibold text-green-600 dark:text-green-400 mb-1">
-                Products
+                {t("products.c_relProducts")}
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                Fresh donkey milk & powder for bulk supply
+                {t("products.c_relProductsSub")}
               </p>
             </Link>
             <Link
@@ -487,10 +506,10 @@ export default function AppointMeeting() {
               className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all text-center"
             >
               <p className="font-semibold text-green-600 dark:text-green-400 mb-1">
-                Contact
+                {t("nav.contact")}
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                General inquiries & bulk quotes
+                {t("products.c_sub")}
               </p>
             </Link>
             <Link
@@ -498,10 +517,10 @@ export default function AppointMeeting() {
               className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all text-center"
             >
               <p className="font-semibold text-green-600 dark:text-green-400 mb-1">
-                Certifications
+                {t("products.c_relCert")}
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                FSSAI, ISO, IEC & HACCP certified
+                {t("products.c_relCertSub")}
               </p>
             </Link>
           </div>

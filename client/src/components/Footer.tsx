@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Mail, Phone, Instagram, Facebook, MessageCircle } from "lucide-react";
+import { useT } from "@/i18n";
 
 /**
  * Footer Component - Rudra Dairy & Farm
@@ -9,6 +10,7 @@ import { Mail, Phone, Instagram, Facebook, MessageCircle } from "lucide-react";
  * - Centered layout, dark mode support with animations
  */
 export default function Footer() {
+  const t = useT();
   return (
     <footer className="bg-gradient-to-br from-green-900 dark:from-green-950 to-green-800 dark:to-green-900 text-amber-50 mt-20 transition-colors duration-300">
       <div className="container mx-auto px-4 py-16">
@@ -16,23 +18,25 @@ export default function Footer() {
           {/* Brand */}
           <div className="hover:scale-105 transition-transform duration-300 flex flex-col items-center">
             <div className="text-2xl font-display font-bold mb-2">
-              Rudra Dairy & Farm
+              Rudra Dairy &amp; Farm
             </div>
             <p className="text-amber-100 text-sm font-serif max-w-xs">
-              Most trusted suppliers of premium donkey milk and powder since 2022. Serving multiple businesses with excellence.
+              {t("footer.tagline")}
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="flex flex-col items-center">
-            <h4 className="font-display font-bold text-lg mb-4">Quick Links</h4>
+            <h4 className="font-display font-bold text-lg mb-4">
+              {t("footer.quickLinks")}
+            </h4>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/"
                   className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
-                  Home
+                  {t("nav.home")}
                 </Link>
               </li>
               <li>
@@ -40,7 +44,7 @@ export default function Footer() {
                   href="/who-we-are"
                   className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
-                  Who We Are
+                  {t("nav.whoWeAre")}
                 </Link>
               </li>
               <li>
@@ -48,7 +52,7 @@ export default function Footer() {
                   href="/products"
                   className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
-                  Products
+                  {t("nav.products")}
                 </Link>
               </li>
               <li>
@@ -56,7 +60,7 @@ export default function Footer() {
                   href="/applications-detail"
                   className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
-                  Applications
+                  {t("nav.applications")}
                 </Link>
               </li>
               <li>
@@ -64,7 +68,7 @@ export default function Footer() {
                   href="/markets"
                   className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
-                  Markets
+                  {t("nav.markets")}
                 </Link>
               </li>
               <li>
@@ -72,7 +76,7 @@ export default function Footer() {
                   href="/resources"
                   className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
-                  Resources
+                  {t("footer.linkResources")}
                 </Link>
               </li>
               <li>
@@ -80,7 +84,7 @@ export default function Footer() {
                   href="/money"
                   className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
-                  Commercial
+                  {t("footer.linkCommercial")}
                 </Link>
               </li>
               <li>
@@ -88,7 +92,7 @@ export default function Footer() {
                   href="/research"
                   className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
-                  Research
+                  {t("footer.linkResearch")}
                 </Link>
               </li>
               <li>
@@ -96,7 +100,7 @@ export default function Footer() {
                   href="/downloads"
                   className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
-                  Downloads
+                  {t("footer.linkDownloads")}
                 </Link>
               </li>
               <li>
@@ -104,7 +108,7 @@ export default function Footer() {
                   href="/why-us"
                   className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
-                  Why Us
+                  {t("footer.linkWhyUs")}
                 </Link>
               </li>
               <li>
@@ -112,7 +116,7 @@ export default function Footer() {
                   href="/certifications"
                   className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
-                  Certifications
+                  {t("nav.certifications")}
                 </Link>
               </li>
               <li>
@@ -120,7 +124,7 @@ export default function Footer() {
                   href="/appoint-meeting"
                   className="text-amber-100 hover:text-amber-50 transition-all duration-200 hover:translate-x-1 inline-block"
                 >
-                  Appoint Meeting
+                  {t("nav.appointMeeting")}
                 </Link>
               </li>
             </ul>
@@ -128,52 +132,85 @@ export default function Footer() {
 
           {/* Business Models */}
           <div className="flex flex-col items-center">
-            <h4 className="font-display font-bold text-lg mb-4">We Serve</h4>
+            <h4 className="font-display font-bold text-lg mb-4">
+              {t("footer.weServe")}
+            </h4>
             <ul className="space-y-2 text-amber-100 text-sm">
-              <li className="hover:text-white transition-colors">✓ B2B Partnerships</li>
-              <li className="hover:text-white transition-colors">✓ B2C Retail</li>
-              <li className="hover:text-white transition-colors">✓ Wholesale Distributors</li>
-              <li className="hover:text-white transition-colors">✓ Direct Retailers</li>
-              <li className="hover:text-white transition-colors">✓ Cosmetic Industry</li>
-              <li className="hover:text-white transition-colors">✓ Pharmaceutical</li>
+              <li className="hover:text-white transition-colors">
+                ✓ {t("footer.serveB2B")}
+              </li>
+              <li className="hover:text-white transition-colors">
+                ✓ {t("footer.serveB2C")}
+              </li>
+              <li className="hover:text-white transition-colors">
+                ✓ {t("footer.serveWholesale")}
+              </li>
+              <li className="hover:text-white transition-colors">
+                ✓ {t("footer.serveRetailers")}
+              </li>
+              <li className="hover:text-white transition-colors">
+                ✓ {t("footer.serveCosmetic")}
+              </li>
+              <li className="hover:text-white transition-colors">
+                ✓ {t("footer.servePharma")}
+              </li>
             </ul>
           </div>
 
           {/* Contact */}
           <div className="flex flex-col items-center">
-            <h4 className="font-display font-bold text-lg mb-4">Contact Us</h4>
+            <h4 className="font-display font-bold text-lg mb-4">
+              {t("footer.contactUs")}
+            </h4>
             <div className="space-y-3 flex flex-col items-center">
               <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
                 <MessageCircle className="w-4 h-4" />
-                <a href="https://wa.me/919112327322" target="_blank" rel="noopener noreferrer" className="text-sm">
+                <a
+                  href="https://wa.me/919112327322"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm"
+                >
                   +91 9112327322
                 </a>
               </div>
               <div className="flex items-center gap-2 hover:text-white transition-colors">
                 <Mail className="w-4 h-4" />
                 <div className="text-sm text-center">
-                  <a href="mailto:info@rudradairyandfarm.shop" className="font-semibold block break-all hover:text-white">
+                  <a
+                    href="mailto:info@rudradairyandfarm.shop"
+                    className="font-semibold block break-all hover:text-white"
+                  >
                     info@rudradairyandfarm.shop
                   </a>
-                  <a href="mailto:donkeyfarm79@gmail.com" className="block break-all hover:text-white">
+                  <a
+                    href="mailto:donkeyfarm79@gmail.com"
+                    className="block break-all hover:text-white"
+                  >
                     donkeyfarm79@gmail.com
                   </a>
-                  <a href="mailto:donkeyfarm79@outlook.com" className="block break-all hover:text-white">
+                  <a
+                    href="mailto:donkeyfarm79@outlook.com"
+                    className="block break-all hover:text-white"
+                  >
                     donkeyfarm79@outlook.com
                   </a>
                 </div>
               </div>
               <div className="text-xs text-amber-200 mt-2 max-w-xs text-center leading-relaxed">
-                <strong>Office:</strong> Rudra Dairy and Milks, Near VIT College, Bibwewadi, Pune - 411037
+                <strong>{t("footer.office")}:</strong> Rudra Dairy and Milks,
+                Near VIT College, Bibwewadi, Pune - 411037
               </div>
               <div className="text-xs text-amber-200 max-w-xs text-center leading-relaxed">
-                <strong>Farm:</strong> Street Road, Jategao Road, PAT Vasti, Pune, Maharashtra - 412208
+                <strong>{t("footer.farm")}:</strong> Street Road, Jategao Road,
+                PAT Vasti, Pune, Maharashtra - 412208
               </div>
               <div className="text-xs text-amber-100 mt-1 max-w-xs text-center leading-relaxed">
-                Multiple cold storages, warehouses & open shelters — PAN India
+                {t("footer.panIndia")}
               </div>
               <div className="text-sm text-amber-200 mt-2">
-                <strong>Website:</strong> rudradairyandfarm.shop
+                <strong>{t("footer.websiteLabel")}</strong>{" "}
+                rudradairyandfarm.shop
               </div>
               <div className="flex gap-4 mt-4 justify-center">
                 <a
@@ -200,11 +237,9 @@ export default function Footer() {
         {/* Divider */}
         <div className="border-t border-green-800 dark:border-green-700 pt-8">
           <div className="flex flex-col md:flex-row justify-center items-center text-center text-amber-100 text-sm gap-2 md:gap-4">
-            <p>
-              © 2026 Rudra Dairy & Farm. Most Trusted Suppliers Since 2022. All rights reserved.
-            </p>
+            <p>{t("footer.rights")}</p>
             <p className="text-amber-200 text-xs md:mt-0">
-              Executive Partner of Rudra Dairy and Farms
+              {t("footer.executive")}
             </p>
           </div>
         </div>

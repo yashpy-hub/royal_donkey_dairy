@@ -3,6 +3,8 @@ import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useT } from "@/i18n";
 
 /**
  * Navigation Component
@@ -14,15 +16,16 @@ import ThemeToggle from "./ThemeToggle";
  */
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useT();
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/who-we-are", label: "Who We Are" },
-    { href: "/products", label: "Products" },
-    { href: "/applications-detail", label: "Applications" },
-    { href: "/markets", label: "Markets" },
-    { href: "/certifications", label: "Certifications" },
-    { href: "/contact", label: "Contact" },
+    { href: "/", label: t("nav.home") },
+    { href: "/who-we-are", label: t("nav.whoWeAre") },
+    { href: "/products", label: t("nav.products") },
+    { href: "/applications-detail", label: t("nav.applications") },
+    { href: "/markets", label: t("nav.markets") },
+    { href: "/certifications", label: t("nav.certifications") },
+    { href: "/contact", label: t("nav.contact") },
   ];
 
   return (
@@ -46,7 +49,7 @@ export default function Navigation() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {navLinks.map(link => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -56,22 +59,18 @@ export default function Navigation() {
               </Link>
             ))}
             <ThemeToggle />
-            <Button
-              asChild
-              className="bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors"
-            >
-              <Link href="/appoint-meeting">Book Meeting</Link>
-            </Button>
+            <LanguageSwitcher />
             <Button
               asChild
               className="bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg transition-colors"
             >
-              <Link href="/contact">Get in Touch</Link>
+              <Link href="/contact">{t("common.getInTouch")}</Link>
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-3">
+            <LanguageSwitcher />
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -89,7 +88,7 @@ export default function Navigation() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden mt-4 pb-4 space-y-2 border-t border-gray-200 dark:border-gray-800 pt-4">
-            {navLinks.map((link) => (
+            {navLinks.map(link => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -101,15 +100,9 @@ export default function Navigation() {
             ))}
             <Button
               asChild
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold mt-4 rounded-lg"
-            >
-              <Link href="/appoint-meeting">Book Meeting</Link>
-            </Button>
-            <Button
-              asChild
               className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold mt-4 rounded-lg"
             >
-              <Link href="/contact">Get in Touch</Link>
+              <Link href="/contact">{t("common.getInTouch")}</Link>
             </Button>
           </div>
         )}

@@ -3,6 +3,7 @@
 ## Before Deploying to Vercel
 
 ### Code Quality
+
 - [ ] Run `pnpm check` - No TypeScript errors
 - [ ] Run `pnpm format` - Code is formatted
 - [ ] Run `pnpm build` - Production build succeeds
@@ -10,6 +11,7 @@
 - [ ] No console errors or warnings
 
 ### Functionality Testing
+
 - [ ] Home page loads correctly
 - [ ] All navigation links work
 - [ ] Dark/Light mode toggle works
@@ -20,6 +22,7 @@
 - [ ] Animations are smooth (60 FPS)
 
 ### Content Verification
+
 - [ ] Company name: "Rudra Dairy & Farm"
 - [ ] Tagline: "Trusted Suppliers Since 2022"
 - [ ] Primary email: info@rudradairyandfarm.shop
@@ -29,6 +32,7 @@
 - [ ] Production capacity correct (100+ liters, 1000+ kg)
 
 ### Mobile Responsiveness
+
 - [ ] Test on iPhone (375px width)
 - [ ] Test on iPad (768px width)
 - [ ] Test on Desktop (1024px+ width)
@@ -37,6 +41,7 @@
 - [ ] No horizontal scrolling
 
 ### Performance
+
 - [ ] Lighthouse score > 90
 - [ ] Page load time < 2 seconds
 - [ ] Images are optimized
@@ -44,6 +49,7 @@
 - [ ] Fonts load correctly
 
 ### Security
+
 - [ ] No hardcoded secrets in code
 - [ ] Environment variables configured
 - [ ] HTTPS will be enabled (Vercel default)
@@ -51,6 +57,7 @@
 - [ ] No sensitive data in git history
 
 ### SEO & Meta Tags
+
 - [ ] Page titles are descriptive
 - [ ] Meta descriptions present
 - [ ] Open Graph tags configured
@@ -58,6 +65,7 @@
 - [ ] robots.txt exists
 
 ### Git & Repository
+
 - [ ] All changes committed
 - [ ] No uncommitted files
 - [ ] Repository pushed to GitHub
@@ -69,11 +77,13 @@
 ## Vercel Deployment Steps
 
 ### Step 1: Create Vercel Account
+
 - [ ] Sign up at vercel.com
 - [ ] Connect GitHub account
 - [ ] Authorize Vercel to access repositories
 
 ### Step 2: Import Project
+
 - [ ] Go to vercel.com/new
 - [ ] Select GitHub repository
 - [ ] Vercel auto-detects Vite
@@ -82,6 +92,7 @@
 - [ ] Output directory: `dist`
 
 ### Step 3: Environment Variables
+
 - [ ] Add VITE_EMAILJS_SERVICE_ID
 - [ ] Add VITE_EMAILJS_TEMPLATE_ID
 - [ ] Add VITE_EMAILJS_PUBLIC_KEY
@@ -90,12 +101,14 @@
 - [ ] Add VITE_WEBSITE_NAME
 
 ### Step 4: Deploy
+
 - [ ] Click "Deploy"
 - [ ] Wait for build to complete
 - [ ] Verify deployment successful
 - [ ] Test live website
 
 ### Step 5: Custom Domain (Optional)
+
 - [ ] Go to Settings → Domains
 - [ ] Add domain: rudradairyandfarm.shop
 - [ ] Update DNS records at registrar
@@ -107,6 +120,7 @@
 ## Post-Deployment Testing
 
 ### Functionality
+
 - [ ] All pages load
 - [ ] Navigation works
 - [ ] Contact form sends emails
@@ -115,18 +129,21 @@
 - [ ] Images display properly
 
 ### Performance
+
 - [ ] Page loads quickly
 - [ ] No console errors
 - [ ] Animations are smooth
 - [ ] Mobile is responsive
 
 ### Email Integration
+
 - [ ] Test contact form submission
 - [ ] Verify email received
 - [ ] Check email formatting
 - [ ] Test all business types
 
 ### Analytics (Optional)
+
 - [ ] Set up Vercel Analytics
 - [ ] Monitor page views
 - [ ] Track user interactions
@@ -137,18 +154,21 @@
 ## Monitoring & Maintenance
 
 ### Weekly
+
 - [ ] Check Vercel dashboard
 - [ ] Review error logs
 - [ ] Monitor page performance
 - [ ] Check email submissions
 
 ### Monthly
+
 - [ ] Update dependencies (if needed)
 - [ ] Review analytics
 - [ ] Check for security updates
 - [ ] Test all features
 
 ### Quarterly
+
 - [ ] Full functionality audit
 - [ ] Performance optimization
 - [ ] Content updates
@@ -159,24 +179,28 @@
 ## Troubleshooting
 
 ### Build Fails
+
 ```bash
 # Clear cache and rebuild
 vercel --prod --force
 ```
 
 ### Emails Not Sending
+
 - Verify EmailJS public key
 - Check template ID exists
 - Verify service ID correct
 - Test in development first
 
 ### Custom Domain Not Working
+
 - Check DNS records
 - Wait for propagation
 - Verify nameservers updated
 - Check Vercel domain settings
 
 ### Performance Issues
+
 - Check bundle size
 - Optimize images
 - Enable caching
@@ -187,6 +211,7 @@ vercel --prod --force
 ## Rollback Plan
 
 If deployment has issues:
+
 1. Go to Vercel Dashboard
 2. Click "Deployments"
 3. Find previous working deployment
@@ -204,7 +229,7 @@ If deployment has issues:
 ✅ Mobile responsive  
 ✅ Performance is good  
 ✅ No console errors  
-✅ Custom domain works (if configured)  
+✅ Custom domain works (if configured)
 
 ---
 

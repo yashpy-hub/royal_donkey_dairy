@@ -7,12 +7,14 @@ This is a **complete, production-ready website** for Rudra Dairy & Farm - a prem
 ## ✨ Key Features
 
 ### 🌙 Dark/Light Mode
+
 - **Theme Toggle Button** - Located in the navigation bar (sun/moon icon)
 - **Smooth Transitions** - 300ms color transitions between themes
 - **Persistent Storage** - Theme preference saved in browser
 - **Complete Coverage** - All pages support both light and dark modes
 
 ### 🎬 Advanced Animations
+
 - **Slide-In Animations** - Content slides in from top/bottom with fade
 - **Scale & Fade Effects** - Elements fade in while scaling up
 - **Hover Animations** - Cards scale and glow on hover
@@ -21,16 +23,19 @@ This is a **complete, production-ready website** for Rudra Dairy & Farm - a prem
 - **Shimmer Effect** - Shimmering loading animation
 
 ### 📱 Responsive Design
+
 - Mobile-first approach
 - Fully responsive navigation with hamburger menu
 - Optimized for all screen sizes (mobile, tablet, desktop)
 
 ### 🎨 Premium Design
+
 - **Color Palette**: Warm terracotta (#C17A5C), Forest green (#2D5016), Golden cream (#F5E6D3)
 - **Typography**: Playfair Display (headings), Lora (body), Inter (labels)
 - **Dark Mode Colors**: Optimized for eye comfort with lighter terracotta and green accents
 
 ### 📄 Complete Pages
+
 1. **Home** - Hero section with impressive farm imagery
 2. **Products** - Detailed product showcase (Fresh Milk, Yogurt, Cheese)
 3. **About Founder** - Yash's profile with contact information
@@ -41,7 +46,8 @@ This is a **complete, production-ready website** for Rudra Dairy & Farm - a prem
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - pnpm (or npm/yarn)
 
 ### Installation
@@ -82,29 +88,33 @@ rudra-dairy-farm/
 ## 🎨 Customization
 
 ### Change Colors
+
 Edit `client/src/index.css` - Update CSS variables in `:root` and `.dark` sections:
 
 ```css
 :root {
-  --primary: #C17A5C;           /* Primary color */
-  --secondary: #F5E6D3;         /* Secondary color */
-  --accent: #2D5016;            /* Accent color */
+  --primary: #c17a5c; /* Primary color */
+  --secondary: #f5e6d3; /* Secondary color */
+  --accent: #2d5016; /* Accent color */
 }
 
 .dark {
-  --primary: #E8A76F;           /* Dark mode primary */
-  --background: #0F0E0C;        /* Dark background */
-  --foreground: #F5E6D3;        /* Dark text */
+  --primary: #e8a76f; /* Dark mode primary */
+  --background: #0f0e0c; /* Dark background */
+  --foreground: #f5e6d3; /* Dark text */
 }
 ```
 
 ### Update Contact Information
+
 Edit `client/src/components/Footer.tsx` and `client/src/pages/Contact.tsx`:
+
 - Email: yashpawar.py@gmail.com
 - Phone: +91 96571 42020
 - Social handles: Instagram, Facebook
 
 ### Add/Remove Pages
+
 1. Create new page in `client/src/pages/`
 2. Add route in `client/src/App.tsx`
 3. Add navigation link in `client/src/components/Navigation.tsx`
@@ -132,6 +142,7 @@ Available animation utilities in `index.css`:
 ## 🌙 Theme Toggle Implementation
 
 The theme toggle is automatically included in the Navigation component. Users can:
+
 1. Click the sun/moon icon in the top right
 2. Theme preference is saved to localStorage
 3. All pages automatically update colors
@@ -143,23 +154,21 @@ import { useTheme } from "@/contexts/ThemeContext";
 
 export default function MyComponent() {
   const { theme, toggleTheme } = useTheme();
-  
-  return (
-    <button onClick={toggleTheme}>
-      Current theme: {theme}
-    </button>
-  );
+
+  return <button onClick={toggleTheme}>Current theme: {theme}</button>;
 }
 ```
 
 ## 🚀 Build & Deploy
 
 ### Build for Production
+
 ```bash
 pnpm build
 ```
 
 ### Preview Production Build
+
 ```bash
 pnpm preview
 ```
@@ -186,6 +195,7 @@ pnpm preview
 ## 📝 Contact Information
 
 **Founder**: Yash Pawar
+
 - **Email**: yashpawar.py@gmail.com
 - **Phone**: +91 96571 42020
 - **Instagram**: @rudradairyandfarm
@@ -215,6 +225,7 @@ pnpm preview
 ## 📞 Support
 
 For issues or questions, contact:
+
 - Email: yashpawar.py@gmail.com
 - Phone: +91 96571 42020
 

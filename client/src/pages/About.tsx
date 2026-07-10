@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Instagram, Facebook, Mail, Phone, Linkedin } from "lucide-react";
 import Seo from "@/components/Seo";
+import { useT } from "@/i18n";
+import { usePageKeywords } from "@/i18n/seoKeywords";
 
 /**
  * About Page - Founder Profile
@@ -11,18 +13,31 @@ import Seo from "@/components/Seo";
  * - Business vision and values
  */
 export default function About() {
+  const t = useT();
+  const kw = usePageKeywords();
   return (
     <div className="min-h-screen">
       <Seo
-        title="Meet Yash Pawar — Co-Founder & Managing Director of Rudra Dairy & Farm"
-        description="Meet Yash Pawar, the founder behind Rudra Dairy & Farm — a trusted Indian supplier of premium donkey milk and donkey milk powder for B2B, cosmetic, and pharmaceutical clients since 2022."
+        title={t("abt.seoTitle")}
+        description={t("abt.seoDesc")}
         path="/about"
+        keywords={kw}
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://rudradairyandfarm.shop/" },
-            { "@type": "ListItem", position: 2, name: "Founder", item: "https://rudradairyandfarm.shop/about" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: t("abt.bcHome"),
+              item: "https://rudradairyandfarm.shop/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: t("abt.bcFounder"),
+              item: "https://rudradairyandfarm.shop/about",
+            },
           ],
         }}
       />
@@ -31,10 +46,10 @@ export default function About() {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-display font-bold text-gray-900 mb-6">
-              Meet Yash, Co-Founder &amp; Managing Director
+              {t("abt.heroTitle")}
             </h1>
             <p className="text-xl text-gray-700 font-serif">
-              The visionary behind Rudra Dairy & Farm
+              {t("abt.heroSub")}
             </p>
           </div>
         </div>
@@ -42,8 +57,11 @@ export default function About() {
 
       {/* Cross-link to differentiate from /who-we-are */}
       <div className="text-center py-2">
-        <Link href="/who-we-are" className="text-sm text-orange-600 dark:text-orange-400 hover:underline">
-          Prefer the company story? Read Who We Are →
+        <Link
+          href="/who-we-are"
+          className="text-sm text-orange-600 dark:text-orange-400 hover:underline"
+        >
+          {t("abt.crossLink")}
         </Link>
       </div>
 
@@ -56,7 +74,7 @@ export default function About() {
               <div className="relative">
                 <img
                   src="/founder-yash.png"
-                  alt="Yash Pawar - Co-Founder & Managing Director of Rudra Dairy & Farm"
+                  alt={t("abt.imgAlt")}
                   className="w-full max-w-md h-auto rounded-2xl shadow-2xl"
                 />
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/10 to-transparent" />
@@ -70,48 +88,29 @@ export default function About() {
                   Yash Pawar
                 </h2>
                 <p className="text-lg text-amber-700 font-sans font-semibold">
-                  Co-Founder &amp; Managing Director
+                  {t("abt.role")}
                 </p>
               </div>
 
               <div className="space-y-6 font-serif text-gray-700 leading-relaxed">
-                <p>
-                  Yash Pawar founded Rudra Dairy & Farm with a singular vision:
-                  to bring the world's finest artisanal donkey milk to discerning
-                  consumers and businesses. With deep roots in agricultural
-                  heritage and a commitment to quality, Yash has transformed a
-                  traditional practice into a modern, certified enterprise.
-                </p>
+                <p>{t("abt.p1")}</p>
 
-                <p>
-                  His journey began with a passion for sustainable farming and
-                  animal welfare. Recognizing the exceptional nutritional and
-                  therapeutic properties of donkey milk, Yash invested years in
-                  perfecting production methods, obtaining international
-                  certifications, and building a reputation for uncompromising
-                  quality.
-                </p>
+                <p>{t("abt.p2")}</p>
 
-                <p>
-                  Today, Rudra Dairy & Farm stands as a testament to Yash's
-                  dedication—a thriving business that serves B2B partners, retail
-                  customers, and wholesale distributors across India. Every
-                  product bearing the Rudra Dairy & Farm name reflects his
-                  commitment to excellence, integrity, and trust.
-                </p>
+                <p>{t("abt.p3")}</p>
               </div>
 
               {/* Contact Information */}
               <div className="bg-amber-50 p-6 rounded-xl border border-amber-200 space-y-4">
                 <h3 className="font-display font-bold text-gray-900 text-lg">
-                  Connect with Yash
+                  {t("abt.connect")}
                 </h3>
 
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <Phone className="w-5 h-5 text-amber-700" />
                     <a
-                      href="tel:+91965714327"
+                      href="tel:+919****4327"
                       className="text-amber-700 hover:text-amber-800 font-sans"
                     >
                       +91 965714327
@@ -133,7 +132,7 @@ export default function About() {
 
                 <div className="pt-4 border-t border-amber-200">
                   <p className="text-sm text-gray-700 font-sans mb-3">
-                    Follow Rudra Dairy & Farm on social media:
+                    {t("abt.followUs")}
                   </p>
                   <div className="flex gap-4">
                     <a
@@ -166,7 +165,7 @@ export default function About() {
                 asChild
                 className="bg-amber-700 hover:bg-amber-800 text-white font-sans w-full"
               >
-                <Link href="/contact">Discuss Business Opportunities</Link>
+                <Link href="/contact">{t("abt.discussBtn")}</Link>
               </Button>
             </div>
           </div>
@@ -177,41 +176,32 @@ export default function About() {
       <section className="py-20 bg-gradient-to-br from-green-50 to-amber-50">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-display font-bold text-center text-gray-900 mb-12">
-            Yash's Core Values
+            {t("abt.valuesTitle")}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-xl border border-green-100 shadow-sm hover:shadow-lg transition-shadow">
               <div className="text-4xl mb-4">🌱</div>
               <h3 className="text-2xl font-display font-bold text-gray-900 mb-3">
-                Sustainability
+                {t("abt.val1Title")}
               </h3>
-              <p className="text-gray-700 font-serif">
-                Committed to ethical farming practices and environmental
-                stewardship that benefit both animals and the planet.
-              </p>
+              <p className="text-gray-700 font-serif">{t("abt.val1Desc")}</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl border border-amber-100 shadow-sm hover:shadow-lg transition-shadow">
               <div className="text-4xl mb-4">✨</div>
               <h3 className="text-2xl font-display font-bold text-gray-900 mb-3">
-                Excellence
+                {t("abt.val2Title")}
               </h3>
-              <p className="text-gray-700 font-serif">
-                Every product meets the highest international standards for
-                quality, purity, and nutritional value.
-              </p>
+              <p className="text-gray-700 font-serif">{t("abt.val2Desc")}</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl border border-green-100 shadow-sm hover:shadow-lg transition-shadow">
               <div className="text-4xl mb-4">🤝</div>
               <h3 className="text-2xl font-display font-bold text-gray-900 mb-3">
-                Integrity
+                {t("abt.val3Title")}
               </h3>
-              <p className="text-gray-700 font-serif">
-                Transparent business practices and honest relationships with
-                customers, partners, and stakeholders.
-              </p>
+              <p className="text-gray-700 font-serif">{t("abt.val3Desc")}</p>
             </div>
           </div>
         </div>
@@ -221,7 +211,7 @@ export default function About() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-display font-bold text-center text-gray-900 mb-12">
-            The Rudra Dairy & Farm Journey
+            {t("abt.journeyTitle")}
           </h2>
 
           <div className="max-w-3xl mx-auto space-y-8">
@@ -233,12 +223,9 @@ export default function About() {
               </div>
               <div>
                 <h3 className="text-xl font-display font-bold text-gray-900 mb-2">
-                  Vision & Planning
+                  {t("abt.j1Title")}
                 </h3>
-                <p className="text-gray-700 font-serif">
-                  Yash identified the untapped potential of donkey milk and began
-                  extensive research into production and certification standards.
-                </p>
+                <p className="text-gray-700 font-serif">{t("abt.j1Desc")}</p>
               </div>
             </div>
 
@@ -250,12 +237,9 @@ export default function About() {
               </div>
               <div>
                 <h3 className="text-xl font-display font-bold text-gray-900 mb-2">
-                  Farm Establishment
+                  {t("abt.j2Title")}
                 </h3>
-                <p className="text-gray-700 font-serif">
-                  Built a state-of-the-art facility with optimal conditions for
-                  donkey welfare and milk production excellence.
-                </p>
+                <p className="text-gray-700 font-serif">{t("abt.j2Desc")}</p>
               </div>
             </div>
 
@@ -267,12 +251,9 @@ export default function About() {
               </div>
               <div>
                 <h3 className="text-xl font-display font-bold text-gray-900 mb-2">
-                  Certifications & Quality
+                  {t("abt.j3Title")}
                 </h3>
-                <p className="text-gray-700 font-serif">
-                  Obtained FSSAI, ISO, and IEC certifications, establishing Rudra
-                  Dairy & Farm as a trusted, certified producer.
-                </p>
+                <p className="text-gray-700 font-serif">{t("abt.j3Desc")}</p>
               </div>
             </div>
 
@@ -284,12 +265,9 @@ export default function About() {
               </div>
               <div>
                 <h3 className="text-xl font-display font-bold text-gray-900 mb-2">
-                  Market Expansion
+                  {t("abt.j4Title")}
                 </h3>
-                <p className="text-gray-700 font-serif">
-                  Expanded to serve B2B, B2C, wholesale, and retail markets,
-                  building strong partnerships across India.
-                </p>
+                <p className="text-gray-700 font-serif">{t("abt.j4Desc")}</p>
               </div>
             </div>
           </div>
@@ -300,17 +278,16 @@ export default function About() {
       <section className="py-20 bg-gradient-to-br from-amber-700 to-green-800 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-display font-bold mb-6">
-            Partner with Rudra Dairy & Farm
+            {t("abt.ctaTitle")}
           </h2>
           <p className="text-lg font-serif mb-8 max-w-2xl mx-auto">
-            Yash is always open to discussing new partnerships and opportunities.
-            Reach out today to explore how we can work together.
+            {t("abt.ctaText")}
           </p>
           <Button
             asChild
             className="bg-white text-amber-700 hover:bg-amber-50 font-sans text-base h-12 px-8"
           >
-            <Link href="/contact">Get in Touch with Yash</Link>
+            <Link href="/contact">{t("abt.ctaBtn")}</Link>
           </Button>
         </div>
       </section>

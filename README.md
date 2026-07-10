@@ -12,6 +12,7 @@ Premium donkey milk and powder supplier serving B2B, B2C, wholesale, retail, pha
 ## 🌟 Features
 
 ### Pages
+
 - **Home** - Impressive hero section with product showcase and production capacity
 - **Who We Are** - Founder profile, company story, and values
 - **Products** - Fresh donkey milk and powder with bulk production details
@@ -20,6 +21,7 @@ Premium donkey milk and powder supplier serving B2B, B2C, wholesale, retail, pha
 - **Contact** - Contact form with EmailJS integration
 
 ### Functionality
+
 - ✅ **Dark/Light Mode Toggle** - Eye-friendly theme switching
 - ✅ **Responsive Design** - Mobile-first, works on all devices
 - ✅ **Floating WhatsApp Button** - Pulsing animation for instant inquiries
@@ -33,6 +35,7 @@ Premium donkey milk and powder supplier serving B2B, B2C, wholesale, retail, pha
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js 18+
 - pnpm (recommended) or npm
 
@@ -94,17 +97,20 @@ DEPLOYMENT.md          # Deployment instructions
 ## 🎨 Design System
 
 ### Colors
+
 - **Primary Orange**: `#D97706` - Main brand color
 - **Forest Green**: `#166534` - Accent color
 - **Dark Gray**: `#1F2937` - Text color
 - **Light Gray**: `#F3F4F6` - Background
 
 ### Typography
+
 - **Display Font**: Playfair Display (serif)
 - **Body Font**: Lora (serif)
 - **UI Font**: System fonts (sans-serif)
 
 ### Animations
+
 - Slide-in animations (top/bottom)
 - Fade-scale effects
 - Pulsing glow effects
@@ -116,6 +122,7 @@ DEPLOYMENT.md          # Deployment instructions
 ## 📧 Email Integration
 
 ### EmailJS Setup
+
 - **Service ID**: `service_janddhl`
 - **Template ID**: `template_xi3zd4c`
 - **Public Key**: `Ghzb7FbKl2QdBXLi8`
@@ -124,15 +131,16 @@ DEPLOYMENT.md          # Deployment instructions
 All contact form submissions are sent to the primary email address.
 
 ### Email Functions
+
 ```typescript
 // Send contact inquiry
-sendContactEmail(data)
+sendContactEmail(data);
 
 // Request product sample
-sendSampleRequestEmail(data)
+sendSampleRequestEmail(data);
 
 // Submit bulk order inquiry
-sendBulkOrderEmail(data)
+sendBulkOrderEmail(data);
 ```
 
 ---
@@ -154,6 +162,7 @@ See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions.
 ### Environment Variables
 
 Required for production:
+
 ```
 VITE_EMAILJS_SERVICE_ID=service_janddhl
 VITE_EMAILJS_TEMPLATE_ID=template_xi3zd4c
@@ -225,6 +234,7 @@ All pages tested and optimized for mobile-first experience.
 ## 🎯 Business Information
 
 ### Company
+
 - **Name**: Rudra Dairy & Farm
 - **Tagline**: Trusted Suppliers Since 2022
 - **Website**: rudradairyandfarm.shop
@@ -232,10 +242,12 @@ All pages tested and optimized for mobile-first experience.
 - **WhatsApp**: +91 9112327322
 
 ### Products
+
 - **Fresh Donkey Milk**: 100+ liters in 5 days
 - **Donkey Milk Powder**: 1000+ kg in 15 days
 
 ### Business Models
+
 - B2B Partnerships
 - B2C Retail
 - Wholesale Distributors
@@ -244,6 +256,7 @@ All pages tested and optimized for mobile-first experience.
 - Pharmaceutical Industry
 
 ### Certifications
+
 - FSSAI (Food Safety & Standards Authority of India)
 - ISO (International Organization for Standardization)
 - IEC (Import Export Code)
@@ -263,6 +276,7 @@ All pages tested and optimized for mobile-first experience.
 ## 🤝 Support & Contact
 
 **For inquiries about**:
+
 - Product orders: info@rudradairyandfarm.shop
 - WhatsApp business: +91 9112327322
 - Website issues: info@rudradairyandfarm.shop
@@ -278,6 +292,7 @@ This website is proprietary to Rudra Dairy & Farm. All rights reserved.
 ## 🎉 Changelog
 
 ### v1.0.0 (2026-06-30)
+
 - ✅ Initial website launch
 - ✅ 6 main pages with complete content
 - ✅ Dark/light mode support

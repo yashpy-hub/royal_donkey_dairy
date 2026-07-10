@@ -12,193 +12,215 @@ import {
 import { useLocation } from "wouter";
 import { Link } from "wouter";
 import Seo from "@/components/Seo";
+import { useT } from "@/i18n";
+import { usePageKeywords } from "@/i18n/seoKeywords";
 
 export default function ApplicationsDetail() {
+  const t = useT();
+  const kw = usePageKeywords();
   const [, setLocation] = useLocation();
 
-  const applications = [
+  const apps = [
     {
       id: "cosmetics",
-      name: "Cosmetics & Beauty",
+      name: t("appd.c1Name"),
       icon: Sparkles,
       color: "from-pink-500 to-rose-500",
-      description: "Premium skincare and beauty products",
+      description: t("appd.c1Desc"),
       benefits: [
-        "Natural moisturizing properties",
-        "Rich in vitamins and minerals",
-        "Anti-aging compounds",
-        "Hypoallergenic formula",
+        t("appd.c1b1"),
+        t("appd.c1b2"),
+        t("appd.c1b3"),
+        t("appd.c1b4"),
       ],
       products: [
-        "Face creams and serums",
-        "Body lotions",
-        "Facial masks",
-        "Lip balms",
+        t("appd.c1p1"),
+        t("appd.c1p2"),
+        t("appd.c1p3"),
+        t("appd.c1p4"),
       ],
       specifications: {
         proteinContent: "3.1%",
         fatContent: "1.3%",
         lactoseContent: "4.7%",
-        shelf_life: "18 months (powder)",
+        shelf_life: t("appd.shelf18"),
       },
       minOrder: "100 kg",
-      pricing: "Premium tier",
-      caseStudy: "Leading Korean cosmetics brand increased sales by 35% using our donkey milk powder",
+      pricing: t("appd.tierPremium"),
+      caseStudy: t("appd.c1case"),
     },
     {
       id: "pharmaceutical",
-      name: "Pharmaceuticals",
+      name: t("appd.c2Name"),
       icon: Pill,
       color: "from-blue-500 to-cyan-500",
-      description: "Drug manufacturing and supplements",
+      description: t("appd.c2Desc"),
       benefits: [
-        "Bioavailable nutrients",
-        "Immune system support",
-        "Anti-inflammatory properties",
-        "GMP certified production",
+        t("appd.c2b1"),
+        t("appd.c2b2"),
+        t("appd.c2b3"),
+        t("appd.c2b4"),
       ],
       products: [
-        "Supplement capsules",
-        "Immune boosters",
-        "Joint health products",
-        "Digestive aids",
+        t("appd.c2p1"),
+        t("appd.c2p2"),
+        t("appd.c2p3"),
+        t("appd.c2p4"),
       ],
       specifications: {
         proteinContent: "3.1%",
         fatContent: "1.3%",
         lactoseContent: "4.7%",
-        shelf_life: "24 months (powder)",
+        shelf_life: t("appd.shelf24"),
       },
       minOrder: "500 kg",
-      pricing: "Commercial tier",
-      caseStudy: "European pharmaceutical company reduced production costs by 22% with our supply",
+      pricing: t("appd.tierCommercial"),
+      caseStudy: t("appd.c2case"),
     },
     {
       id: "nutraceuticals",
-      name: "Nutraceuticals",
+      name: t("appd.c3Name"),
       icon: Leaf,
       color: "from-green-500 to-emerald-500",
-      description: "Health supplements and functional foods",
+      description: t("appd.c3Desc"),
       benefits: [
-        "Complete amino acid profile",
-        "Natural probiotic support",
-        "Bone health enhancement",
-        "Muscle recovery support",
+        t("appd.c3b1"),
+        t("appd.c3b2"),
+        t("appd.c3b3"),
+        t("appd.c3b4"),
       ],
       products: [
-        "Protein powders",
-        "Health drinks",
-        "Functional foods",
-        "Sports supplements",
+        t("appd.c3p1"),
+        t("appd.c3p2"),
+        t("appd.c3p3"),
+        t("appd.c3p4"),
       ],
       specifications: {
         proteinContent: "3.1%",
         fatContent: "1.3%",
         lactoseContent: "4.7%",
-        shelf_life: "18 months (powder)",
+        shelf_life: t("appd.shelf18"),
       },
       minOrder: "200 kg",
-      pricing: "Standard tier",
-      caseStudy: "US supplement brand expanded product line with 40% margin improvement",
+      pricing: t("appd.tierStandard"),
+      caseStudy: t("appd.c3case"),
     },
     {
       id: "skincare",
-      name: "Premium Skincare",
+      name: t("appd.c4Name"),
       icon: Droplet,
       color: "from-purple-500 to-pink-500",
-      description: "Luxury skincare brands",
+      description: t("appd.c4Desc"),
       benefits: [
-        "Gentle on sensitive skin",
-        "Natural hydration",
-        "Collagen support",
-        "Anti-oxidant rich",
+        t("appd.c4b1"),
+        t("appd.c4b2"),
+        t("appd.c4b3"),
+        t("appd.c4b4"),
       ],
       products: [
-        "Anti-aging creams",
-        "Hydrating serums",
-        "Night treatments",
-        "Eye creams",
+        t("appd.c4p1"),
+        t("appd.c4p2"),
+        t("appd.c4p3"),
+        t("appd.c4p4"),
       ],
       specifications: {
         proteinContent: "3.1%",
         fatContent: "1.3%",
         lactoseContent: "4.7%",
-        shelf_life: "20 months (powder)",
+        shelf_life: t("appd.shelf20"),
       },
       minOrder: "150 kg",
-      pricing: "Premium tier",
-      caseStudy: "Luxury skincare brand achieved 50% premium pricing with our ingredient",
+      pricing: t("appd.tierPremium"),
+      caseStudy: t("appd.c4case"),
     },
     {
       id: "soaps",
-      name: "Natural Soaps",
+      name: t("appd.c5Name"),
       icon: ShoppingCart,
       color: "from-yellow-500 to-orange-500",
-      description: "Artisanal and natural soap manufacturing",
+      description: t("appd.c5Desc"),
       benefits: [
-        "Gentle cleansing",
-        "Skin nourishing",
-        "Natural lather",
-        "Eco-friendly",
+        t("appd.c5b1"),
+        t("appd.c5b2"),
+        t("appd.c5b3"),
+        t("appd.c5b4"),
       ],
       products: [
-        "Bar soaps",
-        "Liquid soaps",
-        "Specialty soaps",
-        "Shampoo bars",
+        t("appd.c5p1"),
+        t("appd.c5p2"),
+        t("appd.c5p3"),
+        t("appd.c5p4"),
       ],
       specifications: {
         proteinContent: "3.1%",
         fatContent: "1.3%",
         lactoseContent: "4.7%",
-        shelf_life: "24 months (powder)",
+        shelf_life: t("appd.shelf24"),
       },
       minOrder: "100 kg",
-      pricing: "Standard tier",
-      caseStudy: "Artisanal soap maker increased production 3x with our supply",
+      pricing: t("appd.tierStandard"),
+      caseStudy: t("appd.c5case"),
     },
     {
       id: "private-label",
-      name: "Private Label Manufacturing",
+      name: t("appd.c6Name"),
       icon: TrendingUp,
       color: "from-indigo-500 to-blue-500",
-      description: "White-label manufacturing services",
+      description: t("appd.c6Desc"),
       benefits: [
-        "Custom formulations",
-        "Flexible packaging",
-        "Quality assurance",
-        "Scalable production",
+        t("appd.c6b1"),
+        t("appd.c6b2"),
+        t("appd.c6b3"),
+        t("appd.c6b4"),
       ],
       products: [
-        "Custom skincare lines",
-        "Branded supplements",
-        "Private label products",
-        "OEM solutions",
+        t("appd.c6p1"),
+        t("appd.c6p2"),
+        t("appd.c6p3"),
+        t("appd.c6p4"),
       ],
       specifications: {
         proteinContent: "3.1%",
         fatContent: "1.3%",
         lactoseContent: "4.7%",
-        shelf_life: "18-24 months",
+        shelf_life: t("appd.shelf1824"),
       },
       minOrder: "1000 kg",
-      pricing: "Industrial tier",
-      caseStudy: "Retail chain launched 5 private label products with 60% margin",
+      pricing: t("appd.tierIndustrial"),
+      caseStudy: t("appd.c6case"),
     },
   ];
+
+  const specLabels: Record<string, string> = {
+    proteinContent: t("appd.specProtein"),
+    fatContent: t("appd.specFat"),
+    lactoseContent: t("appd.specLactose"),
+    shelf_life: t("appd.specShelf"),
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
       <Seo
-        title="Donkey Milk in Cosmetics, Pharma & Nutrition"
-        description="How leading brands use Rudra Dairy & Farm donkey milk powder in skincare, supplements, and pharmaceuticals — with case studies and industry benefits."
+        title={t("appd.seoTitle")}
+        description={t("appd.seoDesc")}
         path="/applications-detail"
+        keywords={kw}
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://rudradairyandfarm.shop/" },
-            { "@type": "ListItem", position: 2, name: "Applications", item: "https://rudradairyandfarm.shop/applications-detail" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: t("appd.bcHome"),
+              item: "https://rudradairyandfarm.shop/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: t("appd.bcApps"),
+              item: "https://rudradairyandfarm.shop/applications-detail",
+            },
           ],
         }}
       />
@@ -208,22 +230,28 @@ export default function ApplicationsDetail() {
           <div className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900 px-4 py-2 rounded-full mb-6 animate-bounce-in">
             <Sparkles className="w-4 h-4 text-orange-600" />
             <span className="text-sm font-medium text-orange-700 dark:text-orange-200">
-              Industry Solutions
+              {t("appd.badge")}
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 animate-slide-in-up">
-            Application-Focused Solutions
+            {t("appd.heroTitle")}
           </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
-            Donkey milk and powder for cosmetics, pharmaceuticals, nutraceuticals, and more
+          <p
+            className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto animate-slide-in-up"
+            style={{ animationDelay: "0.2s" }}
+          >
+            {t("appd.heroSub")}
           </p>
         </div>
       </section>
 
       {/* Cross-link to differentiate from /applications */}
       <div className="text-center py-2">
-        <Link href="/applications" className="text-sm text-orange-600 dark:text-orange-400 hover:underline">
-          ← Back to Applications &amp; Uses overview
+        <Link
+          href="/applications"
+          className="text-sm text-orange-600 dark:text-orange-400 hover:underline"
+        >
+          {t("appd.crossLink")}
         </Link>
       </div>
 
@@ -232,18 +260,24 @@ export default function ApplicationsDetail() {
         <div className="max-w-6xl mx-auto">
           <Tabs defaultValue="cosmetics" className="w-full">
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mb-8">
-              {applications.map((app) => (
-                <TabsTrigger key={app.id} value={app.id} className="text-xs md:text-sm">
+              {apps.map(app => (
+                <TabsTrigger
+                  key={app.id}
+                  value={app.id}
+                  className="text-xs md:text-sm"
+                >
                   {app.name.split(" ")[0]}
                 </TabsTrigger>
               ))}
             </TabsList>
 
-            {applications.map((app) => (
+            {apps.map(app => (
               <TabsContent key={app.id} value={app.id}>
                 <div className="space-y-6">
                   {/* Hero Card */}
-                  <Card className={`bg-gradient-to-r ${app.color} text-white p-8 rounded-lg`}>
+                  <Card
+                    className={`bg-gradient-to-r ${app.color} text-white p-8 rounded-lg`}
+                  >
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h2 className="text-3xl font-bold mb-2">{app.name}</h2>
@@ -258,11 +292,15 @@ export default function ApplicationsDetail() {
                     {/* Benefits */}
                     <Card className="p-6 hover-lift">
                       <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-                        Key Benefits
+                        {t("appd.keyBenefits")}
                       </h3>
                       <ul className="space-y-3">
                         {app.benefits.map((benefit, idx) => (
-                          <li key={idx} className="flex items-start gap-3 stagger-item" style={{ animationDelay: `${idx * 0.1}s` }}>
+                          <li
+                            key={idx}
+                            className="flex items-start gap-3 stagger-item"
+                            style={{ animationDelay: `${idx * 0.1}s` }}
+                          >
                             <span className="text-orange-600 dark:text-orange-400 font-bold">
                               ✓
                             </span>
@@ -277,11 +315,15 @@ export default function ApplicationsDetail() {
                     {/* Products */}
                     <Card className="p-6 hover-lift">
                       <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-                        Typical Products
+                        {t("appd.typicalProducts")}
                       </h3>
                       <ul className="space-y-3">
                         {app.products.map((product, idx) => (
-                          <li key={idx} className="flex items-start gap-3 stagger-item" style={{ animationDelay: `${idx * 0.1}s` }}>
+                          <li
+                            key={idx}
+                            className="flex items-start gap-3 stagger-item"
+                            style={{ animationDelay: `${idx * 0.1}s` }}
+                          >
                             <span className="text-green-600 dark:text-green-400 font-bold">
                               •
                             </span>
@@ -297,19 +339,25 @@ export default function ApplicationsDetail() {
                   {/* Specifications */}
                   <Card className="p-6 hover-glow">
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-                      Product Specifications
+                      {t("appd.specTitle")}
                     </h3>
                     <div className="grid md:grid-cols-4 gap-4">
-                      {Object.entries(app.specifications).map(([key, value], idx) => (
-                        <div key={key} className="bg-orange-50 dark:bg-slate-700 p-4 rounded hover-scale stagger-item" style={{ animationDelay: `${idx * 0.1}s` }}>
-                          <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase mb-1">
-                            {key.replace(/_/g, " ")}
-                          </p>
-                          <p className="text-lg font-bold text-slate-900 dark:text-white">
-                            {value}
-                          </p>
-                        </div>
-                      ))}
+                      {Object.entries(app.specifications).map(
+                        ([key, value], idx) => (
+                          <div
+                            key={key}
+                            className="bg-orange-50 dark:bg-slate-700 p-4 rounded hover-scale stagger-item"
+                            style={{ animationDelay: `${idx * 0.1}s` }}
+                          >
+                            <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase mb-1">
+                              {specLabels[key] ?? key}
+                            </p>
+                            <p className="text-lg font-bold text-slate-900 dark:text-white">
+                              {value}
+                            </p>
+                          </div>
+                        )
+                      )}
                     </div>
                   </Card>
 
@@ -317,7 +365,7 @@ export default function ApplicationsDetail() {
                   <div className="grid md:grid-cols-3 gap-6">
                     <Card className="p-6 text-center">
                       <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
-                        Minimum Order
+                        {t("appd.minOrder")}
                       </p>
                       <p className="text-2xl font-bold text-slate-900 dark:text-white">
                         {app.minOrder}
@@ -325,7 +373,7 @@ export default function ApplicationsDetail() {
                     </Card>
                     <Card className="p-6 text-center">
                       <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
-                        Pricing Tier
+                        {t("appd.pricingTier")}
                       </p>
                       <p className="text-2xl font-bold text-orange-600 dark:text-orange-400">
                         {app.pricing}
@@ -333,10 +381,10 @@ export default function ApplicationsDetail() {
                     </Card>
                     <Card className="p-6 text-center">
                       <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
-                        Delivery Time
+                        {t("appd.deliveryTime")}
                       </p>
                       <p className="text-2xl font-bold text-slate-900 dark:text-white">
-                        15 Days
+                        {t("appd.days15")}
                       </p>
                     </Card>
                   </div>
@@ -344,7 +392,7 @@ export default function ApplicationsDetail() {
                   {/* Case Study */}
                   <Card className="p-6 bg-blue-50 dark:bg-blue-900 border-2 border-blue-200 dark:border-blue-700">
                     <p className="text-sm font-semibold text-blue-600 dark:text-blue-300 mb-2">
-                      Success Story
+                      {t("appd.successStory")}
                     </p>
                     <p className="text-slate-700 dark:text-slate-300 italic">
                       "{app.caseStudy}"
@@ -357,7 +405,7 @@ export default function ApplicationsDetail() {
                     className="w-full bg-orange-600 hover:bg-orange-700 text-white"
                     onClick={() => setLocation("/contact")}
                   >
-                    Request Quotation for {app.name} →
+                    {t("appd.requestQuote", { name: app.name })}
                   </Button>
                 </div>
               </TabsContent>
@@ -369,18 +417,14 @@ export default function ApplicationsDetail() {
       {/* Bottom CTA */}
       <section className="py-12 px-4 bg-slate-900 dark:bg-slate-950">
         <div className="max-w-4xl mx-auto text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">
-            Don't See Your Industry?
-          </h2>
-          <p className="text-lg mb-6 opacity-90">
-            We work with businesses across multiple sectors. Contact us for custom solutions tailored to your needs.
-          </p>
+          <h2 className="text-3xl font-bold mb-4">{t("appd.bottomTitle")}</h2>
+          <p className="text-lg mb-6 opacity-90">{t("appd.bottomText")}</p>
           <Button
             variant="secondary"
             size="lg"
             onClick={() => setLocation("/contact")}
           >
-            Get Custom Solution →
+            {t("appd.bottomBtn")}
           </Button>
         </div>
       </section>
@@ -389,20 +433,41 @@ export default function ApplicationsDetail() {
       <section className="py-12 px-4 bg-orange-50 dark:bg-slate-900">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
-            Explore More
+            {t("appd.exploreMore")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <Link href="/products" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all">
-              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">Products</p>
-              <p className="text-sm text-slate-600 dark:text-slate-300">Bulk donkey milk &amp; powder</p>
+            <Link
+              href="/products"
+              className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all"
+            >
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">
+                {t("appd.relProducts")}
+              </p>
+              <p className="text-sm text-slate-600 dark:text-slate-300">
+                {t("appd.relProductsSub")}
+              </p>
             </Link>
-            <Link href="/applications" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all">
-              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">All Applications</p>
-              <p className="text-sm text-slate-600 dark:text-slate-300">Industry overview</p>
+            <Link
+              href="/applications"
+              className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all"
+            >
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">
+                {t("appd.relApps")}
+              </p>
+              <p className="text-sm text-slate-600 dark:text-slate-300">
+                {t("appd.relAppsSub")}
+              </p>
             </Link>
-            <Link href="/markets" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all">
-              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">Export Markets</p>
-              <p className="text-sm text-slate-600 dark:text-slate-300">UAE, GCC, EU, Korea</p>
+            <Link
+              href="/markets"
+              className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all"
+            >
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">
+                {t("appd.relMarkets")}
+              </p>
+              <p className="text-sm text-slate-600 dark:text-slate-300">
+                {t("appd.relMarketsSub")}
+              </p>
             </Link>
           </div>
         </div>

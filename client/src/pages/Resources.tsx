@@ -11,46 +11,46 @@ import {
 } from "lucide-react";
 import Seo from "@/components/Seo";
 import { Link } from "wouter";
+import { useT } from "@/i18n";
+import { usePageKeywords } from "@/i18n/seoKeywords";
 
 export default function Resources() {
+  const t = useT();
+  const kw = usePageKeywords();
   const articles = [
     {
       id: 1,
-      title: "The Complete Guide to Donkey Milk: Composition & Benefits",
-      excerpt:
-        "Discover the nutritional profile of donkey milk and why it's becoming the preferred ingredient for premium skincare and supplements.",
+      title: t("res.art1Title"),
+      excerpt: t("res.art1Excerpt"),
       date: "June 15, 2024",
-      category: "Technical",
+      category: t("res.art1Cat"),
       readTime: "12 min",
       image: "📚",
     },
     {
       id: 2,
-      title: "Donkey Milk in Cosmetics: Science Behind the Beauty Trend",
-      excerpt:
-        "Explore the scientific evidence supporting donkey milk's use in cosmetics and skincare formulations.",
+      title: t("res.art2Title"),
+      excerpt: t("res.art2Excerpt"),
       date: "June 10, 2024",
-      category: "Industry",
+      category: t("res.art2Cat"),
       readTime: "8 min",
       image: "🧴",
     },
     {
       id: 3,
-      title: "Sustainable Dairy Farming: Our Production Methods",
-      excerpt:
-        "Learn about our ethical and sustainable approach to donkey dairy production.",
+      title: t("res.art3Title"),
+      excerpt: t("res.art3Excerpt"),
       date: "June 1, 2024",
-      category: "Sustainability",
+      category: t("res.art3Cat"),
       readTime: "10 min",
       image: "🌱",
     },
     {
       id: 4,
-      title: "Regulatory Compliance: FSSAI, ISO & International Standards",
-      excerpt:
-        "Complete overview of certifications and compliance requirements for donkey milk products.",
+      title: t("res.art4Title"),
+      excerpt: t("res.art4Excerpt"),
       date: "May 25, 2024",
-      category: "Compliance",
+      category: t("res.art4Cat"),
       readTime: "15 min",
       image: "✅",
     },
@@ -59,54 +59,38 @@ export default function Resources() {
   const caseStudies = [
     {
       id: 1,
-      company: "Premium Skincare Brand (EU)",
-      challenge: "Finding a natural, ethical ingredient for luxury skincare line",
-      solution: "Partnered with Rudra Dairy for exclusive donkey milk powder supply",
-      results: [
-        "50% premium pricing achieved",
-        "35% sales increase in first year",
-        "Expanded to 12 European markets",
-      ],
-      industry: "Cosmetics",
+      company: t("res.cs1Company"),
+      challenge: t("res.cs1Challenge"),
+      solution: t("res.cs1Solution"),
+      results: [t("res.cs1r1"), t("res.cs1r2"), t("res.cs1r3")],
+      industry: t("res.cs1Industry"),
       roi: "240%",
     },
     {
       id: 2,
-      company: "Pharmaceutical Supplement Manufacturer (USA)",
-      challenge: "Reducing production costs while maintaining quality",
-      solution: "Switched to Rudra Dairy's certified donkey milk powder",
-      results: [
-        "22% cost reduction",
-        "Improved product efficacy",
-        "Launched 3 new product lines",
-      ],
-      industry: "Pharmaceuticals",
+      company: t("res.cs2Company"),
+      challenge: t("res.cs2Challenge"),
+      solution: t("res.cs2Solution"),
+      results: [t("res.cs2r1"), t("res.cs2r2"), t("res.cs2r3")],
+      industry: t("res.cs2Industry"),
       roi: "180%",
     },
     {
       id: 3,
-      company: "Natural Soap Artisan (UK)",
-      challenge: "Scaling production while maintaining natural ingredient integrity",
-      solution: "Bulk supply agreement with Rudra Dairy",
-      results: [
-        "3x production increase",
-        "Maintained premium quality",
-        "Entered 50+ retail locations",
-      ],
-      industry: "Natural Products",
+      company: t("res.cs3Company"),
+      challenge: t("res.cs3Challenge"),
+      solution: t("res.cs3Solution"),
+      results: [t("res.cs3r1"), t("res.cs3r2"), t("res.cs3r3")],
+      industry: t("res.cs3Industry"),
       roi: "320%",
     },
     {
       id: 4,
-      company: "Nutraceutical Company (Middle East)",
-      challenge: "Meeting Halal certification requirements",
-      solution: "Sourced Halal-certified donkey milk from Rudra Dairy",
-      results: [
-        "Successfully launched Halal line",
-        "Captured new market segment",
-        "100+ liters monthly supply",
-      ],
-      industry: "Nutraceuticals",
+      company: t("res.cs4Company"),
+      challenge: t("res.cs4Challenge"),
+      solution: t("res.cs4Solution"),
+      results: [t("res.cs4r1"), t("res.cs4r2"), t("res.cs4r3")],
+      industry: t("res.cs4Industry"),
       roi: "210%",
     },
   ];
@@ -114,36 +98,32 @@ export default function Resources() {
   const whitePapers = [
     {
       id: 1,
-      title: "Global Donkey Milk Market Analysis 2024",
-      description:
-        "Comprehensive market research covering market size, growth trends, and future projections for donkey milk products globally.",
+      title: t("res.wp1Title"),
+      description: t("res.wp1Desc"),
       pages: 45,
       format: "PDF",
       downloadUrl: "#",
     },
     {
       id: 2,
-      title: "Donkey Milk vs Cow Milk: Comparative Analysis",
-      description:
-        "Detailed scientific comparison of nutritional profiles, benefits, and applications in different industries.",
+      title: t("res.wp2Title"),
+      description: t("res.wp2Desc"),
       pages: 32,
       format: "PDF",
       downloadUrl: "#",
     },
     {
       id: 3,
-      title: "Regulatory Framework for Donkey Milk Products",
-      description:
-        "Complete guide to international regulations, certifications, and compliance requirements across major markets.",
+      title: t("res.wp3Title"),
+      description: t("res.wp3Desc"),
       pages: 58,
       format: "PDF",
       downloadUrl: "#",
     },
     {
       id: 4,
-      title: "Production Efficiency & Sustainability Report",
-      description:
-        "Our approach to sustainable production, environmental impact, and efficiency metrics.",
+      title: t("res.wp4Title"),
+      description: t("res.wp4Desc"),
       pages: 28,
       format: "PDF",
       downloadUrl: "#",
@@ -153,15 +133,26 @@ export default function Resources() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
       <Seo
-        title="Donkey Milk Guides, Research & Resources"
-        description="Expert guides on donkey milk composition, benefits, sustainable farming, and regulatory compliance (FSSAI, ISO). The knowledge hub from Rudra Dairy & Farm."
+        title={t("res.seoTitle")}
+        description={t("res.seoDesc")}
         path="/resources"
+        keywords={kw}
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://rudradairyandfarm.shop/" },
-            { "@type": "ListItem", position: 2, name: "Resources", item: "https://rudradairyandfarm.shop/resources" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: t("res.bcHome"),
+              item: "https://rudradairyandfarm.shop/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: t("res.bcRes"),
+              item: "https://rudradairyandfarm.shop/resources",
+            },
           ],
         }}
       />
@@ -171,14 +162,14 @@ export default function Resources() {
           <div className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900 px-4 py-2 rounded-full mb-6">
             <BookOpen className="w-4 h-4 text-orange-600" />
             <span className="text-sm font-medium text-orange-700 dark:text-orange-200">
-              Knowledge Hub
+              {t("res.badge")}
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-            Resources & Authority
+            {t("res.heroTitle")}
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Industry insights, case studies, and technical resources for donkey milk products
+            {t("res.heroSub")}
           </p>
         </div>
       </section>
@@ -188,15 +179,15 @@ export default function Resources() {
         <div className="max-w-6xl mx-auto">
           <Tabs defaultValue="articles" className="w-full">
             <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="articles">Articles</TabsTrigger>
-              <TabsTrigger value="cases">Case Studies</TabsTrigger>
-              <TabsTrigger value="papers">White Papers</TabsTrigger>
+              <TabsTrigger value="articles">{t("res.tabArticles")}</TabsTrigger>
+              <TabsTrigger value="cases">{t("res.tabCases")}</TabsTrigger>
+              <TabsTrigger value="papers">{t("res.tabPapers")}</TabsTrigger>
             </TabsList>
 
             {/* Articles Tab */}
             <TabsContent value="articles" className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
-                {articles.map((article) => (
+                {articles.map(article => (
                   <Card
                     key={article.id}
                     className="hover:shadow-lg transition-all duration-300 overflow-hidden"
@@ -226,7 +217,7 @@ export default function Resources() {
                           size="sm"
                           className="text-orange-600 hover:text-orange-700"
                         >
-                          Read More →
+                          {t("res.readMore")}
                         </Button>
                       </div>
                     </div>
@@ -238,8 +229,11 @@ export default function Resources() {
             {/* Case Studies Tab */}
             <TabsContent value="cases" className="space-y-6">
               <div className="space-y-4">
-                {caseStudies.map((study) => (
-                  <Card key={study.id} className="p-6 hover:shadow-lg transition-all">
+                {caseStudies.map(study => (
+                  <Card
+                    key={study.id}
+                    className="p-6 hover:shadow-lg transition-all"
+                  >
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">
@@ -251,7 +245,7 @@ export default function Resources() {
                       </div>
                       <div className="text-right">
                         <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">
-                          ROI Achieved
+                          {t("res.roiAchieved")}
                         </p>
                         <p className="text-2xl font-bold text-green-600 dark:text-green-400">
                           {study.roi}
@@ -262,7 +256,7 @@ export default function Resources() {
                     <div className="space-y-3 mb-4">
                       <div>
                         <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase mb-1">
-                          Challenge
+                          {t("res.challenge")}
                         </p>
                         <p className="text-slate-700 dark:text-slate-300">
                           {study.challenge}
@@ -270,7 +264,7 @@ export default function Resources() {
                       </div>
                       <div>
                         <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase mb-1">
-                          Solution
+                          {t("res.solution")}
                         </p>
                         <p className="text-slate-700 dark:text-slate-300">
                           {study.solution}
@@ -280,7 +274,7 @@ export default function Resources() {
 
                     <div className="mb-4">
                       <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase mb-2">
-                        Results
+                        {t("res.results")}
                       </p>
                       <ul className="space-y-1">
                         {study.results.map((result, idx) => (
@@ -288,7 +282,9 @@ export default function Resources() {
                             key={idx}
                             className="text-sm text-slate-700 dark:text-slate-300 flex items-center gap-2"
                           >
-                            <span className="text-green-600 dark:text-green-400">✓</span>
+                            <span className="text-green-600 dark:text-green-400">
+                              ✓
+                            </span>
                             {result}
                           </li>
                         ))}
@@ -300,7 +296,7 @@ export default function Resources() {
                       size="sm"
                       className="border-orange-600 text-orange-600 hover:bg-orange-50"
                     >
-                      Read Full Case Study →
+                      {t("res.readCase")}
                     </Button>
                   </Card>
                 ))}
@@ -310,8 +306,11 @@ export default function Resources() {
             {/* White Papers Tab */}
             <TabsContent value="papers" className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
-                {whitePapers.map((paper) => (
-                  <Card key={paper.id} className="p-6 hover:shadow-lg transition-all">
+                {whitePapers.map(paper => (
+                  <Card
+                    key={paper.id}
+                    className="p-6 hover:shadow-lg transition-all"
+                  >
                     <div className="flex items-start gap-4 mb-4">
                       <FileText className="w-8 h-8 text-orange-600 flex-shrink-0" />
                       <div>
@@ -319,21 +318,20 @@ export default function Resources() {
                           {paper.title}
                         </h3>
                         <p className="text-xs text-slate-500 dark:text-slate-400">
-                          {paper.pages} pages • {paper.format}
+                          {paper.pages} {t("res.pagesLabel")} • {paper.format}
                         </p>
                       </div>
                     </div>
-
                     <p className="text-slate-600 dark:text-slate-300 text-sm mb-4">
                       {paper.description}
                     </p>
 
                     <Button
                       className="w-full bg-orange-600 hover:bg-orange-700 text-white"
-                      onClick={() => alert("Download link would be here")}
+                      onClick={() => alert(t("res.downloadAlert"))}
                     >
                       <Download className="w-4 h-4 mr-2" />
-                      Download PDF
+                      {t("res.downloadPdf")}
                     </Button>
                   </Card>
                 ))}
@@ -347,19 +345,19 @@ export default function Resources() {
       <section className="py-12 px-4 bg-orange-50 dark:bg-orange-900">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
-            Stay Updated
+            {t("res.newsTitle")}
           </h2>
           <p className="text-slate-600 dark:text-slate-300 mb-6">
-            Subscribe to our newsletter for industry insights, new resources, and market updates.
+            {t("res.newsText")}
           </p>
           <div className="flex gap-2">
             <input
               type="email"
-              placeholder="Enter your email"
+              placeholder={t("res.newsPlaceholder")}
               className="flex-1 px-4 py-3 rounded-lg border border-orange-200 dark:border-orange-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
             />
             <Button className="bg-orange-600 hover:bg-orange-700 text-white">
-              Subscribe
+              {t("res.subscribe")}
             </Button>
           </div>
         </div>
@@ -369,14 +367,10 @@ export default function Resources() {
       <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-950 dark:to-slate-900 rounded-lg p-8 text-center text-white">
           <Award className="w-12 h-12 mx-auto mb-4 opacity-50" />
-          <h2 className="text-3xl font-bold mb-4">
-            Industry Leadership Through Knowledge
-          </h2>
-          <p className="text-lg mb-6 opacity-90">
-            We're committed to advancing the donkey milk industry through research, education, and innovation.
-          </p>
+          <h2 className="text-3xl font-bold mb-4">{t("res.ctaTitle")}</h2>
+          <p className="text-lg mb-6 opacity-90">{t("res.ctaText")}</p>
           <Button variant="secondary" size="lg">
-            Contact Our Research Team →
+            {t("res.ctaBtn")}
           </Button>
         </div>
       </section>
@@ -385,20 +379,41 @@ export default function Resources() {
       <section className="py-12 px-4 bg-slate-50 dark:bg-slate-900">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
-            Explore More
+            {t("res.exploreMore")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <Link href="/products" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all">
-              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">Products</p>
-              <p className="text-sm text-slate-600 dark:text-slate-300">Donkey milk &amp; powder for your line</p>
+            <Link
+              href="/products"
+              className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all"
+            >
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">
+                {t("res.relProducts")}
+              </p>
+              <p className="text-sm text-slate-600 dark:text-slate-300">
+                {t("res.relProductsSub")}
+              </p>
             </Link>
-            <Link href="/applications" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all">
-              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">Applications</p>
-              <p className="text-sm text-slate-600 dark:text-slate-300">How brands use donkey milk</p>
+            <Link
+              href="/applications"
+              className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all"
+            >
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">
+                {t("res.relApps")}
+              </p>
+              <p className="text-sm text-slate-600 dark:text-slate-300">
+                {t("res.relAppsSub")}
+              </p>
             </Link>
-            <Link href="/contact" className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all">
-              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">Contact Us</p>
-              <p className="text-sm text-slate-600 dark:text-slate-300">Talk to our team</p>
+            <Link
+              href="/contact"
+              className="block p-6 rounded-lg bg-white dark:bg-slate-800 shadow hover:shadow-lg transition-all"
+            >
+              <p className="font-semibold text-orange-600 dark:text-orange-400 mb-1">
+                {t("res.relContact")}
+              </p>
+              <p className="text-sm text-slate-600 dark:text-slate-300">
+                {t("res.relContactSub")}
+              </p>
             </Link>
           </div>
         </div>

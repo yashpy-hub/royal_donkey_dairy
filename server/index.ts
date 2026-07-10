@@ -39,10 +39,12 @@ async function startServer() {
   console.log(`Serving static files from: ${staticPath}`);
 
   // Serve static files
-  app.use(express.static(staticPath, {
-    maxAge: "1d",
-    etag: false,
-  }));
+  app.use(
+    express.static(staticPath, {
+      maxAge: "1d",
+      etag: false,
+    })
+  );
 
   // Error handling middleware
   app.use((err: any, _req: any, res: any, _next: any) => {
@@ -54,7 +56,7 @@ async function startServer() {
   app.get("*", (_req, res) => {
     const indexPath = path.join(staticPath, "index.html");
     res.setHeader("Cache-Control", "no-cache");
-    res.sendFile(indexPath, (err) => {
+    res.sendFile(indexPath, err => {
       if (err) {
         console.error("Error sending index.html:", err);
         res.status(404).json({ error: "Not found" });
@@ -75,7 +77,7 @@ async function startServer() {
 
 // Start server
 if (import.meta.url === `file://${process.argv[1]}`) {
-  startServer().catch((error) => {
+  startServer().catch(error => {
     console.error("✗ Failed to start server:", error);
     process.exit(1);
   });

@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Award, Zap, Heart, TrendingUp, Users, Globe } from "lucide-react";
 import Seo from "@/components/Seo";
+import { useT } from "@/i18n";
+import { usePageKeywords } from "@/i18n/seoKeywords";
 
 /**
  * Who We Are Page - Rudra Dairy & Farm
@@ -9,57 +11,70 @@ import Seo from "@/components/Seo";
  * Advanced animations and responsive design
  */
 export default function WhoWeAre() {
+  const t = useT();
+  const kw = usePageKeywords();
   const milestones = [
-    { year: "2022", title: "Founded", description: "Rudra Dairy & Farm established as trusted supplier" },
-    { year: "2023", title: "Expansion", description: "Expanded product line to include donkey milk powder" },
-    { year: "2024", title: "Growth", description: "Serving 100+ B2B and B2C customers across India" },
+    { year: "2022", title: t("who.ms1Title"), description: t("who.ms1Desc") },
+    { year: "2023", title: t("who.ms2Title"), description: t("who.ms2Desc") },
+    { year: "2024", title: t("who.ms3Title"), description: t("who.ms3Desc") },
   ];
 
   const values = [
     {
       icon: <Award className="w-8 h-8" />,
-      title: "Quality First",
-      description: "Every product meets international standards. FSSAI, ISO, IEC, and HACCP certified.",
+      title: t("who.v1Title"),
+      description: t("who.v1Desc"),
     },
     {
       icon: <Heart className="w-8 h-8" />,
-      title: "Animal Care",
-      description: "Our donkeys are treated with utmost care and raised on natural pastures.",
+      title: t("who.v2Title"),
+      description: t("who.v2Desc"),
     },
     {
       icon: <Users className="w-8 h-8" />,
-      title: "Customer Focus",
-      description: "Dedicated to serving businesses with reliable, consistent supply and support.",
+      title: t("who.v3Title"),
+      description: t("who.v3Desc"),
     },
     {
       icon: <Globe className="w-8 h-8" />,
-      title: "Sustainability",
-      description: "Eco-friendly farming practices that protect the environment for future generations.",
+      title: t("who.v4Title"),
+      description: t("who.v4Desc"),
     },
     {
       icon: <Zap className="w-8 h-8" />,
-      title: "Innovation",
-      description: "Continuously improving our processes and products to meet market demands.",
+      title: t("who.v5Title"),
+      description: t("who.v5Desc"),
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      title: "Growth",
-      description: "Expanding our reach to serve more businesses and industries globally.",
+      title: t("who.v6Title"),
+      description: t("who.v6Desc"),
     },
   ];
 
   return (
     <div className="min-h-screen">
       <Seo
-        title="About Rudra Dairy & Farm — Trusted Donkey Milk Supplier Since 2022"
-        description="Rudra Dairy & Farm is a certified Indian supplier of premium donkey milk and powder, serving 100+ B2B and B2C customers with FSSAI, ISO, IEC, and HACCP certified quality since 2022."
+        title={t("who.seoTitle")}
+        description={t("who.seoDesc")}
         path="/who-we-are"
+        keywords={kw}
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://rudradairyandfarm.shop/" },
-            { "@type": "ListItem", position: 2, name: "Who We Are", item: "https://rudradairyandfarm.shop/who-we-are" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: t("who.bcHome"),
+              item: "https://rudradairyandfarm.shop/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: t("who.bcWho"),
+              item: "https://rudradairyandfarm.shop/who-we-are",
+            },
           ],
         }}
       />
@@ -68,19 +83,22 @@ export default function WhoWeAre() {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto animate-slide-in-up">
             <h1 className="text-5xl md:text-6xl font-display font-bold text-gray-900 dark:text-amber-50 mb-6">
-              Who We Are
+              {t("who.heroTitle")}
             </h1>
             <p className="text-xl text-gray-700 dark:text-amber-100 font-serif">
-              Rudra Dairy & Farm - Most Trusted Suppliers of Premium Donkey Milk & Powder Since 2022
-          </p>
+              {t("who.heroSub")}
+            </p>
           </div>
         </div>
       </section>
 
       {/* Cross-link to differentiate from /about */}
       <div className="text-center py-2">
-        <Link href="/about" className="text-sm text-orange-600 dark:text-orange-400 hover:underline">
-          Want the personal story? Meet our Co-Founder &amp; Managing Director, Yash Pawar →
+        <Link
+          href="/about"
+          className="text-sm text-orange-600 dark:text-orange-400 hover:underline"
+        >
+          {t("who.crossLink")}
         </Link>
       </div>
 
@@ -89,17 +107,26 @@ export default function WhoWeAre() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-display font-bold text-gray-900 dark:text-amber-50 mb-8 text-center animate-slide-in-up">
-              Our Journey
+              {t("who.journeyTitle")}
             </h2>
             <div className="prose dark:prose-invert max-w-none">
-              <p className="text-lg text-gray-700 dark:text-amber-100 font-serif mb-6 leading-relaxed animate-slide-in-up" style={{animationDelay: '0.1s'}}>
-                Since 2022, Rudra Dairy & Farm has been committed to providing the highest quality donkey milk and donkey milk powder to businesses across India. We understand that quality is not just a promise—it's a responsibility.
+              <p
+                className="text-lg text-gray-700 dark:text-amber-100 font-serif mb-6 leading-relaxed animate-slide-in-up"
+                style={{ animationDelay: "0.1s" }}
+              >
+                {t("who.journeyP1")}
               </p>
-              <p className="text-lg text-gray-700 dark:text-amber-100 font-serif mb-6 leading-relaxed animate-slide-in-up" style={{animationDelay: '0.2s'}}>
-                Our donkeys are raised with love and care on natural pastures, ensuring that every drop of milk is pure, nutritious, and free from harmful additives. We work closely with our customers to understand their needs and deliver products that exceed expectations.
+              <p
+                className="text-lg text-gray-700 dark:text-amber-100 font-serif mb-6 leading-relaxed animate-slide-in-up"
+                style={{ animationDelay: "0.2s" }}
+              >
+                {t("who.journeyP2")}
               </p>
-              <p className="text-lg text-gray-700 dark:text-amber-100 font-serif mb-6 leading-relaxed animate-slide-in-up" style={{animationDelay: '0.3s'}}>
-                Whether you're a cosmetic manufacturer, pharmaceutical company, nutritional supplement producer, or direct retailer, Rudra Dairy & Farm is your trusted partner for consistent, high-quality donkey milk and powder supply.
+              <p
+                className="text-lg text-gray-700 dark:text-amber-100 font-serif mb-6 leading-relaxed animate-slide-in-up"
+                style={{ animationDelay: "0.3s" }}
+              >
+                {t("who.journeyP3")}
               </p>
             </div>
           </div>
@@ -110,7 +137,7 @@ export default function WhoWeAre() {
       <section className="py-20 bg-gradient-to-br from-green-50 dark:from-green-950 to-white dark:to-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-display font-bold text-center text-gray-900 dark:text-amber-50 mb-16 animate-slide-in-up">
-            Our Milestones
+            {t("who.milestonesTitle")}
           </h2>
           <div className="max-w-4xl mx-auto">
             <div className="space-y-8">
@@ -118,7 +145,7 @@ export default function WhoWeAre() {
                 <div
                   key={idx}
                   className="flex gap-6 animate-slide-in-up"
-                  style={{animationDelay: `${idx * 0.2}s`}}
+                  style={{ animationDelay: `${idx * 0.2}s` }}
                 >
                   <div className="flex-shrink-0">
                     <div className="flex items-center justify-center h-16 w-16 rounded-full bg-amber-700 dark:bg-amber-600 text-white font-display font-bold text-lg hover:scale-110 transition-transform duration-300">
@@ -144,14 +171,14 @@ export default function WhoWeAre() {
       <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-display font-bold text-center text-gray-900 dark:text-amber-50 mb-16 animate-slide-in-up">
-            Our Core Values
+            {t("who.valuesTitle")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {values.map((value, idx) => (
               <div
                 key={idx}
                 className="p-8 bg-gradient-to-br from-amber-50 dark:from-amber-900/20 to-white dark:to-gray-800 border border-amber-100 dark:border-amber-900/30 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 animate-fade-scale"
-                style={{animationDelay: `${idx * 0.1}s`}}
+                style={{ animationDelay: `${idx * 0.1}s` }}
               >
                 <div className="text-amber-700 dark:text-amber-400 mb-4">
                   {value.icon}
@@ -172,32 +199,44 @@ export default function WhoWeAre() {
       <section className="py-20 bg-gradient-to-br from-green-900 dark:from-green-950 to-green-800 dark:to-green-900 text-amber-50 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-display font-bold text-center mb-12 animate-slide-in-up">
-            Why Choose Rudra Dairy & Farm?
+            {t("who.whyTitle")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-amber-200/30 hover:bg-white/20 transition-all duration-300 animate-slide-in-up" style={{animationDelay: '0.1s'}}>
-              <h3 className="text-xl font-display font-bold mb-3">Trusted Since 2022</h3>
-              <p className="font-serif text-sm">
-                Years of experience serving B2B and B2C customers with consistent quality and reliability.
-              </p>
+            <div
+              className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-amber-200/30 hover:bg-white/20 transition-all duration-300 animate-slide-in-up"
+              style={{ animationDelay: "0.1s" }}
+            >
+              <h3 className="text-xl font-display font-bold mb-3">
+                {t("who.why1Title")}
+              </h3>
+              <p className="font-serif text-sm">{t("who.why1Body")}</p>
             </div>
-            <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-amber-200/30 hover:bg-white/20 transition-all duration-300 animate-slide-in-up" style={{animationDelay: '0.2s'}}>
-              <h3 className="text-xl font-display font-bold mb-3">Certified Quality</h3>
-              <p className="font-serif text-sm">
-                FSSAI, ISO, IEC, and HACCP certified. Every product meets international standards.
-              </p>
+            <div
+              className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-amber-200/30 hover:bg-white/20 transition-all duration-300 animate-slide-in-up"
+              style={{ animationDelay: "0.2s" }}
+            >
+              <h3 className="text-xl font-display font-bold mb-3">
+                {t("who.why2Title")}
+              </h3>
+              <p className="font-serif text-sm">{t("who.why2Body")}</p>
             </div>
-            <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-amber-200/30 hover:bg-white/20 transition-all duration-300 animate-slide-in-up" style={{animationDelay: '0.3s'}}>
-              <h3 className="text-xl font-display font-bold mb-3">Consistent Supply</h3>
-              <p className="font-serif text-sm">
-                Reliable delivery of donkey milk and powder to support your business operations.
-              </p>
+            <div
+              className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-amber-200/30 hover:bg-white/20 transition-all duration-300 animate-slide-in-up"
+              style={{ animationDelay: "0.3s" }}
+            >
+              <h3 className="text-xl font-display font-bold mb-3">
+                {t("who.why3Title")}
+              </h3>
+              <p className="font-serif text-sm">{t("who.why3Body")}</p>
             </div>
-            <div className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-amber-200/30 hover:bg-white/20 transition-all duration-300 animate-slide-in-up" style={{animationDelay: '0.4s'}}>
-              <h3 className="text-xl font-display font-bold mb-3">Business Support</h3>
-              <p className="font-serif text-sm">
-                Dedicated support for B2B partnerships, wholesale, and retail operations.
-              </p>
+            <div
+              className="p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-amber-200/30 hover:bg-white/20 transition-all duration-300 animate-slide-in-up"
+              style={{ animationDelay: "0.4s" }}
+            >
+              <h3 className="text-xl font-display font-bold mb-3">
+                {t("who.why4Title")}
+              </h3>
+              <p className="font-serif text-sm">{t("who.why4Body")}</p>
             </div>
           </div>
         </div>
@@ -207,24 +246,28 @@ export default function WhoWeAre() {
       <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4 text-center animate-slide-in-up">
           <h2 className="text-4xl font-display font-bold text-gray-900 dark:text-amber-50 mb-6">
-            Ready to Partner With Us?
+            {t("who.ctaTitle")}
           </h2>
           <p className="text-lg text-gray-600 dark:text-amber-100 font-serif mb-8 max-w-2xl mx-auto">
-            Contact Rudra Dairy & Farm today to discuss your donkey milk and powder requirements.
+            {t("who.ctaText")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               asChild
               className="bg-amber-700 hover:bg-amber-800 dark:bg-amber-600 dark:hover:bg-amber-700 text-white font-sans h-12 px-8 transition-all duration-300 hover:shadow-lg"
             >
-              <Link href="/contact">Get in Touch</Link>
+              <Link href="/contact">{t("who.getInTouch")}</Link>
             </Button>
             <Button
               asChild
               className="border-2 border-amber-700 dark:border-amber-600 text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 font-sans h-12 px-8 transition-all duration-300"
             >
-              <a href="https://wa.me/919112327322" target="_blank" rel="noopener noreferrer">
-                WhatsApp Us
+              <a
+                href="https://wa.me/919112327322"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t("who.whatsappUs")}
               </a>
             </Button>
           </div>

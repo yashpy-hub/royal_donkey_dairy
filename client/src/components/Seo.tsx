@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BUSINESS } from "@shared/business";
+import { LANGUAGES, DEFAULT_LANG } from "@/i18n/languages";
 
 const SITE = "https://rudradairyandfarm.shop";
 const DEFAULT_OG = `${SITE}/og-image.png`;
@@ -50,10 +51,7 @@ const ENTITY_LD = {
         latitude: BUSINESS.geo.office.latitude,
         longitude: BUSINESS.geo.office.longitude,
       },
-      sameAs: [
-        BUSINESS.social.instagram,
-        BUSINESS.social.facebook,
-      ],
+      sameAs: [BUSINESS.social.instagram, BUSINESS.social.facebook],
       contactPoint: {
         "@type": "ContactPoint",
         telephone: BUSINESS.phone,
@@ -95,6 +93,7 @@ interface SeoProps {
   jsonLd?: Record<string, any> | Record<string, any>[];
   faq?: FaqItem[];
   noindex?: boolean;
+  keywords?: string;
 }
 
 function upsertMeta(
@@ -122,8 +121,11 @@ export default function Seo({
   jsonLd,
   faq,
   noindex = false,
+  keywords,
 }: SeoProps) {
   const url = `${SITE}${path}`;
+  const urlWithLang = (l: string) =>
+    `${SITE}${path}${path.includes("?") ? "&" : "?"}lang=${l}`;
 
   // ---- per-page tags (re-applied on every route change) ----
   useEffect(() => {
@@ -133,15 +135,54 @@ export default function Seo({
 
     document.title = fullTitle;
 
-    // canonical
+    // canonical (always the language-neutral URL)
+    upsertMeta("link[rel='canonical']", { rel: "canonical", href: url }, url);
+
+    // hreflang alternates — makes each language crawlable at its own URL.
+    for (const L of LANGUAGES) {
+      upsertMeta(
+        `link[rel='alternate'][hreflang='${L.code}']`,
+        { rel: "alternate", hreflang: L.code, href: urlWithLang(L.code) },
+        urlWithLang(L.code)
+      );
+    }
+    // x-default points to English (neutral URL).
     upsertMeta(
-      "link[rel='canonical']",
-      { rel: "canonical", href: url },
+      "link[rel='alternate'][hreflang='x-default']",
+      { rel: "alternate", hreflang: "x-default", href: url },
       url
     );
 
+    // og:locale + alternates
+    const active =
+      new URLSearchParams(window.location.search).get("lang") || DEFAULT_LANG;
+    const curLocale =
+      LANGUAGES.find(l => l.code === active)?.ogLocale || "en_US";
+    upsertMeta(
+      "meta[property='og:locale']",
+      { property: "og:locale" },
+      curLocale
+    );
+    for (const L of LANGUAGES) {
+      if (L.code === active) continue;
+      upsertMeta(
+        `meta[property='og:locale:alternate'][content='${L.ogLocale}']`,
+        { property: "og:locale:alternate", content: L.ogLocale },
+        L.ogLocale
+      );
+    }
+
     // description
-    upsertMeta("meta[name='description']", { name: "description" }, description);
+    upsertMeta(
+      "meta[name='description']",
+      { name: "description" },
+      description
+    );
+
+    // keywords (long-tail SEO coverage)
+    if (keywords) {
+      upsertMeta("meta[name='keywords']", { name: "keywords" }, keywords);
+    }
 
     // robots
     upsertMeta(
@@ -152,18 +193,50 @@ export default function Seo({
 
     // Open Graph
     upsertMeta("meta[property='og:type']", { property: "og:type" }, type);
-    upsertMeta("meta[property='og:site_name']", { property: "og:site_name" }, "Rudra Dairy & Farm");
-    upsertMeta("meta[property='og:title']", { property: "og:title" }, fullTitle);
-    upsertMeta("meta[property='og:description']", { property: "og:description" }, description);
+    upsertMeta(
+      "meta[property='og:site_name']",
+      { property: "og:site_name" },
+      "Rudra Dairy & Farm"
+    );
+    upsertMeta(
+      "meta[property='og:title']",
+      { property: "og:title" },
+      fullTitle
+    );
+    upsertMeta(
+      "meta[property='og:description']",
+      { property: "og:description" },
+      description
+    );
     upsertMeta("meta[property='og:url']", { property: "og:url" }, url);
     upsertMeta("meta[property='og:image']", { property: "og:image" }, image);
-    upsertMeta("meta[property='og:image:width']", { property: "og:image:width" }, "1200");
-    upsertMeta("meta[property='og:image:height']", { property: "og:image:height" }, "630");
+    upsertMeta(
+      "meta[property='og:image:width']",
+      { property: "og:image:width" },
+      "1200"
+    );
+    upsertMeta(
+      "meta[property='og:image:height']",
+      { property: "og:image:height" },
+      "1200"
+    );
 
     // Twitter
-    upsertMeta("meta[name='twitter:card']", { name: "twitter:card" }, "summary_large_image");
-    upsertMeta("meta[name='twitter:title']", { name: "twitter:title" }, fullTitle);
-    upsertMeta("meta[name='twitter:description']", { name: "twitter:description" }, description);
+    upsertMeta(
+      "meta[name='twitter:card']",
+      { name: "twitter:card" },
+      "summary_large_image"
+    );
+    upsertMeta(
+      "meta[name='twitter:title']",
+      { name: "twitter:title" },
+      fullTitle
+    );
+    upsertMeta(
+      "meta[name='twitter:description']",
+      { name: "twitter:description" },
+      description
+    );
     upsertMeta("meta[name='twitter:image']", { name: "twitter:image" }, image);
 
     // ---- page-specific JSON-LD ----
@@ -176,7 +249,7 @@ export default function Seo({
       scripts.push({
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        mainEntity: faq.map((q) => ({
+        mainEntity: faq.map(q => ({
           "@type": "Question",
           name: q.question,
           acceptedAnswer: { "@type": "Answer", text: q.answer },

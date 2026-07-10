@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { CheckCircle, Award, Shield } from "lucide-react";
 import Seo from "@/components/Seo";
+import { useT } from "@/i18n";
+import { usePageKeywords } from "@/i18n/seoKeywords";
 
 /**
  * Certifications Page
@@ -11,33 +13,31 @@ import Seo from "@/components/Seo";
  * - Trust and credibility indicators
  */
 export default function Certifications() {
+  const t = useT();
+  const kw = usePageKeywords();
   const certifications = [
     {
-      name: "FSSAI Certification",
-      description: "Food Safety and Standards Authority of India",
-      details:
-        "Ensures our products meet all food safety standards and regulations set by the Indian government. Regular audits and compliance checks.",
+      name: t("cert.fssaiName"),
+      description: t("cert.fssaiDesc"),
+      details: t("cert.fssaiDetails"),
       icon: "🏛️",
     },
     {
-      name: "ISO Certification",
-      description: "International Organization for Standardization",
-      details:
-        "Demonstrates our commitment to quality management systems and international best practices in production and delivery.",
+      name: t("cert.isoName"),
+      description: t("cert.isoDesc"),
+      details: t("cert.isoDetails"),
       icon: "⭐",
     },
     {
-      name: "IEC Certification",
-      description: "Import Export Code - India",
-      details:
-        "Authorizes us to engage in international trade. Enables us to export our premium donkey milk products globally.",
+      name: t("cert.iecName"),
+      description: t("cert.iecDesc"),
+      details: t("cert.iecDetails"),
       icon: "🌍",
     },
     {
-      name: "HACCP Compliance",
-      description: "Hazard Analysis and Critical Control Points",
-      details:
-        "Systematic approach to food safety that identifies and controls potential hazards in our production process.",
+      name: t("cert.haccpName"),
+      description: t("cert.haccpDesc"),
+      details: t("cert.haccpDetails"),
       icon: "✓",
     },
   ];
@@ -45,15 +45,26 @@ export default function Certifications() {
   return (
     <div className="min-h-screen">
       <Seo
-        title="FSSAI, ISO, HACCP Certified Donkey Milk Supplier"
-        description="Rudra Dairy & Farm is FSSAI, ISO, IEC, and HACCP certified for donkey milk and powder. Learn about our quality standards, compliance, and international certifications."
+        title={t("cert.seoTitle")}
+        description={t("cert.seoDesc")}
         path="/certifications"
+        keywords={kw}
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://rudradairyandfarm.shop/" },
-            { "@type": "ListItem", position: 2, name: "Certifications", item: "https://rudradairyandfarm.shop/certifications" },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: t("cert.bcHome"),
+              item: "https://rudradairyandfarm.shop/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: t("cert.bcCert"),
+              item: "https://rudradairyandfarm.shop/certifications",
+            },
           ],
         }}
       />
@@ -62,11 +73,10 @@ export default function Certifications() {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-display font-bold text-gray-900 mb-6">
-              Quality Certifications
+              {t("cert.heroTitle")}
             </h1>
             <p className="text-xl text-gray-700 font-serif">
-              Rudra Dairy & Farm is certified and compliant with all major
-              international and national quality standards.
+              {t("cert.heroSub")}
             </p>
           </div>
         </div>
@@ -77,11 +87,10 @@ export default function Certifications() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold text-gray-900 mb-4">
-              Our Credentials
+              {t("cert.credTitle")}
             </h2>
             <p className="text-lg text-gray-600 font-serif">
-              Every certification represents our commitment to excellence and
-              your peace of mind.
+              {t("cert.credSub")}
             </p>
           </div>
 
@@ -107,7 +116,7 @@ export default function Certifications() {
           <div className="flex justify-center mb-16">
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663058292192/3D4mTBAV8JSrjdMbxwumwS/certifications-badge-K5VPuPCUmYXRn8v3vE2TEc.webp"
-              alt="Rudra Dairy & Farm Certifications Badge"
+              alt={t("cert.badgeAlt")}
               className="w-full max-w-sm h-auto rounded-xl shadow-xl"
             />
           </div>
@@ -118,7 +127,7 @@ export default function Certifications() {
       <section className="py-20 bg-gradient-to-br from-green-50 to-white">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-display font-bold text-center text-gray-900 mb-12">
-            Compliance Standards
+            {t("cert.complianceTitle")}
           </h2>
 
           <div className="max-w-4xl mx-auto space-y-8">
@@ -126,13 +135,9 @@ export default function Certifications() {
               <Shield className="w-12 h-12 text-green-700 flex-shrink-0" />
               <div>
                 <h3 className="text-2xl font-display font-bold text-gray-900 mb-2">
-                  Food Safety Standards
+                  {t("cert.cs1Title")}
                 </h3>
-                <p className="text-gray-700 font-serif">
-                  Our production facility adheres to all FSSAI guidelines,
-                  including proper hygiene, sanitation, and storage protocols.
-                  Regular inspections ensure continuous compliance.
-                </p>
+                <p className="text-gray-700 font-serif">{t("cert.cs1Desc")}</p>
               </div>
             </div>
 
@@ -140,13 +145,9 @@ export default function Certifications() {
               <Award className="w-12 h-12 text-amber-700 flex-shrink-0" />
               <div>
                 <h3 className="text-2xl font-display font-bold text-gray-900 mb-2">
-                  Quality Management
+                  {t("cert.cs2Title")}
                 </h3>
-                <p className="text-gray-700 font-serif">
-                  ISO certification demonstrates our commitment to consistent
-                  quality, continuous improvement, and customer satisfaction
-                  across all operations.
-                </p>
+                <p className="text-gray-700 font-serif">{t("cert.cs2Desc")}</p>
               </div>
             </div>
 
@@ -154,13 +155,9 @@ export default function Certifications() {
               <CheckCircle className="w-12 h-12 text-green-700 flex-shrink-0" />
               <div>
                 <h3 className="text-2xl font-display font-bold text-gray-900 mb-2">
-                  Hazard Control
+                  {t("cert.cs3Title")}
                 </h3>
-                <p className="text-gray-700 font-serif">
-                  HACCP protocols identify and eliminate potential hazards at
-                  every stage of production, from collection to packaging,
-                  ensuring product safety.
-                </p>
+                <p className="text-gray-700 font-serif">{t("cert.cs3Desc")}</p>
               </div>
             </div>
           </div>
@@ -171,48 +168,44 @@ export default function Certifications() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-display font-bold text-center text-gray-900 mb-12">
-            Testing & Quality Assurance
+            {t("cert.testingTitle")}
           </h2>
 
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               <div className="p-6 bg-amber-50 rounded-xl border border-amber-200">
                 <h3 className="text-xl font-display font-bold text-gray-900 mb-3">
-                  Microbiological Testing
+                  {t("cert.t1Title")}
                 </h3>
                 <p className="text-gray-700 font-serif text-sm">
-                  Every batch is tested for harmful bacteria and pathogens to
-                  ensure absolute safety and purity.
+                  {t("cert.t1Desc")}
                 </p>
               </div>
 
               <div className="p-6 bg-green-50 rounded-xl border border-green-200">
                 <h3 className="text-xl font-display font-bold text-gray-900 mb-3">
-                  Nutritional Analysis
+                  {t("cert.t2Title")}
                 </h3>
                 <p className="text-gray-700 font-serif text-sm">
-                  Regular analysis confirms the nutritional content and quality
-                  of our milk products.
+                  {t("cert.t2Desc")}
                 </p>
               </div>
 
               <div className="p-6 bg-green-50 rounded-xl border border-green-200">
                 <h3 className="text-xl font-display font-bold text-gray-900 mb-3">
-                  Chemical Testing
+                  {t("cert.t3Title")}
                 </h3>
                 <p className="text-gray-700 font-serif text-sm">
-                  We test for pesticides, heavy metals, and other contaminants
-                  to guarantee purity.
+                  {t("cert.t3Desc")}
                 </p>
               </div>
 
               <div className="p-6 bg-amber-50 rounded-xl border border-amber-200">
                 <h3 className="text-xl font-display font-bold text-gray-900 mb-3">
-                  Sensory Evaluation
+                  {t("cert.t4Title")}
                 </h3>
                 <p className="text-gray-700 font-serif text-sm">
-                  Professional tasting and quality assessment ensure consistent
-                  taste and texture.
+                  {t("cert.t4Desc")}
                 </p>
               </div>
             </div>
@@ -224,35 +217,26 @@ export default function Certifications() {
       <section className="py-20 bg-gradient-to-br from-green-900 to-green-800 text-amber-50">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-display font-bold text-center mb-12">
-            Regulatory Compliance
+            {t("cert.regTitle")}
           </h2>
 
           <div className="max-w-4xl mx-auto space-y-6 font-serif">
-            <p>
-              Rudra Dairy & Farm operates in full compliance with all Indian
-              government regulations and international standards. Our commitment
-              to regulatory excellence ensures that every product meets or exceeds
-              the highest quality benchmarks.
-            </p>
+            <p>{t("cert.regP1")}</p>
 
             <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-amber-200/30">
               <h3 className="font-display font-bold text-lg mb-3">
-                Key Regulatory Bodies
+                {t("cert.regBoxTitle")}
               </h3>
               <ul className="space-y-2 text-sm">
-                <li>✓ Food Safety and Standards Authority of India (FSSAI)</li>
-                <li>✓ Ministry of Commerce & Industry (IEC)</li>
-                <li>✓ Bureau of Indian Standards (BIS)</li>
-                <li>✓ ISO International Standards Organization</li>
-                <li>✓ State Agricultural Department</li>
+                <li>{t("cert.reg1")}</li>
+                <li>{t("cert.reg2")}</li>
+                <li>{t("cert.reg3")}</li>
+                <li>{t("cert.reg4")}</li>
+                <li>{t("cert.reg5")}</li>
               </ul>
             </div>
 
-            <p>
-              We maintain detailed documentation of all certifications,
-              inspection reports, and test results. These records are available
-              for review by partners, customers, and regulatory authorities.
-            </p>
+            <p>{t("cert.regP2")}</p>
           </div>
         </div>
       </section>
@@ -261,47 +245,45 @@ export default function Certifications() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-display font-bold text-center text-gray-900 mb-12">
-            Verify Our Certifications
+            {t("cert.verifyTitle")}
           </h2>
 
           <div className="max-w-3xl mx-auto bg-amber-50 p-8 rounded-xl border border-amber-200">
             <p className="text-gray-700 font-serif mb-6">
-              All our certifications are verifiable and can be confirmed through
-              official channels. We encourage customers and partners to verify
-              our credentials independently.
+              {t("cert.verifyIntro")}
             </p>
 
             <div className="space-y-4">
               <div>
                 <p className="font-display font-bold text-gray-900 mb-2">
-                  FSSAI License Number
+                  {t("cert.verFssai")}
                 </p>
                 <p className="text-gray-600 font-sans font-mono">
-                  [License details available upon request]
+                  {t("cert.verPlaceholder")}
                 </p>
               </div>
 
               <div>
                 <p className="font-display font-bold text-gray-900 mb-2">
-                  Import Export Code (IEC)
+                  {t("cert.verIec")}
                 </p>
                 <p className="text-gray-600 font-sans font-mono">
-                  [IEC details available upon request]
+                  {t("cert.verPlaceholder")}
                 </p>
               </div>
 
               <div>
                 <p className="font-display font-bold text-gray-900 mb-2">
-                  ISO Certificate Number
+                  {t("cert.verIso")}
                 </p>
                 <p className="text-gray-600 font-sans font-mono">
-                  [ISO details available upon request]
+                  {t("cert.verPlaceholder")}
                 </p>
               </div>
             </div>
 
             <p className="text-sm text-gray-600 font-serif mt-6">
-              For detailed certification information, please contact us directly.
+              {t("cert.verNote")}
             </p>
           </div>
         </div>
@@ -311,17 +293,16 @@ export default function Certifications() {
       <section className="py-20 bg-gradient-to-br from-amber-700 to-green-800 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-display font-bold mb-6">
-            Certified Quality You Can Trust
+            {t("cert.ctaTitle")}
           </h2>
           <p className="text-lg font-serif mb-8 max-w-2xl mx-auto">
-            Our certifications are your guarantee of quality, safety, and
-            excellence. Partner with Rudra Dairy & Farm with confidence.
+            {t("cert.ctaText")}
           </p>
           <Button
             asChild
             className="bg-white text-amber-700 hover:bg-amber-50 font-sans text-base h-12 px-8"
           >
-            <Link href="/contact">Request Certification Details</Link>
+            <Link href="/contact">{t("cert.ctaBtn")}</Link>
           </Button>
         </div>
       </section>

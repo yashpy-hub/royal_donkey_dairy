@@ -69,6 +69,7 @@ pnpm remove package-name
 ## Vercel Deployment
 
 Vercel automatically runs:
+
 - **Build**: `pnpm build`
 - **Dev**: `pnpm dev`
 - **Install**: `pnpm install`
@@ -78,6 +79,7 @@ Vercel automatically runs:
 ## Environment Setup
 
 ### Local Development
+
 ```bash
 # Copy environment template
 cp .env.example .env.local
@@ -87,7 +89,9 @@ nano .env.local
 ```
 
 ### Production (Vercel)
+
 Set environment variables in Vercel Dashboard:
+
 - Settings → Environment Variables
 - Add all required variables
 - Redeploy for changes to take effect
@@ -97,23 +101,27 @@ Set environment variables in Vercel Dashboard:
 ## Troubleshooting
 
 ### Clear cache and reinstall
+
 ```bash
 rm -rf node_modules pnpm-lock.yaml
 pnpm install
 ```
 
 ### Clear build cache
+
 ```bash
 rm -rf dist
 pnpm build
 ```
 
 ### Check TypeScript errors
+
 ```bash
 pnpm check
 ```
 
 ### Format code before commit
+
 ```bash
 pnpm format
 ```

@@ -32,7 +32,9 @@ export interface ContactFormData {
  * Send contact form email via EmailJS
  * Sends to primary email: info@rudradairyandfarm.shop
  */
-export const sendContactEmail = async (data: ContactFormData): Promise<boolean> => {
+export const sendContactEmail = async (
+  data: ContactFormData
+): Promise<boolean> => {
   try {
     const templateParams = {
       to_email: ALL_EMAILS,
@@ -162,8 +164,8 @@ export const sendMeetingRequestEmail = async (data: {
       data.mode === "in-person"
         ? "In-person (at office)"
         : data.mode === "video"
-        ? "Video Call"
-        : "Phone Call";
+          ? "Video Call"
+          : "Phone Call";
     const purposeLabel = data.purpose.toUpperCase();
 
     const templateParams = {
