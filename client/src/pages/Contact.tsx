@@ -14,7 +14,7 @@ import {
 import { useState } from "react";
 import { toast } from "sonner";
 import { sendContactEmail } from "@/lib/emailService";
-import { AnalyticsEvents } from "@/lib/analytics";
+import { AnalyticsEvents, trackAdsConversion } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import Seo from "@/components/Seo";
 import { Link } from "wouter";
@@ -71,6 +71,11 @@ export default function Contact() {
 
       if (success) {
         AnalyticsEvents.leadSubmit({
+          business_type: formData.businessType || "unspecified",
+          page: "/contact",
+        });
+        // Google Ads conversion — Submit lead form (fires only on success)
+        trackAdsConversion("AW-11092553327/-BKnCIugo84cEO_cq6kp", {
           business_type: formData.businessType || "unspecified",
           page: "/contact",
         });

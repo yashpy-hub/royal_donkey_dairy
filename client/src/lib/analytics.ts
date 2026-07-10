@@ -32,6 +32,26 @@ export function trackEvent(action: string, params: EventParams = {}): void {
   }
 }
 
+/**
+ * Fire a Google Ads conversion. Unlike trackEvent, this goes ONLY through
+ * gtag (not the GTM dataLayer) so the conversion counts toward the Google Ads
+ * conversion action and never double-fires via a GTM trigger listening for a
+ * generic "conversion" event.
+ */
+export function trackAdsConversion(
+  sendTo: string,
+  params: EventParams = {}
+): void {
+  try {
+    if (typeof window === "undefined") return;
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "conversion", { send_to: sendTo, ...params });
+    }
+  } catch {
+    /* analytics must never break the UI */
+  }
+}
+
 /** GA4 recommended ecommerce-style lead events for B2B tracking. */
 export const AnalyticsEvents = {
   /** Contact / quote form submitted successfully. */
