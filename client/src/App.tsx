@@ -25,6 +25,7 @@ import AppointMeeting from "./pages/AppointMeeting";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import { Analytics } from "@vercel/analytics/react";
 import { I18nProvider } from "./i18n";
 
 function Router() {
@@ -152,6 +153,7 @@ function App() {
         <ThemeProvider defaultTheme="light" switchable>
           <TooltipProvider>
             <Toaster />
+            <Analytics />
             <div className="flex flex-col min-h-screen bg-background text-foreground transition-colors duration-300">
               <Navigation />
               <main className="flex-1">

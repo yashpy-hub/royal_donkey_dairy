@@ -12,12 +12,13 @@ import {
   Loader2,
 } from "lucide-react";
 import { useState } from "react";
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
+import Seo from "@/components/Seo";
 import { toast } from "sonner";
 import { sendContactEmail } from "@/lib/emailService";
 import { AnalyticsEvents, trackAdsConversion } from "@/lib/analytics";
-import { Button } from "@/components/ui/button";
-import Seo from "@/components/Seo";
-import { Link } from "wouter";
+import { logToSheet } from "@/lib/sheetLogger";
 import { BUSINESS } from "@shared/business";
 import { useT } from "@/i18n";
 import { usePageKeywords } from "@/i18n/seoKeywords";
@@ -78,6 +79,17 @@ export default function Contact() {
         trackAdsConversion("AW-11092553327/-BKnCIugo84cEO_cq6kp", {
           business_type: formData.businessType || "unspecified",
           page: "/contact",
+        });
+        // Best-effort backup of the lead to the Google Sheet (tab: gid 1968821310).
+        logToSheet("contact", {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject:
+            formData.subject ||
+            `Inquiry - ${formData.businessType.toUpperCase()}`,
+          businessType: formData.businessType,
+          message: formData.message,
         });
         toast.success(t("products.c_toastSuccess"));
         setFormData({

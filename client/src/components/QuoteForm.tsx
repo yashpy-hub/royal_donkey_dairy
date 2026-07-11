@@ -3,6 +3,7 @@ import { Loader2, Send, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { sendQuoteRequestEmail } from "@/lib/emailService";
 import { AnalyticsEvents } from "@/lib/analytics";
+import { logToSheet } from "@/lib/sheetLogger";
 import { Button } from "@/components/ui/button";
 import { BUSINESS } from "@shared/business";
 
@@ -110,6 +111,18 @@ export default function QuoteForm({
         AnalyticsEvents.quoteSubmit({
           product: form.productInterest || "unspecified",
           country: form.country || "unspecified",
+        });
+        // Best-effort backup of the lead to the Google Sheet (tab: gid 0).
+        logToSheet("quote", {
+          name: form.name,
+          company: form.company,
+          email: form.email,
+          phone: form.phone,
+          country: form.country,
+          productInterest: form.productInterest,
+          quantity: form.quantity,
+          timeline: form.timeline,
+          message: form.message,
         });
         setDone(true);
         toast.success("Quote request sent! We'll reply within 1 business day.");
