@@ -26,6 +26,7 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import { I18nProvider } from "./i18n";
+import { Analytics } from "@vercel/analytics/react";
 
 function Router() {
   const [location] = useLocation();
@@ -160,6 +161,7 @@ function App() {
               <Footer />
               <FloatingWhatsApp />
             </div>
+            <Analytics />
           </TooltipProvider>
         </ThemeProvider>
       </I18nProvider>
