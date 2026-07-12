@@ -4,6 +4,7 @@ import {
   MessageCircle,
   Instagram,
   Facebook,
+  Linkedin,
   MapPin,
   Building2,
   Clock,
@@ -237,12 +238,12 @@ export default function Contact() {
                 {t("products.c_whatsapp")}
               </h3>
               <a
-                href="https://wa.me/919112327322"
+                href="https://wa.me/917057270238"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium text-center block"
               >
-                +91 9112327322
+                +91 70572 70238
               </a>
               <p className="text-sm text-gray-600 dark:text-gray-400 text-center mt-2">
                 {t("products.c_businessWhatsapp")}
@@ -313,6 +314,14 @@ export default function Contact() {
               className="p-3 bg-gradient-to-br from-pink-500 to-orange-500 text-white rounded-full hover:scale-110 transition-transform"
             >
               <Instagram className="w-6 h-6" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/yash-pawar-4a9130421/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-blue-700 text-white rounded-full hover:scale-110 transition-transform"
+            >
+              <Linkedin className="w-6 h-6" />
             </a>
             <a
               href="https://facebook.com/rudradairyandfarm"

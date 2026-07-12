@@ -4,7 +4,7 @@ Premium donkey milk and powder supplier serving B2B, B2C, wholesale, retail, pha
 
 **Website**: [rudradairyandfarm.shop](https://rudradairyandfarm.shop)  
 **Contact**: info@rudradairyandfarm.shop  
-**WhatsApp**: +91 9112327322  
+**WhatsApp**: +91 70572 70238  
 **Trusted Suppliers Since**: 2022
 
 ---
@@ -239,7 +239,7 @@ All pages tested and optimized for mobile-first experience.
 - **Tagline**: Trusted Suppliers Since 2022
 - **Website**: rudradairyandfarm.shop
 - **Email**: info@rudradairyandfarm.shop
-- **WhatsApp**: +91 9112327322
+- **WhatsApp**: +91 70572 70238
 
 ### Products
 
@@ -278,7 +278,7 @@ All pages tested and optimized for mobile-first experience.
 **For inquiries about**:
 
 - Product orders: info@rudradairyandfarm.shop
-- WhatsApp business: +91 9112327322
+- WhatsApp business: +91 70572 70238
 - Website issues: info@rudradairyandfarm.shop
 
 ---

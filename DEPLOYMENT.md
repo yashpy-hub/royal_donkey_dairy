@@ -146,4 +146,4 @@ To rollback to previous version:
 
 **Website**: rudradairyandfarm.shop  
 **Contact**: info@rudradairyandfarm.shop  
-**WhatsApp**: +91 9112327322
+**WhatsApp**: +91 70572 70238

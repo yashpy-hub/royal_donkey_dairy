@@ -32,7 +32,7 @@ export const BUSINESS = {
   },
 
   phone: "+91 9112327322",
-  whatsapp: "https://wa.me/919112327322",
+  whatsapp: "https://wa.me/917057270238",
 
   /** Brand / entity metadata for structured data + knowledge graph. */
   alternateName: "Rudra Dairy and Farms",

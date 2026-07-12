@@ -263,7 +263,7 @@ export default function WhoWeAre() {
               className="border-2 border-amber-700 dark:border-amber-600 text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 font-sans h-12 px-8 transition-all duration-300"
             >
               <a
-                href="https://wa.me/919112327322"
+                href="https://wa.me/917057270238"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -13,7 +13,7 @@ import { AnalyticsEvents } from "@/lib/analytics";
 export default function FloatingWhatsApp() {
   const [isHovered, setIsHovered] = useState(false);
 
-  const whatsappNumber = "919112327322";
+  const whatsappNumber = "917057270238";
   const whatsappMessage =
     "Hello! I'm interested in Rudra Dairy & Farm's donkey milk and powder products.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;

@@ -167,13 +167,13 @@ export default function Footer() {
               <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
                 <MessageCircle className="w-4 h-4" />
                 <a
-                  href="https://wa.me/919112327322"
+                  href="https://wa.me/917057270238"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm"
                   onClick={() => AnalyticsEvents.contactClick("whatsapp")}
                 >
-                  +91 9112327322
+                  +91 70572 70238
                 </a>
               </div>
               <div className="flex items-center gap-2 hover:text-white transition-colors">
@@ -241,11 +241,8 @@ export default function Footer() {
 
         {/* Divider */}
         <div className="border-t border-green-800 dark:border-green-700 pt-8">
-          <div className="flex flex-col md:flex-row justify-center items-center text-center text-amber-100 text-sm gap-2 md:gap-4">
+          <div className="flex justify-center items-center text-center text-amber-100 text-sm">
             <p>{t("footer.rights")}</p>
-            <p className="text-amber-200 text-xs md:mt-0">
-              {t("footer.executive")}
-            </p>
           </div>
         </div>
       </div>

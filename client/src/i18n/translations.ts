@@ -100,7 +100,7 @@ export const translations: Record<Lang, Dict> = {
         "Yes. We serve B2B, private-label, OEM and export partners across the UAE, GCC, EU and South Korea, with full documentation (COA, MSDS, specifications) on every shipment.",
       faq4Q: "How do I request a quote or book a meeting?",
       faq4A:
-        "You can use the contact form, email our three monitored mailboxes, WhatsApp +91 9112327322, or book a business meeting directly through our Appoint a Meeting page.",
+        "You can use the contact form, email our three monitored mailboxes, WhatsApp +91 70572 70238, or book a business meeting directly through our Appoint a Meeting page.",
       ctaTitle: "Ready to discuss your bulk supply?",
       ctaText:
         "Talk to our team about volumes, private label, and export documentation.",
@@ -254,7 +254,7 @@ export const translations: Record<Lang, Dict> = {
         "Large-scale supply for manufacturing, cosmetics, pharmaceutical, and food industries with custom solutions.",
       c_title: "Contact Rudra Dairy & Farm — Bulk Donkey Milk Inquiries",
       c_desc:
-        "Contact Rudra Dairy & Farm for bulk donkey milk and powder quotes, private label, and B2B partnerships. Email info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com or WhatsApp +91 9112327322.",
+        "Contact Rudra Dairy & Farm for bulk donkey milk and powder quotes, private label, and B2B partnerships. Email info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com or WhatsApp +91 70572 70238.",
       c_getInTouch: "Get in Touch",
       c_sub:
         "Contact Rudra Dairy & Farm for donkey milk and powder inquiries, partnerships, and business opportunities.",
@@ -1148,7 +1148,7 @@ export const translations: Record<Lang, Dict> = {
         "Buy FSSAI & ISO certified donkey milk powder and fresh donkey milk in bulk from Rudra Dairy & Farm. Pack sizes 500ml to bulk tanker. 1000+ kg powder in 15 days. Private label & OEM available.",
       contactTitle: "Contact Rudra Dairy & Farm — Bulk Donkey Milk Inquiries",
       contactDesc:
-        "Contact Rudra Dairy & Farm for bulk donkey milk and powder quotes, private label, and B2B partnerships. Email info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com or WhatsApp +91 9112327322.",
+        "Contact Rudra Dairy & Farm for bulk donkey milk and powder quotes, private label, and B2B partnerships. Email info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com or WhatsApp +91 70572 70238.",
       appointTitle:
         "Appoint a Meeting — Business Collaboration | Rudra Dairy & Farm",
       appointDesc:
@@ -1247,7 +1247,7 @@ export const translations: Record<Lang, Dict> = {
         "Oui. Nous servons les partenaires B2B, marque privée, OEM et export des ÉAU, du CCG, de l'UE et de la Corée du Sud, avec une documentation complète (COA, MSDS, spécifications) pour chaque expédition.",
       faq4Q: "Comment demander un devis ou réserver une réunion ?",
       faq4A:
-        "Vous pouvez utiliser le formulaire de contact, écrire à nos trois adresses e-mail, WhatsApp +91 9112327322, ou réserver une réunion commerciale via notre page Réserver une réunion.",
+        "Vous pouvez utiliser le formulaire de contact, écrire à nos trois adresses e-mail, WhatsApp +91 70572 70238, ou réserver une réunion commerciale via notre page Réserver une réunion.",
       ctaTitle: "Prêt à discuter de votre approvisionnement en vrac ?",
       ctaText:
         "Parlez à notre équipe des volumes, de la marque privée et de l'export.",
@@ -1402,7 +1402,7 @@ export const translations: Record<Lang, Dict> = {
       c_title:
         "Contacter Rudra Dairy & Farm — Demandes de lait d'ânesse en vrac",
       c_desc:
-        "Contactez Rudra Dairy & Farm pour devis lait d'ânesse et poudre en vrac, marque privée et partenariats B2B. Email info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com ou WhatsApp +91 9112327322.",
+        "Contactez Rudra Dairy & Farm pour devis lait d'ânesse et poudre en vrac, marque privée et partenariats B2B. Email info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com ou WhatsApp +91 70572 70238.",
       c_getInTouch: "Nous contacter",
       c_sub:
         "Contactez Rudra Dairy & Farm pour demandes de lait d'ânesse et poudre, partenariats et opportunités commerciales.",
@@ -2313,7 +2313,7 @@ export const translations: Record<Lang, Dict> = {
       contactTitle:
         "Contacter Rudra Dairy & Farm — Demandes de lait d'ânesse en vrac",
       contactDesc:
-        "Contactez Rudra Dairy & Farm pour devis de lait et poudre en vrac, marque privée et partenariats B2B. Écrivez à info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com ou WhatsApp +91 9112327322.",
+        "Contactez Rudra Dairy & Farm pour devis de lait et poudre en vrac, marque privée et partenariats B2B. Écrivez à info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com ou WhatsApp +91 70572 70238.",
       appointTitle:
         "Réserver une réunion — Collaboration commerciale | Rudra Dairy & Farm",
       appointDesc:
@@ -2413,7 +2413,7 @@ export const translations: Record<Lang, Dict> = {
         "Sì. Serviamo partner B2B, private label, OEM ed export negli UAE, GCC, UE e Corea del Sud, con documentazione completa (COA, MSDS, specifiche) per ogni spedizione.",
       faq4Q: "Come richiedo un preventivo o prenoto un incontro?",
       faq4A:
-        "Puoi usare il modulo contatti, scriverci ai tre indirizzi e-mail, WhatsApp +91 9112327322, o prenotare un incontro commerciale dalla nostra pagina Prenota un incontro.",
+        "Puoi usare il modulo contatti, scriverci ai tre indirizzi e-mail, WhatsApp +91 70572 70238, o prenotare un incontro commerciale dalla nostra pagina Prenota un incontro.",
       ctaTitle: "Pronto a parlare del tuo approvvigionamento in ingrosso?",
       ctaText: "Parla con il nostro team di volumi, private label ed export.",
       ctaButton: "Prenota un incontro",
@@ -2565,7 +2565,7 @@ export const translations: Record<Lang, Dict> = {
         "Fornitura su larga scala per produzione, cosmetica, farmaceutica e industria alimentare con soluzioni su misura.",
       c_title: "Contatta Rudra Dairy & Farm — Richieste latte d'asina ingrosso",
       c_desc:
-        "Contatta Rudra Dairy & Farm per preventivi latte d'asina e polvere ingrosso, private label e partnership B2B. Email info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com o WhatsApp +91 9112327322.",
+        "Contatta Rudra Dairy & Farm per preventivi latte d'asina e polvere ingrosso, private label e partnership B2B. Email info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com o WhatsApp +91 70572 70238.",
       c_getInTouch: "Contattaci",
       c_sub:
         "Contatta Rudra Dairy & Farm per richieste di latte d'asina e polvere, partnership e opportunità commerciali.",
@@ -3470,7 +3470,7 @@ export const translations: Record<Lang, Dict> = {
       contactTitle:
         "Contatta Rudra Dairy & Farm — Richieste latte d'asina ingrosso",
       contactDesc:
-        "Contatta Rudra Dairy & Farm per preventivi di latte e polvere in ingrosso, private label e partnership B2B. Scrivi a info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com o WhatsApp +91 9112327322.",
+        "Contatta Rudra Dairy & Farm per preventivi di latte e polvere in ingrosso, private label e partnership B2B. Scrivi a info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com o WhatsApp +91 70572 70238.",
       appointTitle:
         "Prenota un incontro — Collaborazione commerciale | Rudra Dairy & Farm",
       appointDesc:
@@ -3569,7 +3569,7 @@ export const translations: Record<Lang, Dict> = {
         "Ja. Wir beliefern B2B-, Private-Label-, OEM- und Exportpartner in den VAE, im GCC, in der EU und in Südkorea, mit vollständiger Dokumentation (COA, MSDS, Spezifikationen) für jede Lieferung.",
       faq4Q: "Wie fordere ich ein Angebot an oder buche einen Termin?",
       faq4A:
-        "Sie können das Kontaktformular nutzen, an unsere drei E-Mail-Postfächer schreiben, WhatsApp +91 9112327322, oder einen Geschäftstermin direkt über unsere Seite Termin buchen vereinbaren.",
+        "Sie können das Kontaktformular nutzen, an unsere drei E-Mail-Postfächer schreiben, WhatsApp +91 70572 70238, oder einen Geschäftstermin direkt über unsere Seite Termin buchen vereinbaren.",
       ctaTitle: "Bereit, Ihre Großbelieferung zu besprechen?",
       ctaText:
         "Sprechen Sie mit unserem Team über Mengen, Private Label und Export.",
@@ -3722,7 +3722,7 @@ export const translations: Record<Lang, Dict> = {
         "Großflächige Belieferung für Produktion, Kosmetik, Pharma und Lebensmittel mit maßgeschneiderten Lösungen.",
       c_title: "Rudra Dairy & Farm kontaktieren — Großanfragen Eselmilch",
       c_desc:
-        "Kontaktieren Sie Rudra Dairy & Farm für Großangebote Eselmilch und -pulver, Private Label und B2B-Partnerschaften. E-Mail info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com oder WhatsApp +91 9112327322.",
+        "Kontaktieren Sie Rudra Dairy & Farm für Großangebote Eselmilch und -pulver, Private Label und B2B-Partnerschaften. E-Mail info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com oder WhatsApp +91 70572 70238.",
       c_getInTouch: "Kontakt aufnehmen",
       c_sub:
         "Kontaktieren Sie Rudra Dairy & Farm zu Eselmilch- und Pulveranfragen, Partnerschaften und Geschäftsmöglichkeiten.",
@@ -4622,7 +4622,7 @@ export const translations: Record<Lang, Dict> = {
         "Kaufen Sie zertifiziertes Eselmilchpulver und frische Eselmilch (FSSAI & ISO) im Großhandel bei Rudra Dairy & Farm. Gebinde von 500 ml bis Großtank. 1000+ kg Pulver in 15 Tagen. Private Label & OEM verfügbar.",
       contactTitle: "Rudra Dairy & Farm kontaktieren — Eselmilch-Großanfragen",
       contactDesc:
-        "Kontaktieren Sie Rudra Dairy & Farm für Großhandelsangebote zu Eselmilch und -pulver, Private Label und B2B-Partnerschaften. Schreiben Sie an info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com oder WhatsApp +91 9112327322.",
+        "Kontaktieren Sie Rudra Dairy & Farm für Großhandelsangebote zu Eselmilch und -pulver, Private Label und B2B-Partnerschaften. Schreiben Sie an info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com oder WhatsApp +91 70572 70238.",
       appointTitle:
         "Termin buchen — Geschäftskollaboration | Rudra Dairy & Farm",
       appointDesc:

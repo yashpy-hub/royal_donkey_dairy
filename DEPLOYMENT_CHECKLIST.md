@@ -26,7 +26,7 @@
 - [ ] Company name: "Rudra Dairy & Farm"
 - [ ] Tagline: "Trusted Suppliers Since 2022"
 - [ ] Primary email: info@rudradairyandfarm.shop
-- [ ] WhatsApp number: +91 9112327322
+- [ ] WhatsApp number: +91 70572 70238
 - [ ] Website URL: rudradairyandfarm.shop
 - [ ] All certifications mentioned (FSSAI, ISO, IEC, HACCP)
 - [ ] Production capacity correct (100+ liters, 1000+ kg)
