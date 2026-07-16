@@ -31,8 +31,16 @@ export const BUSINESS = {
     ],
   },
 
+  // Telephone / call line (also used in tel: links and schema.org).
   phone: "+91 9112327322",
+  // tel: href form — digits only, so mobile "Call" buttons dial correctly.
+  phoneDial: "tel:+919112327322",
+  // WhatsApp number (digits only) and full wa.me deep link.
+  whatsappNumber: "917057270238",
   whatsapp: "https://wa.me/917057270238",
+
+  /** Bulk-quote Google Form (embedded in-page on the Request Quote page). Paste the published forms.gle / viewform URL here. */
+  bulkQuoteFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSe9lUVTW1zQLcEp9RpYpiZle0_kwcodnpJKbrYsC495tQb2Sg/viewform",
 
   /** Brand / entity metadata for structured data + knowledge graph. */
   alternateName: "Rudra Dairy and Farms",

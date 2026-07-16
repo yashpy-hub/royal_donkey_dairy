@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Mail, Phone, Instagram, Facebook, MessageCircle } from "lucide-react";
 import { useT } from "@/i18n";
 import { AnalyticsEvents } from "@/lib/analytics";
+import { BUSINESS } from "@shared/business";
 
 /**
  * Footer Component - Rudra Dairy & Farm
@@ -167,7 +168,7 @@ export default function Footer() {
               <div className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
                 <MessageCircle className="w-4 h-4" />
                 <a
-                  href="https://wa.me/917057270238"
+                  href={BUSINESS.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm"

@@ -117,6 +117,9 @@ export default function Certifications() {
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663058292192/3D4mTBAV8JSrjdMbxwumwS/certifications-badge-K5VPuPCUmYXRn8v3vE2TEc.webp"
               alt={t("cert.badgeAlt")}
+              width={384}
+              height={384}
+              decoding="async"
               className="w-full max-w-sm h-auto rounded-xl shadow-xl"
             />
           </div>

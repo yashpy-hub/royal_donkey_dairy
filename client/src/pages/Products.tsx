@@ -15,6 +15,7 @@ import Seo from "@/components/Seo";
 import { AnalyticsEvents } from "@/lib/analytics";
 import { useT } from "@/i18n";
 import { usePageKeywords } from "@/i18n/seoKeywords";
+import { BUSINESS } from "@shared/business";
 
 /**
  * Products Page - Rudra Dairy & Farm
@@ -517,7 +518,7 @@ export default function Products() {
               className="border-2 border-white text-white hover:bg-white/10 font-sans h-12 px-8 transition-all duration-300"
             >
               <a
-                href="https://wa.me/917057270238"
+                href={BUSINESS.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
               >

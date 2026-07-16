@@ -84,7 +84,7 @@ export default function Markets() {
     },
     usa: {
       title: t("mkt.m3Name"),
-      description: "Growing wellness and supplement industry",
+      description: "Growing health-product and supplement industry",
       regulations: "FDA Compliance, FSSAI, ISO Standards",
       logistics: "Port of Los Angeles, New York",
       contact: "US distributor partnerships available",

@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { BUSINESS } from "@shared/business";
 
 type ConversionProps = {
   moq?: string;
@@ -18,7 +19,7 @@ export default function ConversionBlock({
   markets = "UAE/GCC, EU, South Korea, Japan",
   ctaLabel = "Request Quotation",
 }: ConversionProps) {
-  const whatsapp = "https://wa.me/917057270238";
+  const whatsapp = BUSINESS.whatsapp;
   const email = "mailto:info@rudradairyandfarm.shop";
   return (
     <section className="py-10 px-4 bg-orange-50 dark:bg-slate-900 border-t border-orange-100">

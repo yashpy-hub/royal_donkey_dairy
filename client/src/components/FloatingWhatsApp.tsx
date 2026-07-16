@@ -1,6 +1,7 @@
 import { MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { AnalyticsEvents } from "@/lib/analytics";
+import { BUSINESS } from "@shared/business";
 
 /**
  * FloatingWhatsApp Component
@@ -13,7 +14,7 @@ import { AnalyticsEvents } from "@/lib/analytics";
 export default function FloatingWhatsApp() {
   const [isHovered, setIsHovered] = useState(false);
 
-  const whatsappNumber = "917057270238";
+  const whatsappNumber = BUSINESS.whatsappNumber;
   const whatsappMessage =
     "Hello! I'm interested in Rudra Dairy & Farm's donkey milk and powder products.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;

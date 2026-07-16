@@ -4,6 +4,7 @@ import { Award, Zap, Heart, TrendingUp, Users, Globe } from "lucide-react";
 import Seo from "@/components/Seo";
 import { useT } from "@/i18n";
 import { usePageKeywords } from "@/i18n/seoKeywords";
+import { BUSINESS } from "@shared/business";
 
 /**
  * Who We Are Page - Rudra Dairy & Farm
@@ -263,7 +264,7 @@ export default function WhoWeAre() {
               className="border-2 border-amber-700 dark:border-amber-600 text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 font-sans h-12 px-8 transition-all duration-300"
             >
               <a
-                href="https://wa.me/917057270238"
+                href={BUSINESS.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
               >

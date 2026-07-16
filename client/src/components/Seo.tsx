@@ -218,7 +218,7 @@ export default function Seo({
     upsertMeta(
       "meta[property='og:image:height']",
       { property: "og:image:height" },
-      "1200"
+      "630"
     );
 
     // Twitter

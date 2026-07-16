@@ -72,6 +72,17 @@ export default function Navigation() {
                 {t("common.getInTouch")}
               </Link>
             </Button>
+            <Button
+              asChild
+              className="bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-colors ring-2 ring-green-300/60"
+            >
+              <Link
+                href="/request-quote"
+                onClick={() => AnalyticsEvents.ctaClick("bulk_quote_nav")}
+              >
+                {t("nav.requestQuote")}
+              </Link>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -110,9 +121,23 @@ export default function Navigation() {
             >
               <Link
                 href="/contact"
-                onClick={() => AnalyticsEvents.ctaClick("get_in_touch")}
+                onClick={() => setIsOpen(false)}
               >
                 {t("common.getInTouch")}
+              </Link>
+            </Button>
+            <Button
+              asChild
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-bold mt-2 rounded-lg"
+            >
+              <Link
+                href="/request-quote"
+                onClick={() => {
+                  setIsOpen(false);
+                  AnalyticsEvents.ctaClick("bulk_quote_nav");
+                }}
+              >
+                {t("nav.requestQuote")}
               </Link>
             </Button>
           </div>

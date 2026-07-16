@@ -90,18 +90,24 @@
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%B4%3C/text%3E%3C/svg%3E"
     />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link
       rel="preconnect"
       href="https://d2xsxph8kpxj0f.cloudfront.net"
       crossorigin
     />
+
+    <!-- Preload the hero (LCP) image so it starts downloading immediately,
+         in parallel with the JS — avoids a late discovery waterfall. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lora:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      href="https://d2xsxph8kpxj0f.cloudfront.net/310519663058292192/3D4mTBAV8JSrjdMbxwumwS/hero-donkey-farm-WNeFSXPznUd274CRQkg4zZ.webp"
     />
+
+    <!-- Fonts are now self-hosted via Fontsource (see src/main.tsx) and
+         bundled into our own origin — no Google Fonts request at all. -->
   </head>
 
   <body>

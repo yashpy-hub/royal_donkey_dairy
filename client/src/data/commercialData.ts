@@ -562,7 +562,7 @@ export const INDUSTRY_PAGES: CommercialEntry[] = [
     sections: [
       {
         heading: "Nutraceutical Applications",
-        body: "Donkey milk powder is used in nutraceutical capsules and functional foods. Its gentle, hypoallergenic reputation makes it attractive for premium supplement lines. We supply food-grade powder with the documentation supplement brands need.",
+        body: "Donkey milk powder is used in nutraceutical capsules and functional foods. Its gentle composition makes it attractive for premium supplement lines. We supply food-grade powder with the documentation supplement brands need.",
       },
       {
         heading: "Formats",

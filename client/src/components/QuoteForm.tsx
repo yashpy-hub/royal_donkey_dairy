@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Loader2, Send, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { sendQuoteRequestEmail } from "@/lib/emailService";
-import { AnalyticsEvents } from "@/lib/analytics";
+import { AnalyticsEvents, trackAdsConversion } from "@/lib/analytics";
 import { logToSheet } from "@/lib/sheetLogger";
 import { Button } from "@/components/ui/button";
 import { BUSINESS } from "@shared/business";
@@ -112,6 +112,11 @@ export default function QuoteForm({
           product: form.productInterest || "unspecified",
           country: form.country || "unspecified",
         });
+        // Record a Google Ads conversion so smart bidding can optimize.
+        trackAdsConversion("AW-11092553327/-BKnCIugo84cEO_cq6kp", {
+          product: form.productInterest || "unspecified",
+          country: form.country || "unspecified",
+        });
         // Best-effort backup of the lead to the Google Sheet (tab: gid 0).
         logToSheet("quote", {
           name: form.name,
@@ -150,7 +155,7 @@ export default function QuoteForm({
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a
-              href="https://wa.me/917057270238"
+              href={BUSINESS.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
               className="px-5 py-3 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700"

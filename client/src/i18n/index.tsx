@@ -9,6 +9,24 @@ import { DEFAULT_LANG, isLang, LANG_STORAGE_KEY, type Lang } from "./languages";
 
 type Dict = Record<string, any>;
 
+// Per-language dictionaries are code-split so only the active language is
+// downloaded. The old single file held all 4 languages (~243 KB); a single
+// language is ~60 KB. English (the default + most visitors) is the one kept
+// in the entry chunk so first paint never waits on a network fetch — other
+// languages lazy-load on first use and are cached after.
+import enDict from "./translations/en";
+const dictLoaders: Record<Lang, Dict | (() => Promise<Dict>)> = {
+  en: enDict,
+  fr: () => import("./translations/fr").then((m) => m.default),
+  it: () => import("./translations/it").then((m) => m.default),
+  de: () => import("./translations/de").then((m) => m.default),
+};
+
+async function getDict(lang: Lang): Promise<Dict> {
+  const d = dictLoaders[lang];
+  return typeof d === "function" ? await (d as () => Promise<Dict>)() : d;
+}
+
 interface I18nContextValue {
   lang: Lang;
   setLang: (l: Lang) => void;
@@ -17,9 +35,10 @@ interface I18nContextValue {
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
-/** Read the initial language from (in priority order):
+/**
+ * Read the initial language from (in priority order):
  *  1. ?lang=xx query param (so Google/Bing can crawl distinct language URLs)
- *  2. localStorage (remembered choice from a previous visit)
+ *  2. localStorage (rememered choice from a previous visit)
  *  3. browser navigator.language
  *  4. English default
  */
@@ -39,9 +58,6 @@ function getInitialLang(): Lang {
   return DEFAULT_LANG;
 }
 
-// Lazy-loaded so the heavy dictionary only loads when the provider mounts.
-import { translations } from "./translations";
-
 function resolve(dict: Dict, path: string): string | undefined {
   return path.split(".").reduce<any>((acc, key) => {
     if (acc && typeof acc === "object" && key in acc) return acc[key];
@@ -51,6 +67,24 @@ function resolve(dict: Dict, path: string): string | undefined {
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>(getInitialLang);
+  // The resolved dictionary for the active language (English is sync; others
+  // populate after their chunk loads, falling back to English until then).
+  const [dict, setDict] = useState<Dict>(enDict);
+
+  // Load (and switch to) the correct language dictionary.
+  useEffect(() => {
+    let cancelled = false;
+    if (lang === "en") {
+      setDict(enDict);
+      return;
+    }
+    getDict(lang).then((d) => {
+      if (!cancelled) setDict(d);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang]);
 
   useEffect(() => {
     window.localStorage.setItem(LANG_STORAGE_KEY, lang);
@@ -72,8 +106,8 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
 
   const t = useCallback(
     (path: string, vars?: Record<string, string | number>) => {
-      const en = resolve(translations.en, path);
-      const localized = resolve(translations[lang] ?? translations.en, path);
+      const localized = resolve(dict, path);
+      const en = resolve(enDict, path);
       let value: string = localized ?? en ?? path;
       if (vars) {
         for (const [k, v] of Object.entries(vars)) {
@@ -82,7 +116,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
       }
       return value;
     },
-    [lang]
+    [dict]
   );
 
   return (

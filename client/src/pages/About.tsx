@@ -4,6 +4,7 @@ import { Instagram, Facebook, Mail, Phone, Linkedin } from "lucide-react";
 import Seo from "@/components/Seo";
 import { useT } from "@/i18n";
 import { usePageKeywords } from "@/i18n/seoKeywords";
+import { BUSINESS } from "@shared/business";
 
 /**
  * About Page - Founder Profile
@@ -73,8 +74,12 @@ export default function About() {
             <div className="flex justify-center">
               <div className="relative">
                 <img
-                  src="/founder-yash.png"
+                  src="/founder-yash.webp"
                   alt={t("abt.imgAlt")}
+                  width={800}
+                  height={800}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full max-w-md h-auto rounded-2xl shadow-2xl"
                 />
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/10 to-transparent" />
@@ -110,10 +115,10 @@ export default function About() {
                   <div className="flex items-center gap-3">
                     <Phone className="w-5 h-5 text-amber-700" />
                     <a
-                      href="tel:+919****4327"
+                      href={BUSINESS.phoneDial}
                       className="text-amber-700 hover:text-amber-800 font-sans"
                     >
-                      +91 965714327
+                      {BUSINESS.phone}
                     </a>
                   </div>
 

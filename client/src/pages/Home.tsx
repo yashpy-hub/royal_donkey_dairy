@@ -528,7 +528,7 @@ export default function Home() {
               className="border-2 border-white text-white hover:bg-white/10 font-semibold h-12 px-8 rounded-lg transition-colors"
             >
               <a
-                href="https://wa.me/917057270238"
+                href={BUSINESS.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
               >

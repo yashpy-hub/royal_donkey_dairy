@@ -238,7 +238,7 @@ export default function Contact() {
                 {t("products.c_whatsapp")}
               </h3>
               <a
-                href="https://wa.me/917057270238"
+                href={BUSINESS.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium text-center block"
@@ -294,10 +294,10 @@ export default function Contact() {
                 {t("products.c_phone")}
               </h3>
               <a
-                href="tel:+919112327322"
+                href={BUSINESS.phoneDial}
                 className="text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-center block"
               >
-                +91 9112327322
+                {BUSINESS.phone}
               </a>
               <p className="text-sm text-gray-600 dark:text-gray-400 text-center mt-2">
                 {t("products.c_businessHours")}

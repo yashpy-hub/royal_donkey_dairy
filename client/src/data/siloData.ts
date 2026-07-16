@@ -27,7 +27,7 @@ export const SUPPORTING_PAGES: CommercialEntry[] = [
       },
       {
         heading: "Why It Matters for Formulators",
-        body: "Gentle drying preserves the native protein and lactose fractions associated with donkey milk's skin-conditioning properties, giving formulators a consistent, reproducible ingredient.",
+        body: "Gentle drying preserves the native protein and lactose fractions, giving formulators a consistent, reproducible ingredient.",
       },
     ],
     specs: [
@@ -653,7 +653,7 @@ export const SUPPORTING_PAGES: CommercialEntry[] = [
     sections: [
       {
         heading: "Benefits",
-        body: "Creamy lather, skin-conditioning proteins and a premium 'donkey milk' claim that differentiates bars on shelf.",
+        body: "Creamy lather and proteins that differentiate bars on shelf as a premium 'donkey milk' product.",
       },
     ],
   },
