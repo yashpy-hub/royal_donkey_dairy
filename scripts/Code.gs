@@ -78,6 +78,47 @@ function appendRow(type, data) {
   sheet.appendRow(row);
 }
 
+/**
+ * Email-notify on every entry — server-side (Google), independent of the
+ * website's EmailJS call. This guarantees you get a mail even if the browser
+ * EmailJS request fails. Best-effort: a mail error must never break the sheet
+ * write, so it is wrapped in try/catch.
+ *
+ * Recipients: every active Rudra Dairy & Farm mailbox (kept in sync with
+ * shared/business.ts). If you change the addresses there, update this list too.
+ */
+function notifyByEmail(type, data) {
+  const TO =
+    "info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com";
+  const typeLabel =
+    type === "quote"
+      ? "Quote Request"
+      : type === "contact"
+        ? "Contact Inquiry"
+        : type;
+  const subject = "[RDF Lead] New " + typeLabel + " from " + (data.name || "Unknown");
+
+  let body = "New " + typeLabel + " received via rudradairyandfarm.shop\n";
+  body += "==========================================\n\n";
+  for (const k in data) {
+    if (Object.prototype.hasOwnProperty.call(data, k)) {
+      const label = k.charAt(0).toUpperCase() + k.slice(1);
+      body += label + ": " + (data[k] || "-") + "\n";
+    }
+  }
+  body += "\n------------------------------------------\n";
+  body += "Received at: " + new Date().toString() + "\n";
+  body += "Automated notification from the Rudra Dairy & Farm lead logger.\n";
+
+  try {
+    GmailApp.sendEmail(TO, subject, body);
+    Logger.log("notifyByEmail: sent for " + type);
+  } catch (e) {
+    // Email is best-effort — never let a mail failure break the sheet write.
+    Logger.log("notifyByEmail failed: " + e);
+  }
+}
+
 function doPost(e) {
   try {
     if (!e || !e.postData || !e.postData.contents) {
@@ -88,6 +129,8 @@ function doPost(e) {
       throw new Error("Invalid payload shape");
     }
     appendRow(payload.type, payload.data);
+    // Notify by email (best-effort, server-side). Runs after the row is saved.
+    notifyByEmail(payload.type, payload.data);
     return ContentService.createTextOutput(
       JSON.stringify({ ok: true })
     ).setMimeType(ContentService.MimeType.JSON);
