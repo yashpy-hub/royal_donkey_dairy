@@ -13,7 +13,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { useState } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import Seo from "@/components/Seo";
 import { toast } from "sonner";
@@ -32,6 +32,7 @@ import { usePageKeywords } from "@/i18n/seoKeywords";
 export default function Contact() {
   const t = useT();
   const kw = usePageKeywords();
+  const [, setLocation] = useLocation();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -101,6 +102,7 @@ export default function Contact() {
           businessType: "b2b",
           message: "",
         });
+        setLocation("/thank-you?type=contact");
       } else {
         toast.error(t("products.c_toastFail"));
       }

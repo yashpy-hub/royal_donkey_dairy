@@ -35,14 +35,16 @@ export async function logToSheet(
     return;
   }
 
+  // The Apps Script (scripts/Code.gs v4) reads fields FLAT off the parsed
+  // body (data.name, data.company, data.volume, data.destination, …), so we
+  // spread the row fields to the top level alongside `type`. Unknown keys
+  // (source/business/submittedAt) are ignored by the script.
   const payload = {
     type,
-    data: {
-      ...data,
-      source: "website",
-      business: BUSINESS.name,
-      submittedAt: new Date().toISOString(),
-    },
+    ...data,
+    source: "website",
+    business: BUSINESS.name,
+    submittedAt: new Date().toISOString(),
   };
 
   try {

@@ -12,6 +12,7 @@ import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { I18nProvider } from "./i18n";
+import { EntitySeo } from "./components/Seo";
 
 // The landing page is eager-loaded (no Suspense waterfall) for the best LCP —
 // it's the most-visited route, so it ships in the entry chunk. Every other
@@ -34,6 +35,7 @@ const DownloadCenter = lazy(() => import("./pages/DownloadCenter"));
 const Eeat = lazy(() => import("./pages/Eeat"));
 const AppointMeeting = lazy(() => import("./pages/AppointMeeting"));
 const RequestQuote = lazy(() => import("./pages/RequestQuote"));
+const ThankYou = lazy(() => import("./pages/ThankYou"));
 
 function Router() {
   const [location] = useLocation();
@@ -149,6 +151,7 @@ function Router() {
           )}
         </Route>
         <Route path="/404" component={NotFound} />
+        <Route path="/thank-you" component={ThankYou} />
         {/* Final fallback route */}
         <Route component={NotFound} />
       </Switch>
@@ -163,6 +166,7 @@ function App() {
         <ThemeProvider defaultTheme="light" switchable>
           <TooltipProvider>
             <Toaster />
+            <EntitySeo />
             <Analytics />
             <SpeedInsights />
             <div className="flex flex-col min-h-screen bg-background text-foreground transition-colors duration-300">

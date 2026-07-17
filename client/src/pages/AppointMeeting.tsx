@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import {
   CalendarCheck,
   Mail,
@@ -15,6 +15,7 @@ import {
 import { toast } from "sonner";
 import { sendMeetingRequestEmail } from "@/lib/emailService";
 import { AnalyticsEvents } from "@/lib/analytics";
+import { trackAdsConversion } from "@/lib/analytics";
 import { BUSINESS } from "@shared/business";
 import Seo from "@/components/Seo";
 import { useT } from "@/i18n";
@@ -27,6 +28,7 @@ import { useT } from "@/i18n";
  */
 export default function AppointMeeting() {
   const t = useT();
+  const [, setLocation] = useLocation();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -84,6 +86,11 @@ export default function AppointMeeting() {
           purpose: formData.purpose || "unspecified",
           page: "/appoint-meeting",
         });
+        // Google Ads conversion — fires only on a successful meeting request.
+        trackAdsConversion("AW-11092553327/-BKnCIugo84cEO_cq6kp", {
+          purpose: formData.purpose || "unspecified",
+          page: "/appoint-meeting",
+        });
         toast.success(t("products.m_toastSuccess"));
         setFormData({
           name: "",
@@ -96,6 +103,7 @@ export default function AppointMeeting() {
           purpose: "b2b",
           message: "",
         });
+        setLocation("/thank-you?type=meeting");
       } else {
         toast.error(t("products.m_toastFail"));
       }

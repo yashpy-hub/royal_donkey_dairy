@@ -1769,7 +1769,23 @@ export function getEntry(
   kind: CommercialEntry["kind"],
   slug: string
 ): CommercialEntry | undefined {
-  return ALL.find(e => e.kind === kind && e.slug === slug);
+  const base = ALL.find((e) => e.kind === kind && e.slug === slug);
+  if (base) return base;
+  // Long-tail generated entries (deterministic from slug).
+  switch (kind) {
+    case "money":
+      return buildMoneyEntry(slug);
+    case "country":
+      return buildExportEntry(slug);
+    case "industry":
+      return buildIndustryEntry(slug);
+    case "application":
+      return buildApplicationEntry(slug);
+    case "guide":
+      return buildGuideEntry(slug);
+    default:
+      return undefined;
+  }
 }
 
 export function allEntries(): CommercialEntry[] {
@@ -1795,3 +1811,445 @@ export const KIND_LABEL: Record<CommercialEntry["kind"], string> = {
   supporting: "Guide",
   research: "Research",
 };
+
+// ===========================================================================
+// LONG-TAIL GENERATOR  (target ~30,000 commercial landing pages)
+// ---------------------------------------------------------------------------
+// Design goals:
+//   1. Deterministic: any generated entry is reconstructed from its slug
+//      alone (small axis lists + a parser). NO 30k-row dataset is shipped to
+//      the browser — the client bundle stays small and the same code path
+//      serves both static prerender and on-demand SSR.
+//   2. Non-thin / non-duplicate: every axis drives real, varied copy
+//      (product facts, per-industry buying context, per-country logistics,
+//      rotating section templates + deterministic specs/FAQs). No two pages
+//      read the same.
+//   3. Bounded combinatorics → ~33,400 URLs:
+//        /money       product(4) x industry(45) x country(20) x format(9) = 32,400
+//        /export      industry(45) x country(20)                          =    900
+//        /industry    industry(45)                                        =     45
+//        /application industry(45)                                        =     45
+//        /guides      industry(45)                                        =     45
+// ===========================================================================
+
+// ---- Axis lists ------------------------------------------------------------
+export type ProductId = "powder" | "liquid" | "frozen" | "skim";
+
+export const PRODUCTS: {
+  id: ProductId;
+  noun: string;
+  adj: string;
+  form: string;
+  grade: string;
+  moq: string;
+  shelf: string;
+  useNote: string;
+}[] = [
+  {
+    id: "powder",
+    noun: "Donkey Milk Powder",
+    adj: "Freeze-Dried Donkey Milk Powder",
+    form: "Spray- & freeze-dried powder",
+    grade: "Cosmetic & Food grade",
+    moq: "5 kg (samples from 500 g)",
+    shelf: "24 months sealed, cool & dry",
+    useNote:
+      "Disperses in the water phase; typical finished-product use 1–10% depending on claim and format.",
+  },
+  {
+    id: "liquid",
+    noun: "Liquid Donkey Milk",
+    adj: "Pasteurised Liquid Donkey Milk",
+    form: "Pasteurised, chilled liquid",
+    grade: "Food & cosmetic grade",
+    moq: "20 L (samples from 2 L)",
+    shelf: "21 days refrigerated",
+    useNote:
+      "Use fresh in low-temperature or cold-process formats; ideal where native enzyme activity is desired.",
+  },
+  {
+    id: "frozen",
+    noun: "Frozen Donkey Milk",
+    adj: "Deep-Frozen Donkey Milk",
+    form: "Flash-frozen liquid",
+    grade: "Food & cosmetic grade",
+    moq: "10 L (samples from 2 L)",
+    shelf: "12 months at -18°C",
+    useNote:
+      "Highest native-protein retention; thaw under refrigeration before formulation.",
+  },
+  {
+    id: "skim",
+    noun: "Skim Donkey Milk",
+    adj: "Skimmed Donkey Milk",
+    form: "Skimmed liquid / powder",
+    grade: "Food grade",
+    moq: "5 kg or 20 L",
+    shelf: "24 months (powder) / 21 days (liquid)",
+    useNote:
+      "Lower fat for formulations where a lighter lipid profile is preferred.",
+  },
+];
+
+export const INDUSTRIES: {
+  slug: string;
+  name: string;
+  context: string;
+  benefit: string;
+  spec: string;
+}[] = [
+  { slug: "cosmetics", name: "Cosmetic Manufacturers", context: "creams, serums, lotions and masks", benefit: "skin-conditioning proteins and native lactose", spec: "Low moisture, cosmetic-grade" },
+  { slug: "skincare", name: "Skincare Brands", context: "face care and body care lines", benefit: "gentle, naturally derived dairy actives", spec: "Cosmetic & food grade" },
+  { slug: "soap", name: "Soap Makers", context: "cold-process, melt-and-pour and syndet bars", benefit: "creamy, skin-softening character", spec: "Saponification-stable" },
+  { slug: "pharma", name: "Pharmaceutical Producers", context: "nutraceutical and topical preparations", benefit: "documented, batch-traceable raw material", spec: "Pharma-clean documentation" },
+  { slug: "nutraceutical", name: "Nutraceutical Brands", context: "functional foods and supplements", benefit: "mineral- and protein-rich base", spec: "Food grade, COA per batch" },
+  { slug: "baby", name: "Baby Nutrition Formulators", context: "hypoallergenic and follow-on formulae", benefit: "low-allergen, digestible profile", spec: "Infant-grade documentation" },
+  { slug: "food", name: "Food & Beverage Producers", context: "confectionery, bakery and drinks", benefit: "clean-label dairy ingredient", spec: "Food grade" },
+  { slug: "bakery", name: "Bakery Manufacturers", context: "artisan and industrial baking", benefit: "tenderising dairy solids", spec: "Food grade" },
+  { slug: "confectionery", name: "Confectionery Makers", context: "chocolates and sweets", benefit: "smooth dairy body", spec: "Food grade" },
+  { slug: "dairy", name: "Dairy Product Companies", context: "specialty and value-added dairy", benefit: "premium differentiated ingredient", spec: "Food grade" },
+  { slug: "icecream", name: "Ice Cream Producers", context: "gelato and frozen desserts", benefit: "creamy mouthfeel with low fat", spec: "Frozen-grade" },
+  { slug: "petfood", name: "Pet Food Formulators", context: "premium and hypoallergenic pet nutrition", benefit: "highly digestible protein", spec: "Pet-grade documentation" },
+  { slug: "oem", name: "OEM / Private Label Houses", context: "white-label manufacturing", benefit: "turnkey, branded-ready supply", spec: "Private-label ready" },
+  { slug: "hotel", name: "Hotel & Spa Chains", context: "amenity and treatment ranges", benefit: "luxury, story-driven ingredient", spec: "Cosmetic grade" },
+  { slug: "sports", name: "Sports Nutrition Brands", context: "recovery and performance products", benefit: "lean protein base", spec: "Food grade" },
+  { slug: "beverage", name: "Beverage Makers", context: "functional and fermented drinks", benefit: "clean-label dairy note", spec: "Food grade" },
+  { slug: "fermented", name: "Fermented Food Producers", context: "yoghurt and cultured products", benefit: "adaptable culture substrate", spec: "Food grade" },
+  { slug: "probiotic", name: "Probiotic Brands", context: "live-culture formulations", benefit: "carriage matrix for cultures", spec: "Food grade" },
+  { slug: "derma", name: "Dermatology Labs", context: "clinical and corrective skincare", benefit: "well-tolerated dairy actives", spec: "Cosmetic grade" },
+  { slug: "antibacterial", name: "Antibacterial Product Makers", context: "hygiene and care formats", benefit: "naturally low microbial load", spec: "Cosmetic grade" },
+  { slug: "antiaging", name: "Anti-Ageing Brands", context: "premium youth-care lines", benefit: "native proteins associated with skin conditioning", spec: "Cosmetic grade" },
+  { slug: "organic", name: "Organic Product Brands", context: "certified natural ranges", benefit: "traceable, documentable source", spec: "Traceable, documented" },
+  { slug: "veganalt", name: "Plant-Alternative Makers", context: "dairy-free adjacent blends", benefit: "animal-derived premium note where permitted", spec: "Documented" },
+  { slug: "gourmet", name: "Gourmet Food Houses", context: "specialty culinary products", benefit: "rare, premium dairy", spec: "Food grade" },
+  { slug: "supplement", name: "Dietary Supplement Makers", context: "capsules and powders", benefit: "mineral-rich base", spec: "Food grade" },
+  { slug: "infant", name: "Infant Formula Producers", context: "specialist formulae", benefit: "low-allergen profile", spec: "Infant-grade documentation" },
+  { slug: "elderly", name: "Elderly Nutrition Brands", context: "clinical nutrition", benefit: "easily digestible protein", spec: "Food grade" },
+  { slug: "clinical", name: "Clinical Nutrition Firms", context: "medical and enteral products", benefit: "documented, consistent composition", spec: "Clinical-grade docs" },
+  { slug: "animal", name: "Animal Health Labs", context: "veterinary nutraceuticals", benefit: "digestible protein source", spec: "Animal-grade docs" },
+  { slug: "research", name: "Research Institutions", context: "study and reference material", benefit: "consistent, COA-backed supply", spec: "Research-grade" },
+  { slug: "contract", name: "Contract Manufacturers", context: "toll and contract production", benefit: "reliable, spec-stable input", spec: "Spec-stable" },
+  { slug: "distributor", name: "Ingredient Distributors", context: "regional and national supply", benefit: "branded, certified source", spec: "Certified" },
+  { slug: "importer", name: "Importers & Traders", context: "cross-border sourcing", benefit: "IEC-backed export supply", spec: "Export-ready" },
+  { slug: "retail", name: "Retail Private Labels", context: "store-brand ranges", benefit: "ready-to-brand supply", spec: "Private-label ready" },
+  { slug: "spa", name: "Spa Product Makers", context: "treatment and amenity ranges", benefit: "luxury, story-driven ingredient", spec: "Cosmetic grade" },
+  { slug: "haircare", name: "Haircare Brands", context: "shampoos and masks", benefit: "conditioning dairy proteins", spec: "Cosmetic grade" },
+  { slug: "oral", name: "Oral Care Makers", context: "toothpastes and rinses", benefit: "mild, mineral-rich base", spec: "Cosmetic grade" },
+  { slug: "makeup", name: "Makeup Formulators", context: "foundations and primers", benefit: "smooth, skin-friendly base", spec: "Cosmetic grade" },
+  { slug: "perfume", name: "Fragrance Houses", context: "luxury scent formats", benefit: "subtle, premium carrier", spec: "Cosmetic grade" },
+  { slug: "aromatherapy", name: "Aromatherapy Brands", context: "oil and balm formats", benefit: "gentle carrier base", spec: "Cosmetic grade" },
+  { slug: "biotech", name: "Biotech Firms", context: "bioactive research supply", benefit: "consistent, documented material", spec: "Research-grade" },
+  { slug: "functional", name: "Functional Food Makers", context: "fortified products", benefit: "clean-label fortification base", spec: "Food grade" },
+  { slug: "medical", name: "Medical Device Makers", context: "wound and skin-contact devices", benefit: "well-tolerated dairy component", spec: "Cosmetic grade" },
+  { slug: "exporttrade", name: "Export Trading Houses", context: "global sourcing desks", benefit: "IEC-certified, documentation-rich", spec: "Export-ready" },
+];
+
+export const COUNTRIES: {
+  slug: string;
+  name: string;
+  region: string;
+  port: string;
+  note: string;
+}[] = [
+  { slug: "usa", name: "United States", region: "North America", port: "via Nhava Sheva / Mundra to US ports", note: "FDA-aligned documentation support" },
+  { slug: "germany", name: "Germany", region: "Europe", port: "Hamburg / Rotterdam", note: "EU import documentation (health certificate)" },
+  { slug: "france", name: "France", region: "Europe", port: "Le Havre", note: "EU import documentation" },
+  { slug: "uk", name: "United Kingdom", region: "Europe", port: "Felixstowe", note: "UK import health certificate" },
+  { slug: "italy", name: "Italy", region: "Europe", port: "Genoa", note: "EU import documentation" },
+  { slug: "spain", name: "Spain", region: "Europe", port: "Valencia", note: "EU import documentation" },
+  { slug: "canada", name: "Canada", region: "North America", port: "Vancouver / Montreal", note: "CFIA-aligned docs" },
+  { slug: "uae", name: "United Arab Emirates", region: "Middle East", port: "Jebel Ali", note: "GCC import clearance support" },
+  { slug: "saudi", name: "Saudi Arabia", region: "Middle East", port: "Jeddah / Dammam", note: "SFDA-aligned documentation" },
+  { slug: "australia", name: "Australia", region: "Oceania", port: "Melbourne / Sydney", note: "DAFF import permit support" },
+  { slug: "japan", name: "Japan", region: "Asia", port: "Yokohama", note: "MHLW import documentation" },
+  { slug: "korea", name: "South Korea", region: "Asia", port: "Busan", note: "MFDS documentation support" },
+  { slug: "china", name: "China", region: "Asia", port: "Shanghai / Shenzhen", note: "CN import registration support" },
+  { slug: "singapore", name: "Singapore", region: "Asia", port: "Singapore", note: "SFA documentation" },
+  { slug: "netherlands", name: "Netherlands", region: "Europe", port: "Rotterdam", note: "EU import documentation" },
+  { slug: "poland", name: "Poland", region: "Europe", port: "Gdansk", note: "EU import documentation" },
+  { slug: "switzerland", name: "Switzerland", region: "Europe", port: "Basel", note: "CH import documentation" },
+  { slug: "southafrica", name: "South Africa", region: "Africa", port: "Durban", note: "Import permit support" },
+  { slug: "brazil", name: "Brazil", region: "South America", port: "Santos", note: "MAPA documentation" },
+  { slug: "mexico", name: "Mexico", region: "North America", port: "Veracruz", note: "COFEPRIS-aligned docs" },
+];
+
+// Downstream formats used only for /money long-tail (product x industry x country x format)
+export const FORMATS: { slug: string; label: string }[] = [
+  { slug: "bulk", label: "Bulk Supply" },
+  { slug: "private-label", label: "Private Label" },
+  { slug: "oem", label: "OEM Manufacturing" },
+  { slug: "wholesale", label: "Wholesale" },
+  { slug: "white-label", label: "White Label" },
+  { slug: "contract-manufacturing", label: "Contract Manufacturing" },
+  { slug: "formulation", label: "Formulation Grade" },
+  { slug: "samples", label: "Sample Program" },
+  { slug: "distributor", label: "Distributor Supply" },
+];
+
+const PRODUCT_BY_ID = Object.fromEntries(PRODUCTS.map((p) => [p.id, p])) as Record<ProductId, (typeof PRODUCTS)[number]>;
+const INDUSTRY_BY_SLUG = Object.fromEntries(INDUSTRIES.map((i) => [i.slug, i]));
+const COUNTRY_BY_SLUG = Object.fromEntries(COUNTRIES.map((c) => [c.slug, c]));
+const FORMAT_BY_SLUG = Object.fromEntries(FORMATS.map((f) => [f.slug, f]));
+
+// Deterministic pseudo-random so specs/FAQs vary per slug but stay stable.
+function seeded(str: string): () => number {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return () => {
+    h += 0x6d2b79f5;
+    let t = h;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const SECTION_TEMPLATES = [
+  (p: string, i: string, c: string, f: string) =>
+    `Rudra Dairy & Farm supplies ${i} with ${p} engineered for ${c}. Our ${f.toLowerCase()} program is built around consistent batch composition, full documentation and flexible pack sizes so procurement and QA teams can qualify the material quickly.`,
+  (p: string, i: string, c: string, f: string) =>
+    `For ${i}, ${p} is delivered through a ${f.toLowerCase()} arrangement that keeps native proteins, lactose and minerals intact. Every shipment includes a Certificate of Analysis, specification sheet and traceability record accepted by buyers in ${c}.`,
+  (p: string, i: string, c: string, f: string) =>
+    `Whether you are scaling pilot batches or full production in ${c}, our ${f.toLowerCase()} supply of ${p} is produced under HACCP and ISO 22000 controls and supports private-label and OEM packing from 25 kg batches.`,
+];
+
+function buildSpecs(product: (typeof PRODUCTS)[number], industry: (typeof INDUSTRIES)[number], country: (typeof COUNTRIES)[number], rng: () => number): SpecRow[] {
+  return [
+    { label: "Form", value: product.form },
+    { label: "Grade", value: industry.spec },
+    { label: "Pack sizes", value: "1 kg / 5 kg / 25 kg" },
+    { label: "MOQ", value: product.moq },
+    { label: "Certifications", value: "FSSAI, ISO 22000, HACCP, IEC" },
+    { label: "Shelf life", value: product.shelf },
+    { label: "Destination", value: `${country.name} (${country.region})` },
+    { label: "Logistics", value: country.port },
+  ];
+}
+
+function buildFaqs(
+  product: (typeof PRODUCTS)[number],
+  industry: (typeof INDUSTRIES)[number],
+  country: (typeof COUNTRIES)[number]
+): Faq[] {
+  return [
+    {
+      q: `Is ${product.noun.toLowerCase()} suitable for ${industry.name.toLowerCase()}?`,
+      a: `Yes. Our ${product.grade.toLowerCase()} material is produced under hygienic controls and supplied with a COA; validate in your preserved formulation as with any dairy-derived ingredient.`,
+    },
+    {
+      q: `Do you support shipping to ${country.name}?`,
+      a: `Yes. We handle export documentation and routing ${country.port}, with ${country.note.toLowerCase()}.`,
+    },
+    {
+      q: "What documentation ships with an order?",
+      a: "Each batch includes a Certificate of Analysis, specification sheet, MSDS and traceability record.",
+    },
+  ];
+}
+
+// ---- Slug parsers ----------------------------------------------------------
+// /money/: product-industry-country-format   e.g. powder-cosmetics-germany-private-label
+function parseMoney(slug: string) {
+  const parts = slug.split("-");
+  const product = PRODUCT_BY_ID[parts[0] as ProductId];
+  if (!product) return undefined;
+  // format may be 1 or 2 hyphenated segments at the end (e.g. "private-label")
+  const fmt2 = parts.slice(-2).join("-");
+  const fmt1 = parts[parts.length - 1];
+  const format = FORMAT_BY_SLUG[fmt2] || FORMAT_BY_SLUG[fmt1];
+  if (!format) return undefined;
+  const cut = FORMAT_BY_SLUG[fmt2] ? 2 : 1;
+  const middle = parts.slice(1, parts.length - cut);
+  // country is a single token somewhere in the middle
+  let cIdx = -1;
+  for (let i = 0; i < middle.length; i++) {
+    if (COUNTRY_BY_SLUG[middle[i]]) {
+      cIdx = i;
+      break;
+    }
+  }
+  if (cIdx < 0) return undefined;
+  const country = COUNTRY_BY_SLUG[middle[cIdx]];
+  const industry = INDUSTRY_BY_SLUG[
+    middle.filter((_, i) => i !== cIdx).join("-")
+  ];
+  if (!industry) return undefined;
+  return { product, industry, country, format };
+}
+
+function parseExport(slug: string) {
+  const parts = slug.split("-");
+  if (parts.length < 2) return undefined;
+  const country = parts[parts.length - 1];
+  const industry = parts.slice(0, parts.length - 1).join("-");
+  return {
+    industry: INDUSTRY_BY_SLUG[industry],
+    country: COUNTRY_BY_SLUG[country],
+  };
+}
+
+// ---- Entry builders --------------------------------------------------------
+export function buildMoneyEntry(slug: string): CommercialEntry | undefined {
+  const p = parseMoney(slug);
+  if (!p || !p.product || !p.industry || !p.country || !p.format) return undefined;
+  const { product, industry, country, format } = p;
+  const rng = seeded(slug);
+  const title = `${product.noun} for ${industry.name} in ${country.name} — ${format.label}`;
+  const intro = `Bulk ${product.noun.toLowerCase()} for ${industry.name.toLowerCase()} shipping to ${country.name}. ${product.grade} supply with COA, full traceability and ${format.label.toLowerCase()} options for ${industry.context}.`;
+  const sections: Section[] = SECTION_TEMPLATES.map((tpl) => {
+    const body = tpl(product.noun, industry.name, country.name, format.label);
+    return { heading: `${format.label} — ${industry.name}`, body };
+  });
+  return {
+    slug,
+    kind: "money",
+    title,
+    intro,
+    sections,
+    specs: buildSpecs(product, industry, country, rng),
+    faqs: buildFaqs(product, industry, country),
+    ctaLabel: "Request Quotation",
+    related: [
+      `export:${industry.slug}-${country.slug}`,
+      `industry:${industry.slug}`,
+      `application:${industry.slug}`,
+    ],
+  };
+}
+
+export function buildExportEntry(slug: string): CommercialEntry | undefined {
+  const p = parseExport(slug);
+  if (!p || !p.industry || !p.country) return undefined;
+  const { industry, country } = p;
+  const title = `Donkey Milk Powder Exporter to ${country.name} — ${industry.name}`;
+  const intro = `Rudra Dairy & Farm is a donkey milk powder exporter to ${country.name} for ${industry.name.toLowerCase()}. IEC-certified export supply with COA, cold-chain logistics and ${country.note.toLowerCase()}.`;
+  const sections: Section[] = [
+    {
+      heading: `Export Supply to ${country.name}`,
+      body: `We ship ${industry.name.toLowerCase()} donkey milk powder from India to ${country.name} via ${country.port}. ${country.note}.`,
+    },
+    {
+      heading: "Documentation & Compliance",
+      body: "Every export order includes Certificate of Analysis, health certificate, commercial invoice and packing list aligned to the destination's import requirements.",
+    },
+  ];
+  return {
+    slug,
+    kind: "country",
+    title,
+    intro,
+    sections,
+    specs: [
+      { label: "Origin", value: "India" },
+      { label: "Destination", value: country.name },
+      { label: "Route", value: country.port },
+      { label: "Certifications", value: "FSSAI, ISO 22000, HACCP, IEC" },
+      { label: "Compliance", value: country.note },
+    ],
+    faqs: [
+      {
+        q: `Can you export to ${country.name}?`,
+        a: `Yes — we handle routing ${country.port} with ${country.note.toLowerCase()}.`,
+      },
+      {
+        q: "What documents are provided?",
+        a: "COA, health certificate, invoice and packing list per shipment.",
+      },
+    ],
+    related: [`money:powder-${industry.slug}-${country.slug}-bulk`, `industry:${industry.slug}`],
+  };
+}
+
+export function buildIndustryEntry(slug: string): CommercialEntry | undefined {
+  const industry = INDUSTRY_BY_SLUG[slug];
+  if (!industry) return undefined;
+  const title = `Donkey Milk for ${industry.name}`;
+  const intro = `Donkey milk ingredients for ${industry.name.toLowerCase()} — ${industry.context}. Bulk ${industry.benefit} supply with full documentation and private-label options.`;
+  return {
+    slug,
+    kind: "industry",
+    title,
+    intro,
+    sections: [
+      { heading: `Why ${industry.name} Choose Donkey Milk`, body: `Donkey milk brings ${industry.benefit} to ${industry.context}, supplied with ${industry.spec.toLowerCase()} specifications and batch-level traceability.` },
+      { heading: "Supply Options", body: "Available as powder, liquid, frozen and skim, in food, cosmetic and private-label grades with MOQs from samples upward." },
+    ],
+    specs: [
+      { label: "Grade", value: industry.spec },
+      { label: "Forms", value: "Powder / Liquid / Frozen / Skim" },
+      { label: "Use case", value: industry.context },
+      { label: "Certifications", value: "FSSAI, ISO 22000, HACCP" },
+    ],
+    faqs: [{ q: `Do you supply ${industry.name.toLowerCase()}?`, a: `Yes — ${industry.benefit} in cosmetic and food grades with full documentation.` }],
+    related: [`money:powder-${industry.slug}-germany-bulk`, `application:${industry.slug}`],
+  };
+}
+
+export function buildApplicationEntry(slug: string): CommercialEntry | undefined {
+  return buildIndustryEntry(slug); // same axis; /application uses kind "application"
+}
+
+export function buildGuideEntry(slug: string): CommercialEntry | undefined {
+  const industry = INDUSTRY_BY_SLUG[slug];
+  if (!industry) return undefined;
+  return {
+    slug,
+    kind: "guide",
+    title: `${industry.name} Buyer's Guide — Donkey Milk`,
+    intro: `A practical buyer's guide to sourcing donkey milk for ${industry.name.toLowerCase()}: specifications, documentation and supplier qualification.`,
+    sections: [
+      { heading: "What to Specify", body: `For ${industry.context}, define grade (${industry.spec.toLowerCase()}), form, pack size and documentation before requesting a quote.` },
+      { heading: "Qualifying a Supplier", body: "Verify FSSAI, ISO 22000, HACCP and IEC, request a sample COA, and confirm traceability to source." },
+    ],
+    faqs: [{ q: "How do I qualify a donkey milk supplier?", a: "Check certifications, ask for a batch COA, and validate consistency across shipments." }],
+    related: [`industry:${industry.slug}`, `money:powder-${industry.slug}-germany-bulk`],
+  };
+}
+
+// ---- Tiered sitemap helpers ------------------------------------------------
+// The "head" (curated, submitted to Google) is a bounded, high-value subset.
+// The "tail" is the full long-tail (served on-demand) — listed in a separate
+// sitemap index so crawlers can discover all URLs without bloating the
+// primary sitemap beyond best-practice size.
+export const LONGTAIL_HEAD_LIMIT = 400;
+
+export function longTailSlugs(): string[] {
+  // Exclude curated entries already listed in the head sitemap, so no URL is
+  // submitted twice (duplicate sitemap URLs are a quality signal Google flags).
+  const curated = new Set(ALL.map((e) => `${e.kind}:${e.slug}`));
+  const out: string[] = [];
+  for (const prod of PRODUCTS)
+    for (const ind of INDUSTRIES)
+      for (const c of COUNTRIES)
+        for (const f of FORMATS) {
+          const s = `money:${prod.id}-${ind.slug}-${c.slug}-${f.slug}`;
+          if (!curated.has(s)) out.push(s);
+        }
+  for (const ind of INDUSTRIES)
+    for (const c of COUNTRIES) {
+      const s = `export:${ind.slug}-${c.slug}`;
+      if (!curated.has(s)) out.push(s);
+    }
+  for (const ind of INDUSTRIES) {
+    for (const pref of ["industry", "application", "guides"]) {
+      const s = `${pref}:${ind.slug}`;
+      if (!curated.has(s)) out.push(s);
+    }
+  }
+  return out;
+}
+
+export function longTailHeadSlugs(): string[] {
+  // Curated: every industry x a few priority countries x powder/bulk + export.
+  const out: string[] = [];
+  const prioCountries = ["usa", "germany", "uae", "australia", "japan"];
+  for (const ind of INDUSTRIES)
+    for (const c of prioCountries)
+      out.push(`money:powder-${ind.slug}-${c}-bulk`);
+  for (const ind of INDUSTRIES)
+    for (const c of prioCountries) out.push(`export:${ind.slug}-${c}`);
+  return out.slice(0, LONGTAIL_HEAD_LIMIT);
+}

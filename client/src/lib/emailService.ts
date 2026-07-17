@@ -201,7 +201,11 @@ export const sendQuoteRequestEmail = async (data: {
   phone: string;
   company: string;
   country: string;
-  productInterest: string;
+  /** Product form: Fresh Milk / Powder / Both / Other. */
+  product: string;
+  /** Use-case: Cosmetics, Pharma, Research, Food, etc. */
+  application: string;
+  companyWebsite?: string;
   quantity: string;
   timeline: string;
   message?: string;
@@ -212,11 +216,22 @@ export const sendQuoteRequestEmail = async (data: {
       from_name: data.name,
       from_email: data.email,
       phone: data.phone,
-      subject: `Quote Request — ${data.productInterest || "Donkey Milk Powder"}${data.country ? ` (${data.country})` : ""}`,
-      message: `Company: ${data.company || "Not specified"}\nCountry: ${data.country || "Not specified"}\nProduct: ${data.productInterest || "Not specified"}\nMonthly Volume: ${data.quantity || "Not specified"}\nTarget Timeline: ${data.timeline || "Not specified"}\n\nMessage: ${data.message || "—"}`,
+      subject: `Quote Request — ${data.product || "Donkey Milk"}${data.country ? ` (${data.country})` : ""}`,
+      message: [
+        `Company: ${data.company || "Not specified"}`,
+        `Website: ${data.companyWebsite || "Not specified"}`,
+        `Country: ${data.country || "Not specified"}`,
+        `Product: ${data.product || "Not specified"}`,
+        `Application: ${data.application || "Not specified"}`,
+        `Quantity Required: ${data.quantity || "Not specified"}`,
+        `Target Timeline: ${data.timeline || "Not specified"}`,
+        "",
+        `Message: ${data.message || "—"}`,
+      ].join("\n"),
       business_type: "Quote Request",
-      product_interest: data.productInterest || "Not specified",
-      website: "rudradairyandfarm.shop",
+      product_interest: data.product || "Not specified",
+      application: data.application || "Not specified",
+      website: data.companyWebsite || "Not specified",
       timestamp: new Date().toLocaleString("en-IN"),
     };
 
@@ -230,6 +245,39 @@ export const sendQuoteRequestEmail = async (data: {
     return true;
   } catch (error) {
     console.error("Failed to send quote request email:", error);
+    return false;
+  }
+};
+
+/**
+ * Best-effort automatic confirmation email to the customer who just submitted
+ * the quote form. Sends TO the customer's own address.
+ *
+ * REQUIRES the EmailJS template's "To" field to be set to `{{to_email}}`
+ * (dynamic recipient). If your template has a fixed recipient, this will
+ * instead land in your inbox — create a dedicated confirmation template, or
+ * set the template To to {{to_email}}, for it to reach the customer.
+ * Never blocks the success flow.
+ */
+export const sendCustomerConfirmationEmail = async (data: {
+  name: string;
+  email: string;
+  company?: string;
+  product?: string;
+}): Promise<boolean> => {
+  try {
+    const templateParams = {
+      to_email: data.email,
+      to_name: data.name,
+      from_name: BUSINESS.name,
+      product_interest: data.product || "Donkey Milk & Powder",
+      business: BUSINESS.name,
+      website: BUSINESS.website,
+    };
+    await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
+    return true;
+  } catch (error) {
+    console.warn("Customer confirmation email failed (non-fatal):", error);
     return false;
   }
 };
