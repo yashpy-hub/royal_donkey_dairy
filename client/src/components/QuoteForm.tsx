@@ -127,7 +127,7 @@ export default function QuoteForm({ productInterest, country }: QuoteFormProps) 
           product: form.product || "unspecified",
           country: form.country || "unspecified",
         });
-        // NOTE: Google Ads conversion (`conversion_event_request_quote`) is
+        // NOTE: Google Ads conversion (`conversion_event_request_quote_2`) is
         // fired once on /thank-you?type=quote (after this successful redirect),
         // NOT here — that avoids double-counting and matches Google's
         // recommended post-submission conversion flow.
