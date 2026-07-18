@@ -1,8 +1,10 @@
+import { useEffect, useRef } from "react";
 import { CheckCircle2, MessageCircle, Mail, Home } from "lucide-react";
 import { Link } from "wouter";
 import Seo from "@/components/Seo";
 import { BUSINESS } from "@shared/business";
 import { useT } from "@/i18n";
+import { trackRequestQuoteConversion } from "@/lib/analytics";
 
 /**
  * Post-submission confirmation page. All lead forms (quote, contact, meeting)
@@ -24,6 +26,20 @@ export default function ThankYou() {
   } catch {
     /* non-browser env — fall back to default */
   }
+
+  // Google Ads conversion — fire ONLY for a successful Request Quote
+  // submission, once when this thank-you page loads with ?type=quote.
+  // (No conversion is fired on form open, validation failure, or any other
+  // page. Contact/meeting thank-yous don't fire this quote conversion.)
+  // Guard with a ref so it fires exactly once, even under React StrictMode's
+  // double-invocation in dev, or if the effect re-runs.
+  const firedQuoteConversion = useRef(false);
+  useEffect(() => {
+    if (type === "quote" && !firedQuoteConversion.current) {
+      firedQuoteConversion.current = true;
+      trackRequestQuoteConversion();
+    }
+  }, [type]);
 
   const copyMap = {
     quote: {

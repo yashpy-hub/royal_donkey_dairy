@@ -52,6 +52,25 @@ export function trackAdsConversion(
   }
 }
 
+/**
+ * Google Ads conversion event for a successfully submitted Request Quote form.
+ * Event name matches the Google Ads conversion action `conversion_event_request_quote`.
+ * Fired once on the /thank-you?type=quote page AFTER a successful submission +
+ * redirect — never on validation failure, form open, or any other page. Goes only
+ * through gtag so it counts toward the Google Ads conversion action and never
+ * double-fires via a GTM trigger listening for a generic "conversion" event.
+ */
+export function trackRequestQuoteConversion(): void {
+  try {
+    if (typeof window === "undefined") return;
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "conversion_event_request_quote");
+    }
+  } catch {
+    /* analytics must never break the UI */
+  }
+}
+
 /** GA4 recommended ecommerce-style lead events for B2B tracking. */
 export const AnalyticsEvents = {
   /** Contact / quote form submitted successfully. */

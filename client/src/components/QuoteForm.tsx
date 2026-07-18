@@ -3,7 +3,7 @@ import { Loader2, Send } from "lucide-react";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
 import { sendQuoteRequestEmail, sendCustomerConfirmationEmail } from "@/lib/emailService";
-import { AnalyticsEvents, trackAdsConversion } from "@/lib/analytics";
+import { AnalyticsEvents } from "@/lib/analytics";
 import { logToSheet } from "@/lib/sheetLogger";
 import { Button } from "@/components/ui/button";
 import { BUSINESS } from "@shared/business";
@@ -127,11 +127,10 @@ export default function QuoteForm({ productInterest, country }: QuoteFormProps) 
           product: form.product || "unspecified",
           country: form.country || "unspecified",
         });
-        // Google Ads conversion — fires only on a successful submit.
-        trackAdsConversion("AW-11092553327/-BKnCIugo84cEO_cq6kp", {
-          product: form.product || "unspecified",
-          country: form.country || "unspecified",
-        });
+        // NOTE: Google Ads conversion (`conversion_event_request_quote`) is
+        // fired once on /thank-you?type=quote (after this successful redirect),
+        // NOT here — that avoids double-counting and matches Google's
+        // recommended post-submission conversion flow.
         // Store the lead in the master Google Sheet (tab gid 0).
         // Keys match scripts/Code.gs v4 exactly:
         //   name, company, email, phone, product, volume, destination, message, page
