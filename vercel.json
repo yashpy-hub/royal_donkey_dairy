@@ -26,11 +26,6 @@
     }
   ],
   "rewrites": [
-    { "source": "/money/(.+)", "destination": "/api/render" },
-    { "source": "/industry/(.+)", "destination": "/api/render" },
-    { "source": "/application/(.+)", "destination": "/api/render" },
-    { "source": "/export/(.+)", "destination": "/api/render" },
-    { "source": "/guides/(.+)", "destination": "/api/render" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

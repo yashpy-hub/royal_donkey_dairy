@@ -171,7 +171,11 @@ function doPost(e) {
     var data = payload.data ? payload.data : payload;
     delete data.type;
     appendRow(type, data);
-    notifyByEmail(type, data);
+    // Owner notification is handled client-side via EmailJS (single source of
+    // truth) so the business gets exactly ONE lead email per submission — the
+    // previous server-side Gmail notifyByEmail caused a duplicate "my own
+    // mail" + EmailJS pair. Sheet write remains the reliable data store.
+    // notifyByEmail(type, data); // intentionally disabled to avoid double emails
     return ContentService.createTextOutput(
       JSON.stringify({ status: "success", message: type + " request submitted successfully." })
     ).setMimeType(ContentService.MimeType.JSON);
