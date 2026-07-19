@@ -139,9 +139,12 @@ export default function QuoteForm({ productInterest, country }: QuoteFormProps) 
           company: form.company,
           email: form.email,
           phone: form.phone,
+          country: form.country,
+          companyWebsite: form.companyWebsite,
           product: form.product,
-          volume: form.quantity,
-          destination: form.country,
+          application: form.application,
+          quantity: form.quantity,
+          timeline: form.timeline,
           message: form.message,
           page: "quote",
         });
@@ -236,7 +239,7 @@ export default function QuoteForm({ productInterest, country }: QuoteFormProps) 
         </div>
         <div>
           <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-1.5">
-            Company Website
+            Company Website (optional)
           </label>
           <input
             type="url"

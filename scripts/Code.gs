@@ -1,26 +1,36 @@
 /**
- * Rudra Dairy & Farm — Lead Logger (Google Apps Script)
+ * Rudra Dairy & Farm — Lead Logger (Google Apps Script)  [v5]
  * ======================================================
  * Deploys as a Web App that receives lead submissions from the website
- * (client/src/lib/sheetLogger.ts) and appends them to the correct tab
- * of the shared Google Sheet.
+ * (client/src/lib/sheetLogger.ts) and appends them to the correct tab of the
+ * shared Google Sheet.
+ *
+ * PAYLOAD SHAPE (what sheetLogger.ts actually sends — FLAT):
+ *   {
+ *     "type": "quote" | "contact",
+ *     "name": "...", "company": "...", "email": "...", "phone": "...",
+ *     "country": "...", "companyWebsite": "...", "product": "...",
+ *     "application": "...", "quantity": "...", "timeline": "...",
+ *     "message": "...", "source": "...", "business": "...", "submittedAt": "..."
+ *   }
+ * (Legacy nested {type, data:{...}} is also accepted.)
+ *
+ * COLUMN CONTRACT — the "quote" tab gets exactly these headers, in this order
+ * (Timestamp first). Missing fields are written as blank, never dropped, so
+ * every submission fills the same 11 columns:
+ *   Timestamp | Full Name | Company Name | Email | Phone / WhatsApp | Country
+ *   | Company Website | Product | Application | Quantity Required
+ *   | Timeline | Message
  *
  * SETUP (one-time):
  *   1. Open the target Sheet:
  *        https://docs.google.com/spreadsheets/d/1oRBfyHHDEplpGpMdQ82HbM0SnLP8ak8rS1VsOefj8fQ
  *   2. Extensions > Apps Script.
- *   3. Paste this entire file, replacing the default code.
- *   4. Deploy > New deployment > type "Web app":
- *        - Execute as:   Me (<your account>)
- *        - Who has access: Anyone (the public website needs to POST)
- *   5. Authorize the script (it needs Spreadsheet access).
- *   6. Copy the Web app URL it gives you (looks like
- *        https://script.google.com/macros/s/AKfyc.../exec )
- *   7. Put it in the site's .env as:
- *        VITE_GAS_SHEET_WEBAPP_URL=https://script.google.com/macros/s/.../exec
- *
- * The first submission to each tab auto-creates the column headers from the
- * exact form fields it receives, so the sheet always matches the form.
+ *   3. Paste this ENTIRE file, replacing the default code.
+ *   4. Deploy > Manage deployments > (your existing "Web app" deployment) >
+ *      Redeploy.  — the Web app URL stays the SAME, so no .env change needed.
+ *   5. Authorize the script (it needs Spreadsheet + Gmail access).
+ *   6. Verify: open the Web app URL with ?test=1 — it should list the tabs.
  */
 
 // The shared Rudra Dairy & Farm lead spreadsheet.
@@ -28,7 +38,7 @@ const SHEET_ID = "1oRBfyHHDEplpGpMdQ82HbM0SnLP8ak8rS1VsOefj8fQ";
 
 // Tab gids (visible in the sheet URL after "#gid=").
 const TAB = {
-  quote: 0,          // "Request Quotation" tab
+  quote: 0,           // "Request Quotation" tab (gid 0)
   contact: 1968821310 // "Get in touch" tab
 };
 
@@ -42,11 +52,56 @@ function getTargetSheet(type) {
   throw new Error("Target tab not found for type: " + type);
 }
 
+/**
+ * Build an ordered [header, value] layout for a submission.
+ * - quote: the canonical 11 columns (+ Timestamp) the business expects.
+ * - everything else (contact, etc.): keep every key, humanised, + Timestamp.
+ */
+function buildLayout(type, data) {
+  if (type === "quote") {
+    return [
+      ["Timestamp", new Date()],
+      ["Full Name", data.name || ""],
+      ["Company Name", data.company || ""],
+      ["Email", data.email || ""],
+      ["Phone / WhatsApp", data.phone || ""],
+      ["Country", data.country || data.destination || ""],
+      ["Company Website", data.companyWebsite || ""],
+      ["Product", data.product || ""],
+      ["Application", data.application || ""],
+      ["Quantity Required", data.quantity || data.volume || ""],
+      ["Timeline", data.timeline || ""],
+      ["Message", data.message || ""]
+    ];
+  }
+  // contact / generic: preserve whatever fields arrived.
+  const layout = [["Timestamp", new Date()]];
+  Object.keys(data).forEach(function (k) {
+    layout.push([prettyHeader(k), data[k] !== undefined ? data[k] : ""]);
+  });
+  return layout;
+}
+
+function prettyHeader(k) {
+  const map = {
+    name: "Full Name", company: "Company Name", email: "Email",
+    phone: "Phone / WhatsApp", country: "Country", destination: "Country",
+    companyWebsite: "Company Website", product: "Product",
+    application: "Application", quantity: "Quantity Required",
+    volume: "Quantity Required", timeline: "Timeline", message: "Message",
+    page: "Page", subject: "Subject", inquiry: "Inquiry",
+    source: "Source", business: "Business", submittedAt: "Submitted At"
+  };
+  return map[k] || (k.charAt(0).toUpperCase() + k.slice(1));
+}
+
 function appendRow(type, data) {
   const sheet = getTargetSheet(type);
-  const headers = Object.keys(data); // insertion order preserved
+  const layout = buildLayout(type, data);
+  const headers = layout.map(function (x) { return x[0]; });
+  const values = layout.map(function (x) { return x[1]; });
 
-  // Read any existing header row.
+  // Sync headers: keep any existing columns, append the ones we're missing.
   const headerMap = {};
   const lastCol = sheet.getLastColumn();
   if (lastCol > 0) {
@@ -55,46 +110,34 @@ function appendRow(type, data) {
       if (h !== "") headerMap[h] = i;
     });
   }
-
-  // Append any headers we haven't seen yet (auto-create on first run).
-  const missing = headers.filter(function (h) {
-    return !(h in headerMap);
-  });
+  const missing = headers.filter(function (h) { return !(h in headerMap); });
   if (missing.length) {
     const startCol = sheet.getLastColumn() + 1;
     sheet.getRange(1, startCol, 1, missing.length).setValues([missing]);
-    missing.forEach(function (h, i) {
-      headerMap[h] = startCol + i - 1;
-    });
+    missing.forEach(function (h, i) { headerMap[h] = startCol + i - 1; });
   }
 
-  // Build the row to match the current column count.
+  // Build the row aligned to the (now complete) column count.
   const totalCols = sheet.getLastColumn();
   const row = new Array(totalCols).fill("");
-  headers.forEach(function (h) {
-    var idx = headerMap[h];
-    if (typeof idx === "number") row[idx] = data[h];
+  headers.forEach(function (h, i) {
+    const idx = headerMap[h];
+    if (typeof idx === "number") row[idx] = values[i];
   });
   sheet.appendRow(row);
 }
 
 /**
  * Email-notify on every entry — server-side (Google), independent of the
- * website's EmailJS call. This guarantees you get a mail even if the browser
- * EmailJS request fails. Best-effort: a mail error must never break the sheet
+ * website's EmailJS call. Best-effort: a mail error must never break the sheet
  * write, so it is wrapped in try/catch.
- *
- * Recipients: every active Rudra Dairy & Farm mailbox (kept in sync with
- * shared/business.ts). If you change the addresses there, update this list too.
  */
 function notifyByEmail(type, data) {
   const TO =
     "info@rudradairyandfarm.shop, donkeyfarm79@gmail.com, donkeyfarm79@outlook.com";
   const typeLabel =
-    type === "quote"
-      ? "Quote Request"
-      : type === "contact"
-        ? "Contact Inquiry"
+    type === "quote" ? "Quote Request"
+      : type === "contact" ? "Contact Inquiry"
         : type;
   const subject = "[RDF Lead] New " + typeLabel + " from " + (data.name || "Unknown");
 
@@ -102,8 +145,7 @@ function notifyByEmail(type, data) {
   body += "==========================================\n\n";
   for (const k in data) {
     if (Object.prototype.hasOwnProperty.call(data, k)) {
-      const label = k.charAt(0).toUpperCase() + k.slice(1);
-      body += label + ": " + (data[k] || "-") + "\n";
+      body += prettyHeader(k) + ": " + (data[k] || "-") + "\n";
     }
   }
   body += "\n------------------------------------------\n";
@@ -114,7 +156,6 @@ function notifyByEmail(type, data) {
     GmailApp.sendEmail(TO, subject, body);
     Logger.log("notifyByEmail: sent for " + type);
   } catch (e) {
-    // Email is best-effort — never let a mail failure break the sheet write.
     Logger.log("notifyByEmail failed: " + e);
   }
 }
@@ -125,26 +166,23 @@ function doPost(e) {
       throw new Error("No payload received");
     }
     var payload = JSON.parse(e.postData.contents);
-    if (!payload || !payload.type || !payload.data) {
-      throw new Error("Invalid payload shape");
-    }
-    appendRow(payload.type, payload.data);
-    // Notify by email (best-effort, server-side). Runs after the row is saved.
-    notifyByEmail(payload.type, payload.data);
+    // Accept both flat {type, ...fields} and nested {type, data:{...}}.
+    var type = payload.type || "quote";
+    var data = payload.data ? payload.data : payload;
+    delete data.type;
+    appendRow(type, data);
+    notifyByEmail(type, data);
     return ContentService.createTextOutput(
-      JSON.stringify({ ok: true })
+      JSON.stringify({ status: "success", message: type + " request submitted successfully." })
     ).setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
     return ContentService.createTextOutput(
-      JSON.stringify({ ok: false, error: String(err) })
+      JSON.stringify({ status: "error", error: String(err) })
     ).setMimeType(ContentService.MimeType.JSON);
   }
 }
 
 function doGet(e) {
-  // Verification mode: open the sheet and report its tabs. Hit the web-app
-  // URL with ?test=1 to confirm (a) the deployment is the CURRENT version and
-  // (b) it has spreadsheet access. If this returns tab names, POST will work.
   var p = e && e.parameter ? e.parameter : {};
   if (p.test === "1") {
     try {
@@ -161,7 +199,6 @@ function doGet(e) {
       ).setMimeType(ContentService.MimeType.JSON);
     }
   }
-
   return ContentService.createTextOutput(
     JSON.stringify({ ok: true, message: "Rudra Dairy sheet logger ready" })
   ).setMimeType(ContentService.MimeType.JSON);

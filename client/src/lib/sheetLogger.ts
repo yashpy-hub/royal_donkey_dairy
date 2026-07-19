@@ -20,7 +20,15 @@
  */
 import { BUSINESS } from "@shared/business";
 
-const SHEET_WEBAPP_URL = import.meta.env.VITE_GAS_SHEET_WEBAPP_URL;
+// Primary: env var (set in Vercel dashboard OR .env.local for local dev).
+// Fallback: the deployed v5 web app URL, so the form ALWAYS saves even if the
+// env var is missing in the build (Vercel does NOT read .env.local from the
+// repo — it must be set in the project dashboard). This prevents the silent
+// "works locally, never posts in prod" failure.
+// NOTE: keep this in sync with the latest Apps Script deployment URL.
+const SHEET_WEBAPP_URL =
+  import.meta.env.VITE_GAS_SHEET_WEBAPP_URL ||
+  "https://script.google.com/macros/s/AKfycbyjySRC4H8mfGtaS7E9N6mVVwjqhCMFHJRGprc0aeNoG30yr-kU80snJJCG2S8G1pPxaw/exec";
 
 export type SheetRow = Record<string, string | number>;
 
@@ -30,15 +38,16 @@ export async function logToSheet(
 ): Promise<void> {
   if (!SHEET_WEBAPP_URL) {
     console.warn(
-      "[sheetLogger] VITE_GAS_SHEET_WEBAPP_URL is not set — skipping sheet log."
+      "[sheetLogger] No web app URL available — sheet log cannot run."
     );
     return;
   }
 
-  // The Apps Script (scripts/Code.gs v4) reads fields FLAT off the parsed
-  // body (data.name, data.company, data.volume, data.destination, …), so we
-  // spread the row fields to the top level alongside `type`. Unknown keys
-  // (source/business/submittedAt) are ignored by the script.
+  // The Apps Script (scripts/Code.gs v5) reads the body FLAT and writes a
+  // fixed set of quote columns (Timestamp, Full Name, Company Name, Email,
+  // Phone/WhatsApp, Country, Company Website, Product, Application, Quantity
+  // Required, Timeline, Message). It maps legacy keys (volume/destination) but
+  // we send the canonical keys the business uses.
   const payload = {
     type,
     ...data,
